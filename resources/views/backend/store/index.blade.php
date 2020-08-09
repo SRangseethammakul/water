@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-auto mr-auto"><h3>ร้านค้า</h3></div>
-                    <div class="col-auto"><a href="{{ route('store.create')}}"> <button type="button" class="btn btn-dark">Dark</button> </a></div>
+                    <div class="col-auto"><a href="{{ route('store.create')}}"> <button type="button" class="btn btn-dark">เพิ่มร้านค้า</button> </a></div>
                 </div>
             </div>
 
@@ -30,7 +30,7 @@
                             <tr>
                             <th scope="col">รหัสร้านค้า</th>
                             <th scope="col">ชื่อร้านค้า</th>
-                            <th scope="col">ประเภท</th>
+                            <th scope="col">ติดต่อ</th>
                             <th scope="col">วันที่เพิ่ม</th>
                             <th scope="col">วันที่แก้ไข</th>
                             <th scope="col">Tools</th>
@@ -41,7 +41,7 @@
                                 <tr>
                                     <th scope="row">{{ $item->id}}</th>
                                     <td><a href="{{ route('store.edit',['id'=>$item->id])}}">{{$item->store_name}}</a></td>
-                                    <td>rfb</td>
+                                    <td>{{$item->store_contact}}</td>
                                     <td>{{$item->created_at}}</td>
                                     <td>{{$item->updated_at}}</td>
                                     <td>
@@ -94,6 +94,15 @@
                 'You clicked the button!',
                 'success'
             )
+        </script>
+    @endif
+    @if(session('unsuccess'))    
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('unsuccess')}}'
+            })
         </script>
     @endif
 @endsection

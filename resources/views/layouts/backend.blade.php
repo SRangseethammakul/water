@@ -46,16 +46,16 @@
                         <li class="nav-header">ข้อมูลหลัก</li>
                         <li class="nav-item">
                             <a href="{{ route('type.index')}}" class="nav-link">
-                            <i class="nav-icon fa fa-calendar"></i>  หมวดสินค้า</a>
+                            <i class="nav-icon fa fa-cart-plus"></i>  ประเภทสินค้า</a>
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="{{ route('promotion.index')}}" class="nav-link">
-                            <i class="nav-icon fa fa-envelope-o"></i> promotions
+                            <i class="nav-icon fa fa-bolt"></i> โปรโมชัน
                            </a>
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="{{ route('store.index')}}" class="nav-link">
-                            <i class="nav-icon fa fa-envelope-o"></i> Store
+                            <i class="nav-icon fa fa-shopping-bag"></i> ร้านค้า
                            </a>
                         </li>
 

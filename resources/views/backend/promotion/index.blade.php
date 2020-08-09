@@ -18,8 +18,8 @@
         <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-auto mr-auto"><h3>ประเภทโปรโมชั่นทั้งหมด 10 รายการ</h3></div>
-                <div class="col-auto"><a href="{{ route('promotion.create')}}"> <button type="button" class="btn btn-dark">Dark</button> </a></div>
+                <div class="col-auto mr-auto"><h3>ประเภทโปรโมชั่น</h3></div>
+                <div class="col-auto"><a href="{{ route('promotion.create')}}"> <button type="button" class="btn btn-dark">เพิ่มโปรโมชัน</button> </a></div>
             </div>
         </div>
             <div class="row">
@@ -30,8 +30,8 @@
                             <th scope="col">รหัสโปรโมชั่น</th>
                             <th scope="col">ชื่อโปรโมชั่น</th>
                             <th scope="col">ประเภท</th>
+                            <th scope="col">ราคา</th>
                             <th scope="col">วันที่เพิ่ม</th>
-                            <th scope="col">วันที่แก้ไข</th>
                             <th scope="col">Tools</th>
                             </tr>
                         </thead>
@@ -40,9 +40,9 @@
                                 <tr>
                                     <th scope="row">{{ $item->id}}</th>
                                     <td><a href="{{ route('promotion.edit',['id'=>$item->id])}}">{{$item->promotion_name}}</a></td>
+                                    <td>{{$item->promotion_price}}</td>
                                     <td>{{$item->type->type_name}}</td>
                                     <td>{{$item->created_at}}</td>
-                                    <td>{{$item->updated_at}}</td>
                                     <td>
                                         <a href="{{ route('promotion.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>

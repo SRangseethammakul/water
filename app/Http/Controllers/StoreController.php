@@ -45,31 +45,40 @@ class StoreController extends Controller
     {
         //
         // dd($request->all());
-        $new_store = new Store();
-        $new_store->store_name = $request->store_name;
-        $new_store->store_tel  = $request->store_tel;
-        $new_store->store_contact  = $request->store_contact;
-        $new_store->store_address = $request->store_address;
-        $new_store->store_detail = $request->store_detail;
-        $new_store->store_name = $request->store_status;
-        $new_store->store_tax_contact = $request->store_tax_contact;
-        $new_store->store_tax_name = $request->store_tax_name;
-        $new_store->store_tax_id = $request->store_tax_id;
-        $tmp = '';
-        if($request->check_list){
-            foreach($request->check_list as $key =>  $item){
-                if($key == 0){
-                    $tmp = $item;
-                }
-                else{
-                    $tmp = $item.','.$tmp;
-                }         
+        try{
+            if(Store::where('store_tel',$request->store_tel)){
+                return redirect()->route('store.index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้ เบอร์ช้ำ');
             }
+            else{
+                $new_store = new Store();
+                $new_store->store_name = $request->store_name;
+                $new_store->store_tel  = $request->store_tel;
+                $new_store->store_contact  = $request->store_contact;
+                $new_store->store_address = $request->store_address;
+                $new_store->store_detail = $request->store_detail;
+                $new_store->store_status = $request->store_status;
+                $new_store->store_tax_contact = $request->store_tax_contact;
+                $new_store->store_tax_name = $request->store_tax_name;
+                $new_store->store_tax_id = $request->store_tax_id;
+                $tmp = '';
+                if($request->check_list){
+                    foreach($request->check_list as $key =>  $item){
+                        if($key == 0){
+                            $tmp = $item;
+                        }
+                        else{
+                            $tmp = $item.','.$tmp;
+                        }         
+                    }
+                }
+                $new_store->store_promotion = $tmp;
+                $new_store->store_status = $request->store_status;
+                $new_store->save();
+                return redirect()->route('store.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
+            }
+        }catch(Exception $e){
+            return redirect()->route('store.index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้');
         }
-        $new_store->store_promotion = $tmp;
-        $new_store->store_status = $request->store_status;
-        $new_store->save();
-        return redirect()->route('store.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
     /**

@@ -18,7 +18,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-auto mr-auto"><h3>ประเภทสินค้า</h3></div>
-                    <div class="col-auto"><a href="{{ route('type.create')}}"> <button type="button" class="btn btn-dark">Dark</button> </a></div>
+                    <div class="col-auto"><a href="{{ route('type.create')}}"> <button type="button" class="btn btn-dark">เพิ่มประเภทสินค้า</button> </a></div>
                 </div>
             </div>
 

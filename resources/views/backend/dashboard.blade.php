@@ -56,7 +56,7 @@
                                     <p>ประเภทสินค้า</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-bag"></i>
+                                    <i class="fa fa-cart-plus"></i>
                                 </div>
                                 <a href="{{ route('type.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
@@ -71,7 +71,7 @@
                                     <p>โปรโมชัน</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-stats-bars"></i>
+                                    <i class="fa fa-bolt"></i>
                                 </div>
                                 <a href="{{ route('promotion.index')}}"class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
@@ -86,7 +86,7 @@
                                     <p>จำนวน user</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-person-add"></i>
+                                    <i class="fa fa-users"></i>
                                 </div>
                                 <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
@@ -98,10 +98,10 @@
                                 <div class="inner">
                                     <h3>{{$store_count}}</h3>
 
-                                    <p>ร้านค้า</p>
+                                    <p>จำนวนร้านค้า</p>
                                 </div>
                                 <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
+                                    <i class="fa fa-shopping-bag"></i>
                                 </div>
                                 <a href="{{ route('store.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
