@@ -34,6 +34,7 @@ Route::put('/promotion/update', 'PromotionController@update')->middleware('auth'
 Route::resource('/store', 'StoreController')->middleware('auth');
 Route::get('/store/edit/{id}', 'StoreController@edit')->middleware('auth')->name('store.edit');
 Route::put('/store/update', 'StoreController@update')->middleware('auth')->name('store.update');
+Route::get('/store/destroy/{id}', 'StoreController@destroy')->middleware('auth')->name('store.destroy');
 
 Route::resource('/storetype', 'StoreTypeController')->middleware('auth');
 Route::get('/storetype/edit/{id}', 'StoreTypeController@edit')->middleware('auth')->name('storetype.edit');

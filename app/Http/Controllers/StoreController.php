@@ -16,7 +16,7 @@ class StoreController extends Controller
     public function index()
     {
         //
-        $store = Store::get();
+        $store = Store::with('store_type')->get();
         return view('backend.store.index',[
             'store' => $store
         ]);
@@ -173,5 +173,8 @@ class StoreController extends Controller
     public function destroy($id)
     {
         //
+        $sub = Store::find($id);
+        $sub->delete();
+        return redirect()->route('store.index')->with('feedback' ,'ลบข้อมูลเรียบร้อยแล้ว');
     }
 }

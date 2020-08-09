@@ -31,8 +31,8 @@
                             <th scope="col">รหัสร้านค้า</th>
                             <th scope="col">ชื่อร้านค้า</th>
                             <th scope="col">ติดต่อ</th>
+                            <th scope="col">ประเภทร้านค้า</th>
                             <th scope="col">วันที่เพิ่ม</th>
-                            <th scope="col">วันที่แก้ไข</th>
                             <th scope="col">Tools</th>
                             </tr>
                         </thead>
@@ -42,16 +42,18 @@
                                     <th scope="row">{{ $item->id}}</th>
                                     <td><a href="{{ route('store.edit',['id'=>$item->id])}}">{{$item->store_name}}</a></td>
                                     <td>{{$item->store_contact}}</td>
+                                    <td>{{$item->store_type->store_type_name}}</td>
                                     <td>{{$item->created_at}}</td>
-                                    <td>{{$item->updated_at}}</td>
                                     <td>
                                         <a href="{{ route('store.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>
                                         </a>
-                                        <button class="btn btn-danger" name="archive" type="submit" onclick="archiveFunction()">
-                                            <i class="fa fa-archive"></i>
-                                                Archive
-                                        </button>
+                                        <a href="{{ url('store/destroy/'.$item->id)}}">
+                                            <button class="btn btn-danger" name="archive" type="submit">
+                                                <i class="fa fa-archive"></i>
+                                                    ลบข้อมูล
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
