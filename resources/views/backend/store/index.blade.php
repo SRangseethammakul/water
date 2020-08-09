@@ -42,7 +42,7 @@
                                     <th scope="row">{{ $item->id}}</th>
                                     <td><a href="{{ route('store.edit',['id'=>$item->id])}}">{{$item->store_name}}</a></td>
                                     <td>{{$item->store_contact}}</td>
-                                    <td>{{$item->store_type->store_type_name}}</td>
+                                    {{-- <td>{{$item->store_type->store_type_name}}</td> --}}
                                     <td>{{$item->created_at}}</td>
                                     <td>
                                         <a href="{{ route('store.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
