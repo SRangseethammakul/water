@@ -41,6 +41,7 @@
                             <div class="col-4"><h2>ชื่อร้าน</h2></div>
                             <div class="col-4"><h2>{{$store->store_name}}</h2></div>
                         </div>
+                        <hr>
                         <div class="row justify-content-center">
                             <div class="col-4"><h2>เบอร์ติดต่อ</h2></div>
                             <div class="col-4">
@@ -48,10 +49,12 @@
                                 <h2>{{$store->store_tel}}</h2></a>
                             </div>
                         </div>
+                        <hr>
                         <div class="row justify-content-center">
                             <div class="col-4"><h2>สถานนะร้านค้า</h2></div>
                             <div class="col-4"><h2>{{$store->store_status ? "ปกติ" : "ปิดกิจการ"}}</h2></div>
                         </div>
+                        <hr>
                         <div class="row justify-content-center">
                             <div class="col-4"><h2>ประเภทสินค้า</h2></div>
                             <div class="col-4"><h2>{{$store->store_contact}}</h2></div>
@@ -75,14 +78,17 @@
                             <div class="col-4"><h2>ชื่อโปรโมชัน</h2></div>
                             <div class="col-4"><h2>{{$item->promotion_name}}</h2></div>
                         </div>
+                        <hr>
                         <div class="row justify-content-center">
                             <div class="col-4"><h2>รายละเอียดโปรโมชัน</h2></div>
                             <div class="col-4"><h2>{{$item->promotion_detail}}</h2></div>
                         </div>
+                        <hr>
                         <div class="row justify-content-center">
                             <div class="col-4"><h2>ราคา</h2></div>
                             <div class="col-4"><h2>{{$item->promotion_price}}</h2></div>
                         </div>
+                        <hr>
                         <div class="row justify-content-center">
                             <div class="col-4"><h2>ประเภทสินค้า</h2></div>
                             <div class="col-4"><h2>{{$item->type->type_name}}</h2></div>
@@ -107,12 +113,14 @@
                             <div class="col-4"><h2>หมายเลขผู้เสียภาษี</h2></div>
                             <div class="col-4"><h2>{{$store->store_tax_id}}</h2></div>
                         </div>
+                        <hr>
                         <div class="row justify-content-center">
                             <div class="col-4"><h2>ชื่อผู้เสียภาษี</h2></div>
                             <div class="col-4">
                                 <h2>{{$store->store_tax_name}}</h2></a>
                             </div>
                         </div>
+                        <hr>
                         <div class="row justify-content-center">
                             <div class="col-4"><h2>ที่อยู่ผู้เสียภาษี</h2></div>
                             <div class="col-4"><h2>store_tax_contact</h2></div>

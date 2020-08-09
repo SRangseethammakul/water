@@ -45,14 +45,13 @@
                 if (response.status == 1) {
                     $.each(response.data, function(index,item) {
                         $store_promotion = 0;
-                        console.log(item.store_tel);
                         var html_q =
                         `
                         <div class="jumbotron">
                             <h1 class="display-4">`+ item.store_name + `</h1>
                             <p class="lead">ติดต่อคุณ `+ item.store_contact + `</p>
                             <p class="lead">เบอร์ติดต่อ `+ item.store_tel + `</p>
-                            <a class="btn btn-primary btn-lg" href="detail/`+item.id+`" role="button">Learn more</a>
+                            <a class="btn btn-info btn-lg" href="detail/`+item.id+`" role="button">ดูข้อมูลเพิ่มเติม</a>
                         </div>
                          `
                         $("#result").append(html_q);
@@ -64,7 +63,11 @@
     $('#search').on('keyup', function() {
         _xhr && _xhr.abort();
         $('#result').html('');
-        startSearch();
+        var num = $('#search').val();
+        console.log(num.length > 0, num.length);
+        if(num.length > 0){
+            startSearch();
+        }
     });
 </script>
 </body>

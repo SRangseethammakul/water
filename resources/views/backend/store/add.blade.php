@@ -79,7 +79,7 @@
                 <div class="row">
                     <div class="col-sm">
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" checked class="custom-control-input" id="customSwitch">
+                            <input type="checkbox" class="custom-control-input" id="customSwitch">
                             <label class="custom-control-label" for="customSwitch">เพิ่มใบกำกับภาษี</label>
                         </div>
                     <!-- <button type="button" class="btn btn-outline-info" onclick="archiveFunction();">เพิ่มใบกำกับภาษี</button> -->
@@ -117,6 +117,7 @@
 @endsection
 @section('footerscript')
     <script>
+        document.getElementById("result").style.display = "none";
         $('#store_tel').on('input', function() {
             var store_tel = $('#store_tel').val().replace(/,/g, "").replace(/%/g, "");
             $('#store_tel').val(store_tel.toString().replace(/[^0-9]/g, ""));
