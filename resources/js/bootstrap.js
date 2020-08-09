@@ -12,6 +12,7 @@ try {
 
     require('bootstrap');
 } catch (e) {}
+require('admin-lte/build/js/AdminLTE');
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
