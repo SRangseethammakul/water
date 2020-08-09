@@ -28,9 +28,10 @@ class CreateStoresTable extends Migration
             $table->string('store_promotion')->nullable();
             $table->string('store_price_sum')->nullable();
             $table->string('store_status')->nullable();
+            $table->string('store_type_name')->nullable();
             $table->string('store_province')->nullable();
             $table->string('store_amphure')->nullable();
-            $table->string('store_image')->nullable();
+            $table->string('store_type_id')->nullable();
             $table->timestamps();
         });
     }
