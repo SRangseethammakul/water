@@ -49,6 +49,11 @@
                             <i class="nav-icon fa fa-cart-plus"></i>  ประเภทสินค้า</a>
                         </li>
                         <li class="nav-item has-treeview">
+                            <a href="{{ route('storetype.index')}}" class="nav-link">
+                            <i class="nav-icon fa fa-cubes"></i> ประเภทร้านค้า
+                           </a>
+                        </li>
+                        <li class="nav-item has-treeview">
                             <a href="{{ route('promotion.index')}}" class="nav-link">
                             <i class="nav-icon fa fa-bolt"></i> โปรโมชัน
                            </a>

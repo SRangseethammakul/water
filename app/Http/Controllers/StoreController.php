@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Store;
 use App\Promotion;
+use App\StoreType;
 class StoreController extends Controller
 {
     /**
@@ -29,9 +30,11 @@ class StoreController extends Controller
     public function create()
     {
         //
-        $promotions = Promotion::get();
+        $promotions = Promotion::where('promotion_status',1);
+        $store_types = StoreType::get();
         return view('backend.store.add',[
-            'promotions' => $promotions
+            'promotions' => $promotions,
+            'store_types' => $store_types
         ]);
     }
 
@@ -46,13 +49,16 @@ class StoreController extends Controller
         //
         // dd($request->all());
         try{
-            if(Store::where('store_tel',$request->store_tel)){
+            $check_tel = Store::where('store_tel',$request->store_tel)->get();
+            if($check_tel->count() > 0){
                 return redirect()->route('store.index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้ เบอร์ช้ำ');
             }
             else{
                 $new_store = new Store();
                 $new_store->store_name = $request->store_name;
                 $new_store->store_tel  = $request->store_tel;
+                $new_store->store_type_id  = $request->store_type;
+                $new_store->store_lineid  = $request->store_line;
                 $new_store->store_contact  = $request->store_contact;
                 $new_store->store_address = $request->store_address;
                 $new_store->store_detail = $request->store_detail;
@@ -102,13 +108,15 @@ class StoreController extends Controller
     {
         //
         try{
-            $store = Store::where('id',$id)->first();
+            $store = Store::where('id',$id)->with('store_type')->first();
             $promotions = Promotion::get();
+            $store_types = StoreType::get();
             $store_promotion = explode(",",$store->store_promotion);
             return view('backend.store.edit',[
                 'store' => $store,
                 'store_promotion' => $store_promotion,
-                'promotions' => $promotions
+                'promotions' => $promotions,
+                'store_types' => $store_types
             ]);
 
         }catch(Exception $e){
@@ -130,6 +138,8 @@ class StoreController extends Controller
         $store_edit = Store::find($id);
         $store_edit->store_name = $request->store_name;
         $store_edit->store_tel  = $request->store_tel;
+        $store_edit->store_type_id  = $request->store_type;
+        $store_edit->store_lineid  = $request->store_line;
         $store_edit->store_contact  = $request->store_contact;
         $store_edit->store_address = $request->store_address;
         $store_edit->store_detail = $request->store_detail;

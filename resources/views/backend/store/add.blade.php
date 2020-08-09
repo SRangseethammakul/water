@@ -27,6 +27,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
@@ -36,8 +37,26 @@
                 </div>
                 <div class="col-sm">
                     <div class="form-group">
+                        <label for="exampleFormControlSelect1">เลือกประเภทร้านค้า</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="store_type" required>
+                        @foreach ($store_types as $item)
+                            <option value="{{ $item->id }}">{{ $item->store_type_name }}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
                         <label for="store_tel">เบอร์ร้านค้า</label>
                         <input type="text" class="form-control" id="store_tel" name="store_tel" maxlength="10">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="store_line">Line ID</label>
+                        <input type="text" class="form-control" id="store_line" name="store_line">
                     </div>
                 </div>
             </div>
@@ -67,6 +86,7 @@
                     <textarea class="form-control" id="store_detail" name="store_detail" rows="3"></textarea>
                 </div>
                 <div class="form-group">
+                    <h5>สถานนะของร้านค้า</h5>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="store_status_1" value="1" name="store_status" class="custom-control-input" required>
                         <label class="custom-control-label" for="store_status_1">ใช้งาน</label>
@@ -76,7 +96,7 @@
                         <label class="custom-control-label" for="store_status_2">เลิกใช้งาน</label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mt-5">
                     <div class="col-sm">
                         <div class="custom-control custom-switch">
                             <input type="checkbox" class="custom-control-input" id="customSwitch">
@@ -109,7 +129,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                <button type="submit mb-5" class="btn btn-primary mt-5">Submit</button>
             </form>
             
         </div>

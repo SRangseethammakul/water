@@ -19,7 +19,7 @@
             <form method="post" action="{{ route('promotion.store')}}" enctype="multipart/form-data">
             @csrf
                 <div class="form-group  mt-5">
-                    <label for="exampleFormControlSelect1">Example select</label>
+                    <label for="exampleFormControlSelect1">เลือกประเภทสินค้า</label>
                     <select class="form-control" id="exampleFormControlSelect1" name="promotion_type">
                     @foreach ($types as $item)
                         <option value="{{ $item->id }}">{{ $item->type_name }}</option>

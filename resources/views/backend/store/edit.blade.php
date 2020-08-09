@@ -37,8 +37,33 @@
                 </div>
                 <div class="col-sm">
                     <div class="form-group">
+                        <label for="exampleFormControlSelect1">เลือกประเภทร้านค้า</label>
+                        <select class="form-control" id="exampleFormControlSelect1" name="store_type" required>
+                        <option value="{{ $store->store_type_id}}">{{ $store->store_type->store_type_name }}</option>
+                        @foreach ($store_types as $item)
+                            <option value="{{ $item->id }}">{{ $item->store_type_name }}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
                         <label for="store_tel">เบอร์ร้านค้า</label>
                         <input type="text" class="form-control" id="store_tel" name="store_tel" maxlength="10"  value="{{ $store->store_tel }}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="store_tel">เบอร์ร้านค้า</label>
+                        <input type="text" class="form-control" id="store_tel" name="store_tel" maxlength="10"  value="{{ $store->store_tel }}">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <label for="store_line">Line ID</label>
+                        <input type="text" class="form-control" id="store_line" name="store_line" value="{{ $store->store_lineid }}">
                     </div>
                 </div>
             </div>
@@ -50,7 +75,6 @@
                     </div>
                 </div>
             </div>
-
             @foreach($promotions as $infraction)
                 <div class="row">
                     <div class="col-sm">

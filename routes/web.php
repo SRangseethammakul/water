@@ -35,3 +35,7 @@ Route::resource('/store', 'StoreController')->middleware('auth');
 Route::get('/store/edit/{id}', 'StoreController@edit')->middleware('auth')->name('store.edit');
 Route::put('/store/update', 'StoreController@update')->middleware('auth')->name('store.update');
 
+Route::resource('/storetype', 'StoreTypeController')->middleware('auth');
+Route::get('/storetype/edit/{id}', 'StoreTypeController@edit')->middleware('auth')->name('storetype.edit');
+Route::put('/storetype/update', 'StoreTypeController@update')->middleware('auth')->name('storetype.update');
+
