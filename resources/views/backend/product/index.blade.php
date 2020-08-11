@@ -5,7 +5,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0 text-dark">Promotion</h1>
+                            <h1 class="m-0 text-dark">Product</h1>
                         </div>
                     </div>
                     <!-- /.row -->
@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-auto mr-auto"><h3>ประเภทสินค้า</h3></div>
-                <div class="col-auto"><a href="{{ route('product.create')}}"> <button type="button" class="btn btn-dark">เพิ่มโปรโมชัน</button> </a></div>
+                <div class="col-auto"><a href="{{ route('product.create')}}"> <button type="button" class="btn btn-dark">เพิ่มสินค้า</button> </a></div>
             </div>
         </div>
             <div class="row">
