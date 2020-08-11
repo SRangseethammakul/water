@@ -44,7 +44,7 @@
                                     <td>{{$item->product_price}}</td>
                                     <td>{{$item->type->type_name}}</td>
                                     <td>
-                                        <img src="{{ asset('storage/images/'.$item->product_image) }}" width="60">
+                                        <img src="{{ asset('storage/images/product/'.$item->product_image) }}" width="60">
                                     </td>
                                     <td>{{$item->created_at}}</td>
                                     <td>
