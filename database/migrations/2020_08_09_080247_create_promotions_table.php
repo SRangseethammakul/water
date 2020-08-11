@@ -21,7 +21,6 @@ class CreatePromotionsTable extends Migration
             $table->string('promotion_price')->nullable();
             $table->string('promotion_sum_price')->nullable();
             $table->string('promotion_image')->nullable();
-            $table->foreignId('type_id')->references('id')->on('types')->nullable();
             $table->timestamps();
         });
     }

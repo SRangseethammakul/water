@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     //
-    public function promotions(){
-        return $this->hasMany(Promotion::class);
+    public function products(){
+        return $this->hasMany(Product::class);
     }
 }
