@@ -53,7 +53,7 @@
                             <label class="custom-control-label" for="product_status_2">เลิกใช้งาน</label>
                         </div>
                     </div>
-                    <img src="{{ asset('storage/images/'.$product->product_image) }}" width="60">
+                    <img src="{{ asset('storage/images/product/'.$product->product_image) }}" width="60">
                     <div class="form-group">
                         <label for="productimage">รูปสินค้า</label>
                         <input type="file" class="form-control-file" id="productimage" name="productimage">
