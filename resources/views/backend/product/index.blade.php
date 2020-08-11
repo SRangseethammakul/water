@@ -18,8 +18,8 @@
         <div class="container-fluid">
         <div class="container">
             <div class="row">
-                <div class="col-auto mr-auto"><h3>ประเภทโปรโมชั่น</h3></div>
-                <div class="col-auto"><a href="{{ route('promotion.create')}}"> <button type="button" class="btn btn-dark">เพิ่มโปรโมชัน</button> </a></div>
+                <div class="col-auto mr-auto"><h3>ประเภทสินค้า</h3></div>
+                <div class="col-auto"><a href="{{ route('product.create')}}"> <button type="button" class="btn btn-dark">เพิ่มโปรโมชัน</button> </a></div>
             </div>
         </div>
             <div class="row">
@@ -27,32 +27,36 @@
                     <table class="table">
                         <thead>
                             <tr>
-                            <th scope="col">รหัสโปรโมชั่น</th>
-                            <th scope="col">ชื่อโปรโมชั่น</th>
+                            <th scope="col">รหัสสินค้า</th>
+                            <th scope="col">ชื่อสินค้า</th>
                             <th scope="col">ประเภท</th>
+                            <th scope="col">รูปภาพ</th>
                             <th scope="col">ราคา</th>
-                            <th scope="col">สถานะ</th>
                             <th scope="col">วันที่เพิ่ม</th>
                             <th scope="col">Tools</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($promotion as $item)
+                            @foreach ($products as $item)
                                 <tr>
                                     <th scope="row">{{ $item->id}}</th>
-                                    <td><a href="{{ route('promotion.edit',['id'=>$item->id])}}">{{$item->promotion_name}}</a></td>
-                                    <td>{{$item->product->product_name}}</td>
-                                    <td>{{$item->promotion_price}}</td>
-                                    <td>{{$item->promotion_status ? 'กำลังใช้งาน' : 'เลิกใช้งาน'}}</td>
+                                    <td><a href="{{ route('product.edit',['id'=>$item->id])}}">{{$item->product_name}}</a></td>
+                                    <td>{{$item->product_price}}</td>
+                                    <td>{{$item->type->type_name}}</td>
+                                    <td>
+                                        <img src="{{ asset('storage/images/'.$item->product_image) }}" width="60">
+                                    </td>
                                     <td>{{$item->created_at}}</td>
                                     <td>
-                                        <a href="{{ route('promotion.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
+                                        <a href="{{ route('product.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>
                                         </a>
-                                        <button class="btn btn-danger" name="archive" type="submit" onclick="archiveFunction()">
-                                            <i class="fa fa-archive"></i>
-                                                Archive
-                                        </button>
+                                        <a href="{{ url('product/destroy/'.$item->id)}}">
+                                            <button class="btn btn-danger" name="archive" type="submit">
+                                                <i class="fa fa-archive"></i>
+                                                    ลบข้อมูล
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

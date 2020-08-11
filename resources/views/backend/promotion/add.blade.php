@@ -20,9 +20,9 @@
             @csrf
                 <div class="form-group  mt-5">
                     <label for="exampleFormControlSelect1">เลือกประเภทสินค้า</label>
-                    <select class="form-control" id="exampleFormControlSelect1" name="promotion_type">
-                    @foreach ($types as $item)
-                        <option value="{{ $item->id }}">{{ $item->type_name }}</option>
+                    <select class="form-control"  id="exampleFormControlSelect1" name="promotion_type">
+                    @foreach ($products as $item)
+                        <option value="{{ $item->id }}">{{ $item->product_name }}</option>
                     @endforeach
                     </select>
                 </div>

@@ -129,6 +129,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label for="storeimage">รูปร้านค้า</label>
+                    <input type="file" class="form-control-file" id="storeimage" name="storeimage">
+                </div>
                 <button type="submit mb-5" class="btn btn-primary mt-5">Submit</button>
             </form>
             

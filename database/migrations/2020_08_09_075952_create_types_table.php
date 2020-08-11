@@ -19,7 +19,7 @@ class CreateTypesTable extends Migration
             $table->text('type_detail')->nullable();
             $table->string('type_status')->nullable();
             $table->string('type_price_sum')->nullable();
-            $table->string('type_image')->nullable();
+            $table->text('type_image')->nullable();
             $table->timestamps();
         });
     }

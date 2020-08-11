@@ -17,7 +17,19 @@
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
 
+
+            </ul>
+
+            <!-- Right navbar links -->
+
+        </nav>
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -49,6 +61,11 @@
                             <i class="nav-icon fa fa-cart-plus"></i>  ประเภทสินค้า</a>
                         </li>
                         <li class="nav-item has-treeview">
+                            <a href="{{ route('product.index')}}" class="nav-link">
+                            <i class="nav-icon fa fa-tags"></i> รายการสินค้า
+                           </a>
+                        </li>
+                        <li class="nav-item has-treeview">
                             <a href="{{ route('storetype.index')}}" class="nav-link">
                             <i class="nav-icon fa fa-cubes"></i> ประเภทร้านค้า
                            </a>
@@ -63,7 +80,6 @@
                             <i class="nav-icon fa fa-shopping-bag"></i> ร้านค้า
                            </a>
                         </li>
-
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

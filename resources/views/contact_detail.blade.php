@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <div class="row mt-5">
+    <div class="row mt-5" style="margin-right: 0px">
         <div class="col align-self-center">
             <img src="{{ asset('images/water.png') }}" width="10%" style=" display: block;margin-left: auto;margin-right: auto">
         </div>
@@ -37,27 +37,27 @@
               <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-4"><h2>ชื่อร้าน</h2></div>
-                            <div class="col-4"><h2>{{$store->store_name}}</h2></div>
+                        <div class="row">
+                            <div class="col-md-4 offset-md-2"><h2>ชื่อร้าน</h2></div>
+                            <div class="col-md-4 ml-auto"><h2>{{$store->store_name}}</h2></div>
                         </div>
                         <hr>
-                        <div class="row justify-content-center">
-                            <div class="col-4"><h2>เบอร์ติดต่อ</h2></div>
-                            <div class="col-4">
+                        <div class="row">
+                            <div class="col-md-4 offset-md-2"><h2>เบอร์ติดต่อ</h2></div>
+                            <div class="col-md-4 ml-auto">
                                 <a href="tel:{{$store->store_tel}}">
                                 <h2>{{$store->store_tel}}</h2></a>
                             </div>
                         </div>
                         <hr>
-                        <div class="row justify-content-center">
-                            <div class="col-4"><h2>สถานนะร้านค้า</h2></div>
-                            <div class="col-4"><h2>{{$store->store_status ? "ปกติ" : "ปิดกิจการ"}}</h2></div>
+                        <div class="row">
+                            <div class="col-md-4 offset-md-2"><h2>สถานนะร้านค้า</h2></div>
+                            <div class="col-md-4 ml-auto"><h2>{{$store->store_status ? "ปกติ" : "ปิดกิจการ"}}</h2></div>
                         </div>
                         <hr>
-                        <div class="row justify-content-center">
-                            <div class="col-4"><h2>ประเภทสินค้า</h2></div>
-                            <div class="col-4"><h2>{{$store->store_contact}}</h2></div>
+                        <div class="row">
+                            <div class="col-md-4 offset-md-2"><h2>ประเภทสินค้า</h2></div>
+                            <div class="col-md-4 ml-auto"><h2>{{$store->store_contact}}</h2></div>
                         </div>
                     </div>
                 </div>
@@ -74,24 +74,26 @@
               <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 @foreach ($promotions as $item)
                     <div class="card-body">
-                        <div class="row justify-content-center">
-                            <div class="col-4"><h2>ชื่อโปรโมชัน</h2></div>
-                            <div class="col-4"><h2>{{$item->promotion_name}}</h2></div>
-                        </div>
-                        <hr>
-                        <div class="row justify-content-center">
-                            <div class="col-4"><h2>รายละเอียดโปรโมชัน</h2></div>
-                            <div class="col-4"><h2>{{$item->promotion_detail}}</h2></div>
-                        </div>
-                        <hr>
-                        <div class="row justify-content-center">
-                            <div class="col-4"><h2>ราคา</h2></div>
-                            <div class="col-4"><h2>{{$item->promotion_price}}</h2></div>
-                        </div>
-                        <hr>
-                        <div class="row justify-content-center">
-                            <div class="col-4"><h2>ประเภทสินค้า</h2></div>
-                            <div class="col-4"><h2>{{$item->type->type_name}}</h2></div>
+                        <div class="container">
+                          <div class="row">
+                              <div class="col-md-4 offset-md-2"><h2>ชื่อโปรโมชัน</h2></div>
+                              <div class="col-md-4 ml-auto"><h2>{{$item->promotion_name}}</h2></div>
+                          </div>   
+                          <hr>
+                          <div class="row">
+                              <div class="col-md-4 offset-md-2"><h2>รายละเอียดโปรโมชัน</h2></div>
+                              <div class="col-md-4 ml-auto"><h2>{{$item->promotion_detail}}</h2></div>
+                          </div>
+                          <hr>
+                          <div class="row justify-content-center">
+                              <div class="col-md-4 offset-md-2"><h2>ราคา</h2></div>
+                              <div class="col-md-4 ml-auto"><h2>{{$item->promotion_price}}</h2></div>
+                          </div>
+                          <hr>
+                          <div class="row justify-content-center">
+                              <div class="col-md-4 offset-md-2"><h2>ประเภทสินค้า</h2></div>
+                              <div class="col-md-4 ml-auto"><h2>{{$item->product->product_name}}</h2></div>
+                          </div>
                         </div>
                     </div>
                     <hr>
@@ -109,21 +111,21 @@
               <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body">
                     <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-4"><h2>หมายเลขผู้เสียภาษี</h2></div>
-                            <div class="col-4"><h2>{{$store->store_tax_id}}</h2></div>
+                        <div class="row">
+                            <div class="col-md-4 offset-md-2"><h2>หมายเลขผู้เสียภาษี</h2></div>
+                            <div class="col-md-4 ml-auto"><h2>{{$store->store_tax_id}}</h2></div>
                         </div>
                         <hr>
                         <div class="row justify-content-center">
-                            <div class="col-4"><h2>ชื่อผู้เสียภาษี</h2></div>
-                            <div class="col-4">
+                            <div class="col-md-4 offset-md-2"><h2>ชื่อผู้เสียภาษี</h2></div>
+                            <div class="col-md-4 ml-auto">
                                 <h2>{{$store->store_tax_name}}</h2></a>
                             </div>
                         </div>
                         <hr>
                         <div class="row justify-content-center">
-                            <div class="col-4"><h2>ที่อยู่ผู้เสียภาษี</h2></div>
-                            <div class="col-4"><h2>store_tax_contact</h2></div>
+                            <div class="col-md-4 offset-md-2"><h2>ที่อยู่ผู้เสียภาษี</h2></div>
+                            <div class="col-md-4 ml-auto"><h2>{{$store->store_tax_contact}}</h2></div>
                         </div>
                     </div>
                 </div>

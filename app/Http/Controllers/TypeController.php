@@ -100,6 +100,8 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sub = Type::find($id);
+        $sub->delete();
+        return redirect()->route('type.index')->with('feedback' ,'ลบข้อมูลเรียบร้อยแล้ว');
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Type;
+use App\Product;
 use App\Promotion;
 
 class PromotionController extends Controller
@@ -16,7 +16,7 @@ class PromotionController extends Controller
     public function index()
     {
         //
-        $promotion = Promotion::with('type')->orderby('type_id','asc')->get();
+        $promotion = Promotion::with('product')->orderby('product_id','asc')->get();
         return view('backend.promotion.index',[
             'promotion' => $promotion
         ]);
@@ -30,9 +30,9 @@ class PromotionController extends Controller
     public function create()
     {
         //
-        $types = Type::get();
+        $products = Product::get();
         return view('backend.promotion.add',[
-            'types' => $types
+            'products' => $products
         ]);
     }
 
@@ -50,8 +50,14 @@ class PromotionController extends Controller
         $new_promotion->promotion_detail = $request->promotion_detail;
         $new_promotion->promotion_status = $request->promotion_status;
         $new_promotion->promotion_price = $request->promotion_price;
-        $new_promotion->type_id = $request->promotion_type;
+        $new_promotion->product_id = $request->promotion_type;
         $new_promotion->save();
+        if($request->hasFile('productimage')){
+            $newFileName    =   uniqid().'.'.$request->productimage->extension();//gen name
+            //upload file
+            $request->productimage->storeAs('images',$newFileName,'public'); // upload file
+            $new_product->product_image = $newFileName;
+        }
         return redirect()->route('promotion.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
@@ -75,10 +81,10 @@ class PromotionController extends Controller
     public function edit($id)
     {
         //
-        $types = Type::get();
-        $promotion = Promotion::where('id',$id)->with('type')->first();
+        $products = Product::get();
+        $promotion = Promotion::where('id',$id)->with('product')->first();
         return view('backend.promotion.edit',[
-            'types' => $types,
+            'products' => $products,
             'promotion' => $promotion
         ]);
     }
@@ -99,7 +105,7 @@ class PromotionController extends Controller
         $promotion_edit->promotion_detail = $request->promotion_detail;
         $promotion_edit->promotion_status = $request->promotion_status;
         $promotion_edit->promotion_price = $request->promotion_price;
-        $promotion_edit->type_id = $request->promotion_type;
+        $promotion_edit->product_id = $request->promotion_type;
         $promotion_edit->save();
         return redirect()->route('promotion.index')->with('feedback' ,'แก้ไขข้อมูลเรียบร้อยแล้ว');
 

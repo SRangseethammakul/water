@@ -26,6 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/type', 'TypeController')->middleware('auth');
 Route::get('/type/edit/{id}', 'TypeController@edit')->middleware('auth')->name('type.edit');
 Route::put('/type/update', 'TypeController@update')->middleware('auth')->name('type.update');
+Route::get('/type/destroy/{id}', 'TypeController@destroy')->middleware('auth')->name('type.destroy');
 
 Route::resource('/promotion', 'PromotionController')->middleware('auth');
 Route::get('/promotion/edit/{id}', 'PromotionController@edit')->middleware('auth')->name('promotion.edit');
@@ -39,4 +40,9 @@ Route::get('/store/destroy/{id}', 'StoreController@destroy')->middleware('auth')
 Route::resource('/storetype', 'StoreTypeController')->middleware('auth');
 Route::get('/storetype/edit/{id}', 'StoreTypeController@edit')->middleware('auth')->name('storetype.edit');
 Route::put('/storetype/update', 'StoreTypeController@update')->middleware('auth')->name('storetype.update');
+
+Route::resource('/product', 'ProductController')->middleware('auth');
+Route::get('/product/edit/{id}', 'ProductController@edit')->middleware('auth')->name('product.edit');
+Route::put('/product/update', 'ProductController@update')->middleware('auth')->name('product.update');
+Route::get('/product/destroy/{id}', 'ProductController@destroy')->middleware('auth')->name('product.destroy');
 

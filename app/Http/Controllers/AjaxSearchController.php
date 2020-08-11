@@ -26,7 +26,7 @@ class AjaxSearchController extends Controller
         try {
             $store = Store::where('id',$id)->first();
             $store_promotion = explode(",",$store->store_promotion);
-            $promotions = Promotion::with('type')->whereIn('id',  $store_promotion)->get();
+            $promotions = Promotion::with('product')->whereIn('id',  $store_promotion)->get();
             return view('contact_detail',[
                 'store' => $store,
                 'promotions' => $promotions

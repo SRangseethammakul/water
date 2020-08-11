@@ -134,6 +134,11 @@
                         </div>
                     </div>
                 </div>
+                <img src="{{ asset('storage/images/store/'.$store->store_image) }}" width="60">
+                <div class="form-group">
+                    <label for="storeimage">รูปร้านค้า</label>
+                    <input type="file" class="form-control-file" id="storeimage" name="storeimage">
+                </div>
                 <button type="submit" class="btn btn-primary mt-5">Submit</button>
             </form>
             

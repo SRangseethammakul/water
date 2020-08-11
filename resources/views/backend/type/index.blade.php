@@ -45,10 +45,12 @@
                                         <a href="{{ route('type.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>
                                         </a>
-                                        <button class="btn btn-danger" name="archive" type="submit" onclick="archiveFunction()">
-                                            <i class="fa fa-archive"></i>
-                                                Archive
-                                        </button>
+                                        <a href="{{ url('type/destroy/'.$item->id)}}">
+                                            <button class="btn btn-danger" name="archive" type="submit">
+                                                <i class="fa fa-archive"></i>
+                                                    ลบข้อมูล
+                                            </button>
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach

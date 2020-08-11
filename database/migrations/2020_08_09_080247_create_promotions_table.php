@@ -20,7 +20,7 @@ class CreatePromotionsTable extends Migration
             $table->string('promotion_status')->nullable();
             $table->string('promotion_price')->nullable();
             $table->string('promotion_sum_price')->nullable();
-            $table->string('promotion_image')->nullable();
+            $table->text('promotion_image')->nullable();
             $table->timestamps();
         });
     }

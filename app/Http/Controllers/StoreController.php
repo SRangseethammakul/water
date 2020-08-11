@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Store;
 use App\Promotion;
 use App\StoreType;
+use Illuminate\Support\Facades\Storage;
+use Image;
 class StoreController extends Controller
 {
     /**
@@ -79,6 +81,12 @@ class StoreController extends Controller
                 }
                 $new_store->store_promotion = $tmp;
                 $new_store->store_status = $request->store_status;
+                if($request->hasFile('storeimage')){
+                    $newFileName    =   uniqid().'.'.$request->storeimage->extension();//gen name
+                    //upload file
+                    $request->storeimage->storeAs('images/store',$newFileName,'public'); // upload file
+                    $new_store->store_image = $newFileName;
+                }
                 $new_store->save();
                 return redirect()->route('store.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
             }
@@ -160,6 +168,16 @@ class StoreController extends Controller
         }
         $store_edit->store_promotion = $tmp;
         $store_edit->store_status = $request->store_status;
+
+
+
+        if($request->hasFile('storeimage')){
+            Storage::disk('public')->delete('images/store/'.$store_edit->store_image);
+            $newFileName    =   uniqid().'.'.$request->storeimage->extension();//gen name
+            //upload file
+            $request->storeimage->storeAs('images/store',$newFileName,'public'); // upload file
+            $store_edit->store_image = $newFileName;
+        }
         $store_edit->save();
         return redirect()->route('store.index')->with('feedback' ,'แก้ไขข้อมูลเรียบร้อยแล้ว');
     }
@@ -174,6 +192,7 @@ class StoreController extends Controller
     {
         //
         $sub = Store::find($id);
+        Storage::disk('public')->delete('images/store/'.$sub->store_image);
         $sub->delete();
         return redirect()->route('store.index')->with('feedback' ,'ลบข้อมูลเรียบร้อยแล้ว');
     }

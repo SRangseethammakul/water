@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('product_detail')->nullable();
             $table->string('product_status')->nullable();
             $table->string('product_price_sum')->nullable();
-            $table->foreignId('type_id')->references('id')->on('types')->nullable();
+            $table->foreignId('type_id')->references('id')->on('types')->onDelete('cascade')->nullable();
             $table->timestamps();
         });
     }

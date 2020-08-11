@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProductidToPromotionsTable extends Migration
+class AddStoreimageToStoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddProductidToPromotionsTable extends Migration
      */
     public function up()
     {
-        Schema::table('promotions', function (Blueprint $table) {
-            //
-            $table->foreignId('product_id')->after('promotion_image')->references('id')->on('products')->onDelete('cascade')->nullable();
+        Schema::table('stores', function (Blueprint $table) {
+            $table->string('store_image')->after('store_tel')->nullable();
         });
     }
 
@@ -26,7 +25,7 @@ class AddProductidToPromotionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('promotions', function (Blueprint $table) {
+        Schema::table('stores', function (Blueprint $table) {
             //
         });
     }

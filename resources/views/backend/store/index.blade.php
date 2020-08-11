@@ -33,6 +33,7 @@
                             <th scope="col">ติดต่อ</th>
                             <th scope="col">ประเภทร้านค้า</th>
                             <th scope="col">วันที่เพิ่ม</th>
+                            <th scope="col">รูปภาพ</th>
                             <th scope="col">Tools</th>
                             </tr>
                         </thead>
@@ -44,6 +45,9 @@
                                     <td>{{$item->store_contact}}</td>
                                     <td>{{$item->store_type->store_type_name}}</td>
                                     <td>{{$item->created_at}}</td>
+                                    <td>
+                                        <img src="{{ asset('storage/images/store/'.$item->store_image) }}" width="60">
+                                    </td>
                                     <td>
                                         <a href="{{ route('store.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>
