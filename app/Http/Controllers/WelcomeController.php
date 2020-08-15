@@ -17,8 +17,8 @@ class WelcomeController extends Controller
     {
         
         $category = Type::all();
-        $product = Product::latest()->limit(6)->get();
-        return view('product',[
+        $product = Product::where('product_status',1)->get();
+        return view('frontend.product',[
             'category' => $category,
             'products' => $product
         ]);

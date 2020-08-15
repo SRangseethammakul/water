@@ -1,6 +1,16 @@
-<!-- Footer -->
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+<style>
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #343a40;
+      color: white;
+      text-align: center;
+      padding-top: 20px;
+    }
+    </style>
+    
+    <div class="footer">
+      <p>Footer</p>
     </div>
-</footer>
