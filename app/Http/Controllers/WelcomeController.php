@@ -16,7 +16,7 @@ class WelcomeController extends Controller
     public function index()
     {
         
-        $category = Type::all();
+        $category = Type::where('type_status',1)->get();
         $product = Product::where('product_status',1)->get();
         return view('frontend.product',[
             'category' => $category,
