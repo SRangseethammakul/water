@@ -19,10 +19,6 @@ Route::get('/detail/{id}', 'AjaxSearchController@show');
 
 Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
 
-Route::get('/test', function () {
-    return view('test');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

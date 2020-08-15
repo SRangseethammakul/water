@@ -55,8 +55,9 @@ class ProductController extends Controller
         $new_product->type_id = $request->product_type;
         if($request->hasFile('productimage')){
             $newFileName    =   uniqid().'.'.$request->productimage->extension();//gen name
-            //upload file
-            $request->productimage->storeAs('images/product',$newFileName,'public'); // upload file
+            // $imageName = time().'.'.$request->image->getClientOriginalExtension();
+            $image = $request->file('productimage');
+            $t = Storage::disk('do_spaces')->put('products/'.$newFileName, file_get_contents($image), 'public');
             $new_product->product_image = $newFileName;
         }
         $new_product->save();
@@ -110,9 +111,10 @@ class ProductController extends Controller
         $product_edit->type_id = $request->product_type;
         //ลบไฟล์เก่า แล้วอัพไฟล์ใหม่เข้าไป
         if($request->hasFile('productimage')){
-            Storage::disk('public')->delete('images/product/'.$product_edit->product_image);
+            Storage::disk('do_spaces')->delete('products/'.$product_edit->product_image);
             $newFileName    =   uniqid().'.'.$request->productimage->extension();//gen name
-            $request->productimage->storeAs('images/product',$newFileName,'public'); // upload file
+            $image = $request->file('productimage');
+            $t = Storage::disk('do_spaces')->put('products/'.$newFileName, file_get_contents($image), 'public');
             $product_edit->product_image = $newFileName;
         }
         $product_edit->save();
@@ -129,7 +131,7 @@ class ProductController extends Controller
     {
 
         $sub = Product::find($id);
-        Storage::disk('public')->delete('images/product/'.$sub->product_image);
+        Storage::disk('do_spaces')->delete('products/'.$sub->product_image);
         $sub->delete();
         return redirect()->route('product.index')->with('feedback' ,'ลบข้อมูลเรียบร้อยแล้ว');
     }

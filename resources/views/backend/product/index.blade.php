@@ -37,14 +37,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($products as $item)
+                            @foreach ($products as $key => $item)
                                 <tr>
-                                    <th scope="row">{{ $item->id}}</th>
+                                    <th scope="row">{{ $key+1 }}</th>
                                     <td><a href="{{ route('product.edit',['id'=>$item->id])}}">{{$item->product_name}}</a></td>
                                     <td>{{$item->product_price}}</td>
                                     <td>{{$item->type->type_name}}</td>
                                     <td>
-                                        <img src="{{ asset('storage/images/product/'.$item->product_image) }}" width="60">
+                                        <img class="img-responsive" height="60px" src="{!! Storage::disk('do_spaces')->url('products/' . $item->product_image) !!}" alt="thumb">
                                     </td>
                                     <td>{{$item->created_at}}</td>
                                     <td>
