@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', 'AjaxSearchController@index');
+Route::get('/astore', 'AjaxSearchController@index');
 Route::get('/detail/{id}', 'AjaxSearchController@show');
 
 Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
+
+Route::get('/', 'WelcomeController@index')->name('welcome');
+Route::get('/category/{id}', 'WelcomeController@show')->name('welcome.show');
 
 Auth::routes();
 
