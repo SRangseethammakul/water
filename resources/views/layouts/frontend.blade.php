@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title> {{ config('app.name')}} </title>
+  <title> {{ __('WATER')}} </title>
 
   <!-- Bootstrap core CSS -->
   <link href=" {{ asset('css/app.css') }}" rel = "stylesheet">
