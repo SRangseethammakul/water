@@ -12,5 +12,5 @@
     </style>
     
     <div class="footer">
-      <p>Footer</p>
+      <p>ธรรมกุลกิตต์</p>
     </div>
