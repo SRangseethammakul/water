@@ -44,6 +44,16 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Servicssses</a>
             </li>
+            @auth
+            <li class="nav-item">
+            <a class="nav-link" href="#">
+                ตะกร้าสินค้า
+                {{-- <span class="badge badge-success">
+                    {{  App\Cart::where('user_id',auth()->user()->id)->sum('qty')  }}
+                </span> --}}
+            </a>
+            </li>
+            @endauth
             {{-- <li class="nav-item">
               <a class="nav-link" href="#">Contact</a>
             </li> --}}
