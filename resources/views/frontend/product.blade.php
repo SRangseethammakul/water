@@ -50,10 +50,8 @@
 
 
         <!-- /.row -->
-        <div class="row">
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div id="result"></div>
-          </div>
+        <div id="result" class="row">
+            
         </div>
 
       </div>
@@ -71,7 +69,6 @@
   var _xhr;
   startSearch()
   function startSearch(){
-    console.log(type);
       _xhr = $.ajax({
           url: '/search_product',
           method: 'GET',
@@ -80,11 +77,10 @@
           },
           success: function (response) {
               if (response.status == 1) {
-                  $.each(response.data, function(index,item) {
+               if(response.data.length > 0){
+                $.each(response.data, function(index,item) {
                       var html_q =
-                      `
-                      
-                        
+                      `<div class="col-lg-4 col-md-6 mb-4">
                           <div class="card h-100">
                             <a href="#"><img class="card-img-top" height="250px" src="https://water-systems.sgp1.digitaloceanspaces.com/products/`+ item.product_image +`" alt=""></a>
                             <div class="card-body">
@@ -96,23 +92,43 @@
                                 <p class="card-text">`+ item.product_detail +`</p>
                             </div>
                           </div>
+                        </div>
                         `
                       $("#result").append(html_q);
-                  });
-              }
-              else{
+                });
+               }
+               else{
                 var html_q =
                       `
-                        <h2>ขออภัยไม่พบสินค้า</h2>
+                      <div class="container">
+                        <div class="row">
+                          <div class="col align-self-center">
+                            <div class="jumbotron">
+                              <h1 class="display-4">ขออภัยไม่มีสินค้าในประเภทที่ท่านเลือก</h1>
+                              <hr class="my-4">
+                              <p>เรายังมีสินค้าให้เลือกอีกมากมาย</p>
+                              <a class="btn btn-primary btn-lg" onclick="productall()" href="#" role="button">ดูสินค้าทั้งหมด</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                       `
                       $("#result").append(html_q);        
-              }   
+                } 
+              }  
           }
 
       });
   }
   function myFunction(name) {
     type = name;
+    _xhr && _xhr.abort();
+    $('#result').html('');
+    startSearch();
+  }
+  function productall() {
+    type = '';
     _xhr && _xhr.abort();
     $('#result').html('');
     startSearch();
