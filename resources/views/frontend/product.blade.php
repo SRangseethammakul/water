@@ -12,7 +12,7 @@
         <h1 class="my-4">ประเภทสินค้า</h1>
         <div class="list-group">
           @foreach ($category as $c)
-            <a href="#" class="list-group-item">{{ $c->type_name }}</a>
+            <a href="#" onclick="myFunction('{{ $c->id }}')" class="list-group-item">{{ $c->type_name }}</a>
           @endforeach
         </div>
 
@@ -48,29 +48,9 @@
           </a>
         </div>
 
-        <div class="row">
 
-          @foreach ($products as $p)
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                        <a href="#"><img class="card-img-top" height="250px" src="{!! Storage::disk('do_spaces')->url('products/' . $p->product_image) !!}" alt=""></a>
-                    <div class="card-body">
-                      <h4 class="card-title">
-                        <a href="#">{{ $p->product_name }}</a>
-                      </h4>
-                      <br>
-                      <h5>ราคา : {{ $p->product_price }}</h5>
-                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                </div>
-            </div>
-          @endforeach
-
-        </div>
         <!-- /.row -->
+        <div id="result"></div>
 
       </div>
       <!-- /.col-lg-9 -->
@@ -82,6 +62,61 @@
   <!-- /.container -->
 @endsection
 @section('footerscript')
+<script type="text/javascript">
+  var type;
+  var _xhr;
+  startSearch()
+  function startSearch(){
+    console.log(type);
+      _xhr = $.ajax({
+          url: '/search_product',
+          method: 'GET',
+          data: {
+              search : type
+          },
+          success: function (response) {
+              if (response.status == 1) {
+                  $.each(response.data, function(index,item) {
+                      var html_q =
+                      `
+                      <div class="row">
+                        <div class="col-lg-4 col-md-6 mb-4">
+                          <div class="card h-100">
+                            <a href="#"><img class="card-img-top" height="250px" src="https://water-systems.sgp1.digitaloceanspaces.com/products/`+ item.product_image +`" alt=""></a>
+                            <div class="card-body">
+                              <h4 class="card-title">
+                                <a href="#">`+ item.product_name +`</a>
+                                </h4>
+                                <br>
+                                <h5>ราคา : `+ item.product_price +`</h5>
+                                <p class="card-text">`+ item.product_detail +`</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        `
+                      $("#result").append(html_q);
+                  });
+              }
+              else{
+                var html_q =
+                      `
+                        <h2>ขออภัยไม่พบสินค้า</h2>
+                      `
+                      $("#result").append(html_q);        
+              }   
+          }
+
+      });
+  }
+  function myFunction(name) {
+    type = name;
+    _xhr && _xhr.abort();
+    $('#result').html('');
+    startSearch();
+  }
+</script>
+
     @if(session('feedback'))
         <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
         <script>

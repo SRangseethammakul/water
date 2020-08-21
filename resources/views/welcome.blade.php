@@ -44,7 +44,6 @@
             success: function (response) {
                 if (response.status == 1) {
                     $.each(response.data, function(index,item) {
-                        $store_promotion = 0;
                         var html_q =
                         `
                         <div class="jumbotron">

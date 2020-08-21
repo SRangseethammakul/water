@@ -20,7 +20,7 @@ Route::get('/detail/{id}', 'AjaxSearchController@show');
 Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
-Route::get('/category/{id}', 'WelcomeController@show')->name('welcome.show');
+Route::get('/search_product', 'WelcomeController@search_product');
 
 Auth::routes();
 

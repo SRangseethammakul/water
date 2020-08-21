@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Type;
+use Illuminate\Support\Facades\Storage;
 
 class WelcomeController extends Controller
 {
@@ -22,6 +23,24 @@ class WelcomeController extends Controller
             'category' => $category,
             'products' => $product
         ]);
+    }
+
+    public function search_product(Request $request)
+    {
+        //
+        $search   =   $request->search;
+        $product = Product::where('product_status',1);
+        if($search){
+            $product = $product->where('type_id', $search);
+        }
+        $product = $product->get();
+        if($product){
+            return response()->json(['status' => 1, 'data' => $product]);
+        }
+        else{
+            return response()->json(['status' => 0]);
+        }
+        
     }
 
     /**
