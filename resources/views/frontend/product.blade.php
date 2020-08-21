@@ -11,8 +11,9 @@
 
         <h1 class="my-4">ประเภทสินค้า</h1>
         <div class="list-group">
+          <a onclick="productall()" class="list-group-item" style="cursor: pointer;">แสดงสินค้าทั้งหมด</a>
           @foreach ($category as $c)
-            <a href="#" onclick="myFunction('{{ $c->id }}')" class="list-group-item">{{ $c->type_name }}</a>
+            <a onclick="myFunction('{{ $c->id }}')" class="list-group-item" style="cursor: pointer;">{{ $c->type_name }}</a>
           @endforeach
         </div>
 
@@ -82,10 +83,10 @@
                       var html_q =
                       `<div class="col-lg-4 col-md-6 mb-4">
                           <div class="card h-100">
-                            <a href="#"><img class="card-img-top" height="250px" src="https://water-systems.sgp1.digitaloceanspaces.com/products/`+ item.product_image +`" alt=""></a>
+                            <a ><img class="card-img-top" height="250px" src="https://water-systems.sgp1.digitaloceanspaces.com/products/`+ item.product_image +`" alt=""></a>
                             <div class="card-body">
                               <h4 class="card-title">
-                                <a href="#">`+ item.product_name +`</a>
+                                <a >`+ item.product_name +`</a>
                                 </h4>
                                 <br>
                                 <h5>ราคา : `+ item.product_price +`</h5>
@@ -107,7 +108,7 @@
                               <h1 class="display-4">ขออภัยไม่มีสินค้าในประเภทที่ท่านเลือก</h1>
                               <hr class="my-4">
                               <p>เรายังมีสินค้าให้เลือกอีกมากมาย</p>
-                              <a class="btn btn-primary btn-lg" onclick="productall()" href="#" role="button">ดูสินค้าทั้งหมด</a>
+                              <a class="btn btn-primary btn-lg" onclick="productall()"  role="button">ดูสินค้าทั้งหมด</a>
                             </div>
                           </div>
                         </div>
