@@ -50,7 +50,9 @@
 
 
         <!-- /.row -->
+        <div class="row">
         <div id="result"></div>
+        </div>
 
       </div>
       <!-- /.col-lg-9 -->
@@ -79,7 +81,7 @@
                   $.each(response.data, function(index,item) {
                       var html_q =
                       `
-                      <div class="row">
+                      
                         <div class="col-lg-4 col-md-6 mb-4">
                           <div class="card h-100">
                             <a href="#"><img class="card-img-top" height="250px" src="https://water-systems.sgp1.digitaloceanspaces.com/products/`+ item.product_image +`" alt=""></a>
@@ -93,7 +95,6 @@
                             </div>
                           </div>
                         </div>
-                      </div>
                         `
                       $("#result").append(html_q);
                   });
