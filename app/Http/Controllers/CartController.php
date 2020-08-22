@@ -11,14 +11,27 @@ class CartController extends Controller
 {
     //
     public function index() {
-
+        $sumPrice = 0;
+        $deliverry = 100;
+        $discount = 0;
         $listCart = auth()->user()->products()->latest()->get();
-        $sumPrice = auth()->user()->products()->sum('products.product_price');
+        
+        foreach ($listCart as $p) {
+            $sumPrice = $sumPrice + ($p->pivot->qty*$p->product_price);
+        }
+        if($sumPrice >= 500){
+            $discount = 100;
+        }
+        $sumProduct = $sumPrice;
+        $sumPrice = $sumPrice + $deliverry - $discount;
         $sumQty = Cart::where('user_id',auth()->user()->id)->sum('qty');
        return view('frontend.cart.cart',[
            'listCart' => $listCart,
            'sumPrice' => $sumPrice,
            'sumQty' => $sumQty,
+           'deliverry' => $deliverry,
+           'discount' => $discount,
+           'sumProduct' => $sumProduct
        ]);
     }
 
@@ -42,7 +55,7 @@ class CartController extends Controller
     }
 
     public function confirm() {
-
+        $modifiedMutable =  Carbon::now()->add(7, 'day')->format('d-m-Y');
         $listCart = auth()->user()->products()->latest()->get();
         $sumPrice = 0;
         $Count = 0;
@@ -64,12 +77,20 @@ class CartController extends Controller
                 auth()->user()->products()->detach($p->id);
             }
         }
+        $deliverry = 100;
+        $discount = 0;
+        if($sumPrice >= 500){
+            $discount = 100;
+        }
+        $sumPrice = $sumPrice + $deliverry - $discount;
         $order_sum = Order::find($order->id);
+
 
         $order_sum->sum_qty = $Count;
         $order_sum->sum_total = $sumPrice;
+        $order_sum->order_delivery = Carbon::createFromFormat('d-m-Y', $modifiedMutable)->format('Y-m-d');
         $order_sum->save();
-        $modifiedMutable =  Carbon::now()->add(7, 'day')->format('d-m-Y');
+
     
         return redirect()->route('welcome')->with('feedback','สั่งซื้อสินค้าเรียบร้อยแล้ว')->with('day',$modifiedMutable);
     

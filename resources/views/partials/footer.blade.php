@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
     .footer {
       position: fixed;
       left: 0;
@@ -13,4 +13,4 @@
     
     <div class="footer">
       <p>ธรรมกุลกิตต์</p>
-    </div>
+    </div> --}}

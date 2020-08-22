@@ -56,3 +56,8 @@ Route::get('/product/edit/{id}', 'ProductController@edit')->middleware('auth')->
 Route::put('/product/update', 'ProductController@update')->middleware('auth')->name('product.update');
 Route::get('/product/destroy/{id}', 'ProductController@destroy')->middleware('auth')->name('product.destroy');
 
+Route::resource('/order', 'OrderController')->middleware('auth');
+Route::get('/order/edit/{id}', 'OrderController@edit')->middleware('auth')->name('order.edit');
+Route::put('/order/update', 'OrderController@update')->middleware('auth')->name('order.update');
+Route::get('/order/destroy/{id}', 'OrderController@destroy')->middleware('auth')->name('order.destroy');
+

@@ -13,6 +13,9 @@ class Product extends Model
     public function type(){
         return $this->belongsTo(Type::class);
     }
+    public function ordersubs(){
+        return $this->hasMany(OrderSub::class);
+    }
 
     //mant to many ดูว่าใครซื้อ
     public function users(){

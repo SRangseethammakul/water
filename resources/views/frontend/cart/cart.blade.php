@@ -15,9 +15,9 @@
                 <thead class="text-muted">
                     <tr>
                         <th>#</th>
-                        <th scope="col">Product</th>
-                        <th scope="col" width="120">Quantity</th>
-                        <th scope="col" width="120">Price</th>
+                        <th scope="col">ชื่อสินค้า</th>
+                        <th scope="col" width="120">จำนวน</th>
+                        <th scope="col" width="120">ราคา</th>
                         <th scope="col" width="200" class="text-right">Action</th>
                     </tr>
                 </thead>
@@ -39,7 +39,7 @@
                         </td>
                         <td>
                             <div class="price-wrap">
-                                <var class="price">฿ {{ $cart->product_price }}</var>
+                                <var class="price">฿ {{ $cart->product_price * $cart->pivot->qty }}</var>
                             </div>
                             <!-- price-wrap .// -->
                         </td>
@@ -51,8 +51,8 @@
                     <tr>
                         <td></td>
                         <td></td>
-                    <td>{{ $sumQty }} ชิ้น</td>
-                    <td>฿ {{ number_format($sumPrice,2) }}</td>
+                        <td>{{ $sumQty }} ชิ้น</td>
+                        <td>฿ {{ $sumProduct }}</td>
                         <td></td>
                     </tr>
                 </tbody>
@@ -60,8 +60,43 @@
         </div>
         <!-- card.// -->
 
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 offset-md-3">
+                  <h2>ราคาสินค้า</h2>
+                </div>
+                <div class="col-md-3 offset-md-3">
+                    <h2>฿ {{ number_format($sumProduct,2) }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 offset-md-3">
+                  <h2>ค่าขนส่ง</h2>
+                </div>
+                <div class="col-md-3 offset-md-3">
+                    <h2>฿ {{ number_format($deliverry,2) }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 offset-md-3">
+                  <h2>ส่วนลดค่าขนส่ง</h2>
+                </div>
+                <div class="col-md-3 offset-md-3">
+                    <h2>฿ {{ number_format($discount,2) }}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 offset-md-3">
+                  <h2>ราคารวม</h2>
+                </div>
+                <div class="col-md-3 offset-md-3">
+                    <h2>฿ {{ number_format($sumPrice,2) }}</h2>
+                </div>
+            </div>
+        </div>
         <div class="text-right">
-        <a href="{{ route('cart.confirm')}}" class="btn btn-primary btn-lg">ยืนยันการสั่งซื้อ</a>
+            
+            <a href="{{ route('cart.confirm')}}" class="btn btn-primary btn-lg">ยืนยันการสั่งซื้อ</a>
         </div>
 
         @else
