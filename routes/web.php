@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/astore', 'AjaxSearchController@index');
+Route::get('/store/search', 'AjaxSearchController@index');
 Route::get('/detail/{id}', 'AjaxSearchController@show');
 
 Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
@@ -25,6 +25,13 @@ Route::get('/search_product', 'WelcomeController@search_product');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/cart', 'CartController@index')->middleware('auth')->name('cart.index');
+Route::get('/cart/{product_id}', 'CartController@store')->middleware('auth')->name('cart.store');
+Route::get('/cart/{product_id}/delete', 'CartController@delete')->middleware('auth')->name('cart.delete');
+Route::get('/cart/checkout/cart', 'CartController@confirm')->middleware('auth')->name('cart.confirm');
+
 
 Route::resource('/type', 'TypeController')->middleware('auth');
 Route::get('/type/edit/{id}', 'TypeController@edit')->middleware('auth')->name('type.edit');

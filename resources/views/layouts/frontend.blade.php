@@ -28,14 +28,14 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
       <div class="container">
-        <a class="navbar-brand" href="#">WATER SYSTEM</a>
+        <a class="navbar-brand" href="{{ route('welcome') }}">WATER SYSTEM</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="{{ route('welcome') }}">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -43,15 +43,15 @@
               <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Servicssses</a>
+              <a class="nav-link" href="{{ route('welcome') }}">เลือกดูสินค้า</a>
             </li>
             @auth
             <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{{ route('cart.index') }}">
                 ตะกร้าสินค้า
-                {{-- <span class="badge badge-success">
+                <span class="badge badge-success">
                     {{  App\Cart::where('user_id',auth()->user()->id)->sum('qty')  }}
-                </span> --}}
+                </span>
             </a>
             </li>
             @endauth

@@ -87,10 +87,13 @@
                             <div class="card-body">
                               <h4 class="card-title">
                                 <a >`+ item.product_name +`</a>
-                                </h4>
-                                <br>
-                                <h5>ราคา : `+ item.product_price +`</h5>
-                                <p class="card-text">`+ item.product_detail +`</p>
+                              </h4>
+                              <br>
+                              <h5>ราคา : `+ item.product_price +`</h5>
+                              <p class="card-text">`+ item.product_detail +`</p>
+                            </div>
+                            <div class="card-footer">
+                              <a href="cart/`+item.id+`" class="btn btn-outline-success"> หยิบความสดชื่น </a>
                             </div>
                           </div>
                         </div>
@@ -141,7 +144,7 @@
         <script>
             Swal.fire(
                 '{{ session('feedback')}}', //
-                'You clicked the button!',
+                'เราจะทำการติดต่อภายในวันที่ {{ session('day')}}',
                 'success'
             )
         </script>

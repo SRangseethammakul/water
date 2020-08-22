@@ -36,4 +36,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+        //many to many
+    public function products() {
+        return $this->belongsToMany(Product::class,'carts','user_id','product_id')->withPivot('qty')->withTimestamps();
+    }
 }
