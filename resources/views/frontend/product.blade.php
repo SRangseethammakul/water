@@ -144,10 +144,19 @@
         <script>
             Swal.fire(
                 '{{ session('feedback')}}', //
-                'เราจะทำการติดต่อภายในวันที่ {{ session('day')}}',
                 'success'
             )
         </script>
     @endif
+    @if(session('day'))
+    <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+    <script>
+        Swal.fire(
+            '{{ session('feedback')}}', //
+            'เราจะทำการติดต่อภายในวันที่ {{ session('day')}}',
+            'success'
+        )
+    </script>
+@endif
 @endsection
 
