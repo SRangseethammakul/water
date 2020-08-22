@@ -82,7 +82,7 @@
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="{{ route('order.index')}}" class="nav-link">
-                            <i class="fa fa-calendar-check-o"></i> คำสั่งซื้อ ออนไลน์
+                            <i class="fa fa-calendar-check-o"></i> คำสั่งซื้อ
                            </a>
                         </li>
                     </ul>
