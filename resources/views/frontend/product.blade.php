@@ -144,6 +144,7 @@
         <script>
             Swal.fire(
                 '{{ session('feedback')}}', //
+                'You clicked the button!',
                 'success'
             )
         </script>
