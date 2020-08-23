@@ -7,6 +7,7 @@ use App\Cart;
 use App\Order; 
 use App\OrderSub; 
 use Carbon\Carbon;
+use App\User; 
 class CartController extends Controller
 {
     //
@@ -102,8 +103,9 @@ class CartController extends Controller
     public function line_send(Order $order){
         // ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e
         //g4P4S28Br4NUSNE2sRsuI9zFlsAcVQHOu5oQ64mYeZe ส่วนตัว
+        $user = User::find($order->user_id);
         $token = 'ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e';
-        $message = "ชื่อลูกค้า : ".$order->user_id."\n".
+        $message = "ชื่อลูกค้า : ".$user->name."\n".
                     "จำนวนที่สั่ง : ".$order->sum_qty."\n".
                     "ราคา : ".$order->sum_total."\n".
                     "จัดส่งภายใน : ".Carbon::createFromFormat('Y-m-d', $order->order_delivery)->format('d-m-Y');

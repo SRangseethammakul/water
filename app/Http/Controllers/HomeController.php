@@ -28,6 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $redirectTo = '/cart';
+        return redirect()->route('cart.index');
     }
 }
