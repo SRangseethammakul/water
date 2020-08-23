@@ -14,6 +14,7 @@ try {
 } catch (e) {}
 require('admin-lte/build/js/AdminLTE');
 require('datatables.net-bs4');
+require('select2/dist/js/select2.min.js');
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the

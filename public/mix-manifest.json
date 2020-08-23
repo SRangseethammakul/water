@@ -4,5 +4,6 @@
     "/css/theme.css": "/css/theme.css",
     "/js/sweetalert2.all.min.js": "/js/sweetalert2.all.min.js",
     "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js",
-    "/js/jquery-ui.min.js": "/js/jquery-ui.min.js"
+    "/js/jquery-ui.min.js": "/js/jquery-ui.min.js",
+    "/js/select2.min.js": "/js/select2.min.js"
 }

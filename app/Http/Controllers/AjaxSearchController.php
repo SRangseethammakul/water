@@ -7,7 +7,8 @@ use App\Type;
 use App\Store;
 use App\Promotion;
 use App\User;
-
+use App\District;
+use App\SubDistrict;
 
 class AjaxSearchController extends Controller
 {
@@ -54,5 +55,17 @@ class AjaxSearchController extends Controller
         } catch (Exception $e) {
             return response()->json(['status' => 0]);
         }
+    }
+
+    public function getAmphuresByProvinceID($province_id)
+    {
+        $districts = District::where('province_id', $province_id)->get();
+        return response()->json(['status' => 1, 'data' => $districts]);
+    }
+
+    public function getSubDistrictByDistrictID($sub_district_code)
+    {
+        $subdistricts = SubDistrict::where('district_id', $sub_district_code)->get();
+        return response()->json(['status' => 1, 'data' => $subdistricts]);
     }
 }
