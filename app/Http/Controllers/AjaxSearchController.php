@@ -63,9 +63,9 @@ class AjaxSearchController extends Controller
         return response()->json(['status' => 1, 'data' => $districts]);
     }
 
-    public function getSubDistrictByDistrictID($sub_district_code)
+    public function getSubDistrictByDistrictID($district_code)
     {
-        $subdistricts = SubDistrict::where('district_id', $sub_district_code)->get();
+        $subdistricts = SubDistrict::where('district_id', $district_code)->get();
         return response()->json(['status' => 1, 'data' => $subdistricts]);
     }
 }

@@ -106,7 +106,7 @@
                     if (response.status == 1) {
                         if (response.data.length > 0) {
                             $.each(response.data, function (key, val) {
-                                $group.append('<option value="' + val.id + '">' + val.district_name + '</option>')
+                                $group.append('<option value="' + val.district_code + '">' + val.district_name + '</option>')
                                 
                             });
                             $('#district-select').append($group);
