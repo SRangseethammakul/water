@@ -126,7 +126,7 @@
                 url: '/ajax/getsubdistrictbydistrict/' + province_id,
                 method: 'GET',
                 success: function (response) {
-                    var $group = $('#sub-district-select').html('<option value="">เลือกอำเภอ</option>');
+                    var $group = $('#sub-district-select').html('<option value="">เลือกตำบล</option>');
                     if (response.status == 1) {
                         if (response.data.length > 0) {
                             $.each(response.data, function (key, val) {
