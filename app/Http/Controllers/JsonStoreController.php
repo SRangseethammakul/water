@@ -30,11 +30,13 @@ class JsonStoreController extends Controller
         { "GEO_ID": 6, "GEO_NAME": "ภาคใต้" }
         ]';
         $decoded = json_decode($jsonobj, true);
+        /*
         foreach ($decoded as $p) {
             $geo = new Geography();
             $geo->name = $p['GEO_NAME'];
             $geo->save();
         }
+        */
     }
     public function province()
     {
@@ -121,6 +123,7 @@ class JsonStoreController extends Controller
             { "PROVINCE_ID": 77, "PROVINCE_CODE": "97", "PROVINCE_NAME": "บึงกาฬ", "GEO_ID": 3 }
           ]';
         $decoded = json_decode($jsonobj, true);
+        /*
         foreach ($decoded as $p) {
             $province = new Province();
             $province->province_code = $p['PROVINCE_CODE'];
@@ -128,6 +131,7 @@ class JsonStoreController extends Controller
             $province->geography_id = $p['GEO_ID'];
             $province->save();
         }
+        */
     }
 
     public function districts()
@@ -1142,6 +1146,7 @@ class JsonStoreController extends Controller
         '
           ;
         $decoded = json_decode($jsonobj, true);
+        /*
         foreach ($decoded as $p) {
             $district = new District();
             $district->district_code = $p['DISTRICT_CODE'];
@@ -1149,6 +1154,7 @@ class JsonStoreController extends Controller
             $district->province_id = $p['PROVINCE_ID'];
             $district->save();
         }
+        */
     }
 
     public function subdistricts()
@@ -10055,7 +10061,8 @@ class JsonStoreController extends Controller
             { "SUB_DISTRICT_ID": 8913, "SUB_DISTRICT_CODE": "380803", "SUB_DISTRICT_NAME": "หนองเดิ่น", "DISTRICT_ID": 1006, "PROVINCE_ID": 77, "GEO_ID": 3 }
           ]
         '
-          ;
+        ;
+        /*
         $decoded = json_decode($jsonobj, true);
         foreach ($decoded as $p) {
             $subdistrict = new SubDistrict();
@@ -10064,6 +10071,7 @@ class JsonStoreController extends Controller
             $subdistrict->district_id = $p['DISTRICT_ID'];
             $subdistrict->save();
         }
+        */
     }
 
     public function zipcode()
