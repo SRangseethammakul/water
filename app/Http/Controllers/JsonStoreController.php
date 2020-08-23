@@ -19,6 +19,7 @@ class JsonStoreController extends Controller
     public function index()
     {
         //
+        dd("ERROR");
         $jsonobj = 
         '[
         { "GEO_ID": 1, "GEO_NAME": "ภาคเหนือ" },
@@ -38,6 +39,7 @@ class JsonStoreController extends Controller
     public function province()
     {
         //
+        dd("ERROR");
         $jsonobj = 
         '[
             { "PROVINCE_ID": 1, "PROVINCE_CODE": "10", "PROVINCE_NAME": "กรุงเทพมหานคร", "GEO_ID": 2 },
@@ -131,6 +133,7 @@ class JsonStoreController extends Controller
     public function districts()
     {
         //
+        dd("ERROR");
         $jsonobj = 
         '
         [
@@ -1151,6 +1154,7 @@ class JsonStoreController extends Controller
     public function subdistricts()
     {
         //
+        dd("ERROR");
         $jsonobj = 
         '
         [
@@ -10065,6 +10069,7 @@ class JsonStoreController extends Controller
     public function zipcode()
     {
         //
+        dd("ERROR");
         $jsonobj = 
         '
         [
