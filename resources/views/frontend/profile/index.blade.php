@@ -23,13 +23,13 @@
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="profile_tel">หมายเลขโทรศัพท์ <Span style="color: red">*</Span></label>
-                            <input type="text" class="form-control" id="profile_tel" name="profile_tel" required placeholder="เบอร์โทรศัพท์">
+                            <input type="tel" class="form-control" id="profile_tel" name="profile_tel" required maxlength="10" placeholder="เบอร์โทรศัพท์">
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="form-group">
                             <label for="profile_tel_2">หมายเลขโทรศัพท์ 2</label>
-                            <input type="text" class="form-control" id="profile_tel_2" name="profile_tel_2"  placeholder="เบอร์โทรศัพท์สำรอง">
+                            <input type="tel" class="form-control" id="profile_tel_2" name="profile_tel_2" maxlength="10" placeholder="เบอร์โทรศัพท์สำรอง">
                         </div>
                     </div>
                 </div>
