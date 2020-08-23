@@ -24,10 +24,11 @@ Route::get('/search_product', 'WelcomeController@search_product');
 
 Route::get('/profile', 'ProfileController@index');
 
-// Route::get('/new/geo', 'JsonStoreController@index');
-// Route::get('/new/province', 'JsonStoreController@province');
-// Route::get('/new/subdistricts', 'JsonStoreController@subdistricts');
-// Route::get('/new/zipcode', 'JsonStoreController@zipcode');
+Route::get('/new/geo', 'JsonStoreController@index');
+Route::get('/new/province', 'JsonStoreController@province');
+Route::get('/new/districts', 'JsonStoreController@districts');
+Route::get('/new/subdistricts', 'JsonStoreController@subdistricts');
+Route::get('/new/zipcode', 'JsonStoreController@zipcode');
 
 Route::group(['prefix' => 'ajax'], function () {
     Route::get('/getamphuresbyprovince/{province_id}', 'AjaxSearchController@getAmphuresByProvinceID');

@@ -18,8 +18,8 @@ class JsonStoreController extends Controller
      */
     public function index()
     {
-        //
-        dd("ERROR");
+        // //
+        // dd("ERROR");
         $jsonobj = 
         '[
         { "GEO_ID": 1, "GEO_NAME": "ภาคเหนือ" },
@@ -30,20 +30,22 @@ class JsonStoreController extends Controller
         { "GEO_ID": 6, "GEO_NAME": "ภาคใต้" }
         ]';
         $decoded = json_decode($jsonobj, true);
-        /*
+
         foreach ($decoded as $p) {
             $geo = new Geography();
-            $geo->name = $p['GEO_NAME'];
+            $geo->geo_id = $p['GEO_ID'];
+            $geo->geo_name = $p['GEO_NAME'];
             $geo->save();
         }
-        */
+     
     }
     public function province()
     {
         //
-        dd("ERROR");
+        // dd("ERROR");
         $jsonobj = 
-        '[
+        '
+        [
             { "PROVINCE_ID": 1, "PROVINCE_CODE": "10", "PROVINCE_NAME": "กรุงเทพมหานคร", "GEO_ID": 2 },
             { "PROVINCE_ID": 2, "PROVINCE_CODE": "11", "PROVINCE_NAME": "สมุทรปราการ", "GEO_ID": 2 },
             { "PROVINCE_ID": 3, "PROVINCE_CODE": "12", "PROVINCE_NAME": "นนทบุรี", "GEO_ID": 2 },
@@ -121,9 +123,11 @@ class JsonStoreController extends Controller
             { "PROVINCE_ID": 75, "PROVINCE_CODE": "95", "PROVINCE_NAME": "ยะลา", "GEO_ID": 6 },
             { "PROVINCE_ID": 76, "PROVINCE_CODE": "96", "PROVINCE_NAME": "นราธิวาส", "GEO_ID": 6 },
             { "PROVINCE_ID": 77, "PROVINCE_CODE": "97", "PROVINCE_NAME": "บึงกาฬ", "GEO_ID": 3 }
-          ]';
+          ]
+          
+        ';
         $decoded = json_decode($jsonobj, true);
-        /*
+        
         foreach ($decoded as $p) {
             $province = new Province();
             $province->province_code = $p['PROVINCE_CODE'];
@@ -131,13 +135,13 @@ class JsonStoreController extends Controller
             $province->geography_id = $p['GEO_ID'];
             $province->save();
         }
-        */
+        
     }
 
     public function districts()
     {
         //
-        dd("ERROR");
+        // dd("ERROR");
         $jsonobj = 
         '
         [
@@ -1146,21 +1150,21 @@ class JsonStoreController extends Controller
         '
           ;
         $decoded = json_decode($jsonobj, true);
-        /*
+        
         foreach ($decoded as $p) {
             $district = new District();
-            $district->district_code = $p['DISTRICT_CODE'];
+            $district->district_code = $p['DISTRICT_ID'];
             $district->district_name = $p['DISTRICT_NAME'];
             $district->province_id = $p['PROVINCE_ID'];
             $district->save();
         }
-        */
+        
     }
 
     public function subdistricts()
     {
         //
-        dd("ERROR");
+        // dd("ERROR");
         $jsonobj = 
         '
         [
@@ -10062,22 +10066,22 @@ class JsonStoreController extends Controller
           ]
         '
         ;
-        /*
+        
         $decoded = json_decode($jsonobj, true);
         foreach ($decoded as $p) {
             $subdistrict = new SubDistrict();
-            $subdistrict->sub_district_code = $p['SUB_DISTRICT_CODE'];
+            $subdistrict->sub_district_id = $p['SUB_DISTRICT_ID'];
             $subdistrict->sub_district_name = $p['SUB_DISTRICT_NAME'];
             $subdistrict->district_id = $p['DISTRICT_ID'];
             $subdistrict->save();
         }
-        */
+        
     }
 
     public function zipcode()
     {
         //
-        dd("ERROR");
+        // dd("ERROR");
         $jsonobj = 
         '
         [
@@ -17538,11 +17542,14 @@ class JsonStoreController extends Controller
             { "ZIPCODE_ID": 7455, "SUB_DISTRICT_CODE": "961303", "PROVINCE_ID": "76", "DISTRICT_ID": "997", "SUB_DISTRICT_ID": "8860", "ZIPCODE": "96130" }
           ]
         '
-          ;
+        ;
         $decoded = json_decode($jsonobj, true);
         foreach ($decoded as $p) {
             $zipcode = new ZipCode();
-            $zipcode->sub_district_code = $p['SUB_DISTRICT_CODE'];
+            $zipcode->zip_code_id = $p['ZIPCODE_ID'];
+            $zipcode->province_id = $p['PROVINCE_ID'];
+            $zipcode->district_id = $p['DISTRICT_ID'];
+            $zipcode->sub_district_id = $p['SUB_DISTRICT_ID'];
             $zipcode->zip_code = $p['ZIPCODE'];
             $zipcode->save();
         }
