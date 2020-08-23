@@ -26,6 +26,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/dashboard', 'DashboardController@index')->name('home');
+
 
 Route::get('/cart', 'CartController@index')->middleware('auth')->name('cart.index');
 Route::get('/cart/{product_id}', 'CartController@store')->middleware('auth')->name('cart.store');

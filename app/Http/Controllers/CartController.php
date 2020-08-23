@@ -91,8 +91,39 @@ class CartController extends Controller
         $order_sum->order_delivery = Carbon::createFromFormat('d-m-Y', $modifiedMutable)->format('Y-m-d');
         $order_sum->save();
 
-    
+
+        $this->line_send($order_sum);
+  
+
         return redirect()->route('welcome')->with('feedback','สั่งซื้อสินค้าเรียบร้อยแล้ว')->with('day',$modifiedMutable);
+
     
-      }
+    }
+    public function line_send(Order $order){
+        // ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e
+        //g4P4S28Br4NUSNE2sRsuI9zFlsAcVQHOu5oQ64mYeZe ส่วนตัว
+        $token = 'ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e';
+        $message = "ชื่อลูกค้า : ".$order->user_id."\n".
+                    "จำนวนที่สั่ง : ".$order->sum_qty."\n".
+                    "ราคา : ".$order->sum_total."\n".
+                    "จัดส่งภายใน : ".Carbon::createFromFormat('Y-m-d', $order->order_delivery)->format('d-m-Y');
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$message);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-type: application/x-www-form-urlencoded',
+        'Authorization: Bearer '.$token,
+        ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($ch);
+        curl_close($ch);
+
+        
+
+
+    }
 }

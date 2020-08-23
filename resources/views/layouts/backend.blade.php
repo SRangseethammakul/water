@@ -85,6 +85,11 @@
                             <i class="nav-icon fa fa-calendar-check-o"></i> คำสั่งซื้อ ออนไลน์
                            </a>
                         </li>
+                        <li class="nav-item has-treeview">
+                            <a href="{{ route('welcome')}}" class="nav-link">
+                            <i class="nav-icon fa fa-compass"></i> กลับหน้าโชว์สินค้า
+                           </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

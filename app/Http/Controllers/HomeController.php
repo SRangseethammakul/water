@@ -7,6 +7,7 @@ use App\Type;
 use App\Store;
 use App\Promotion;
 use App\User;
+use App\Product;
 
 class HomeController extends Controller
 {
@@ -27,15 +28,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $type_count = Type::count();
-        $store_count  = Store::count();
-        $promotion_count  = Promotion::count();
-        $user_count = User::count();
-        return view('backend.dashboard',[
-            'type_count' => $type_count,
-            'store_count' => $store_count,
-            'promotion_count' => $promotion_count,
-            'user_count' => $user_count
-        ]);
+        $redirectTo = '/cart';
     }
 }
