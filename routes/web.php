@@ -22,6 +22,12 @@ Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/search_product', 'WelcomeController@search_product');
 
+
+Route::get('/new/geo', 'JsonStoreController@index');
+Route::get('/new/province', 'JsonStoreController@province');
+Route::get('/new/subdistricts', 'JsonStoreController@subdistricts');
+Route::get('/new/zipcode', 'JsonStoreController@zipcode');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
