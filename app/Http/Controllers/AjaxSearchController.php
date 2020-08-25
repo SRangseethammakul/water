@@ -9,6 +9,7 @@ use App\Promotion;
 use App\User;
 use App\District;
 use App\SubDistrict;
+use App\ZipCode;
 
 class AjaxSearchController extends Controller
 {
@@ -67,5 +68,11 @@ class AjaxSearchController extends Controller
     {
         $subdistricts = SubDistrict::where('district_id', $district_code)->get();
         return response()->json(['status' => 1, 'data' => $subdistricts]);
+    }
+
+    public function getZipCodeBySubDistrictID($sub_district_code)
+    {
+        $zipcode = ZipCode::where('sub_district_id', $sub_district_code)->get();
+        return response()->json(['status' => 1, 'data' => $zipcode]);
     }
 }

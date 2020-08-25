@@ -28,10 +28,14 @@
                     </div>
                     <div class="col-sm">
                         <div class="form-group">
-                            <label for="profile_tel_2">หมายเลขโทรศัพท์ 2</label>
+                            <label for="profile_tel_2">หมายเลขโทรศัพท์ (สำรอง)</label>
                             <input type="tel" class="form-control" id="profile_tel_2" name="profile_tel_2" maxlength="10" placeholder="เบอร์โทรศัพท์สำรอง">
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="address_delivery">ที่อยู่ในการจัดส่ง</label>
+                    <textarea class="form-control" id="address_delivery" rows="3" required></textarea>
                 </div>
                 <div class="row">
                     <div class="col-sm">
@@ -53,12 +57,20 @@
                             </select>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-sm">
                         <div class="form-group">
-                            <label for="district-select">ตำบล</label>
+                            <label for="sub-district-select">ตำบล</label>
                             <select class="js-example-basic-single" id="sub-district-select" class="form-control" style="width: 100%">
                                 <option selected>เลือกตำบล</option>
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="district-select">รหัสไปรษณีย์</label>
+                            <input type="text" id="zipcode" class="form-control" name="zipcode" placeholder="รหัสไปรษณีย์">
                         </div>
                     </div>
                 </div>
@@ -130,7 +142,7 @@
                     if (response.status == 1) {
                         if (response.data.length > 0) {
                             $.each(response.data, function (key, val) {
-                                $group.append('<option value="' + val.sub_district_code + '">' + val.sub_district_name + '</option>')
+                                $group.append('<option value="' + val.sub_district_id + '">' + val.sub_district_name + '</option>')
                                 
                             });
                             $('#sub-district-select').append($group);
@@ -139,6 +151,31 @@
                         }
                     } else {
                         $('#sub-district-select').prop('disabled', true);
+                    }
+                }
+            });
+        });
+        $('#sub-district-select').change(function() {
+            var province_id = $(this).val();
+            console.log(province_id);
+            $.ajax({
+                url: '/ajax/getzipcodebysubdistrict/' + province_id,
+                method: 'GET',
+                success: function (response) {
+                    var $group = $('#zipcode').html('<input type="text" class="form-control" name="zipcode" placeholder="กอกดอ">');
+                    if (response.status == 1) {
+
+                        if (response.data.length > 0) {
+                            $.each(response.data, function (key, val) {
+                                console.log(val.zip_code);
+                                $("#zipcode").val(val.zip_code); 
+                                // $group.append('<input type="text" class="form-control" name="zipcode" value='+ val.zip_code +'>')
+                            });
+                        } else {
+                            $('#zipcode').prop('disabled', true);
+                        }
+                    } else {
+                        $('#zipcode').prop('disabled', true);
                     }
                 }
             });

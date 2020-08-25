@@ -33,6 +33,7 @@ Route::get('/profile', 'ProfileController@index');
 Route::group(['prefix' => 'ajax'], function () {
     Route::get('/getamphuresbyprovince/{province_id}', 'AjaxSearchController@getAmphuresByProvinceID');
     Route::get('/getsubdistrictbydistrict/{district_id}', 'AjaxSearchController@getSubDistrictByDistrictID');
+    Route::get('/getzipcodebysubdistrict/{subdistrict}', 'AjaxSearchController@getZipCodeBySubDistrictID');
 });
 
 Auth::routes();
