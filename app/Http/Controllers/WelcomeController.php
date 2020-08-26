@@ -18,7 +18,7 @@ class WelcomeController extends Controller
     {
         
         $category = Type::where('type_status',1)->get();
-        $product = Product::where('product_status',1)->get();
+        $product = Product::where('product_status',1)->orderby('sort_order','asc')->get();
         return view('frontend.product',[
             'category' => $category,
             'products' => $product
@@ -29,7 +29,7 @@ class WelcomeController extends Controller
     {
         //
         $search   =   $request->search;
-        $product = Product::where('product_status',1);
+        $product = Product::where('product_status',1)->orderby('sort_order','asc');
         if($search){
             $product = $product->where('type_id', $search);
         }

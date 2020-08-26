@@ -18,7 +18,7 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $products = Product::with('type')->orderby('type_id','asc')->get();
+        $products = Product::with('type')->orderby('sort_order','asc')->get();
         return view('backend.product.index',[
             'products' => $products
         ]);
@@ -129,10 +129,23 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-
         $sub = Product::find($id);
         Storage::disk('do_spaces')->delete('products/'.$sub->product_image);
         $sub->delete();
         return redirect()->route('product.index')->with('feedback' ,'ลบข้อมูลเรียบร้อยแล้ว');
+    }
+
+    public function updateSequence(Request $request)
+    {
+        try {
+            foreach ($request->sequence as $key => $val) {
+                $product_edit = Product::find($key);
+                $product_edit->sort_order = $val;
+                $product_edit->save();
+            }
+            return response()->json(['status' => 1]);
+        } catch (Exception $e) {
+            return response()->json(['status' => 0]);
+        }
     }
 }

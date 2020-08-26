@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/product/updatesequence', 'ProductController@updateSequence')->name('product.updatesequence');
 
 Route::get('/store/search', 'AjaxSearchController@index');
 Route::get('/detail/{id}', 'AjaxSearchController@show');
@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/promotion', 'PromotionController');
         Route::get('/promotion/edit/{id}', 'PromotionController@edit')->name('promotion.edit');
         Route::put('/promotion/update', 'PromotionController@update')->name('promotion.update');
+        
     
         Route::resource('/storetype', 'StoreTypeController');
         Route::get('/storetype/edit/{id}', 'StoreTypeController@edit')->name('storetype.edit');
@@ -75,7 +76,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/product/edit/{id}', 'ProductController@edit')->name('product.edit');
         Route::put('/product/update', 'ProductController@update')->name('product.update');
         Route::get('/product/destroy/{id}', 'ProductController@destroy')->name('product.destroy');
-    
+        
+
         Route::resource('/order', 'OrderController');
         Route::get('/order/edit/{id}', 'OrderController@edit')->name('order.edit');
         Route::put('/order/update', 'OrderController@update')->name('order.update');
