@@ -38,42 +38,49 @@ Route::group(['prefix' => 'ajax'], function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['auth']], function () {
 
-Route::get('/dashboard', 'DashboardController@index')->name('home');
-
-
-Route::get('/cart', 'CartController@index')->middleware('auth')->name('cart.index');
-Route::get('/cart/{product_id}', 'CartController@store')->middleware('auth')->name('cart.store');
-Route::get('/cart/{product_id}/delete', 'CartController@delete')->middleware('auth')->name('cart.delete');
-Route::get('/cart/checkout/cart', 'CartController@confirm')->middleware('auth')->name('cart.confirm');
+    Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::resource('/type', 'TypeController')->middleware('auth');
-Route::get('/type/edit/{id}', 'TypeController@edit')->middleware('auth')->name('type.edit');
-Route::put('/type/update', 'TypeController@update')->middleware('auth')->name('type.update');
-Route::get('/type/destroy/{id}', 'TypeController@destroy')->middleware('auth')->name('type.destroy');
+    Route::get('/cart', 'CartController@index')->name('cart.index');
+    Route::get('/cart/{product_id}', 'CartController@store')->name('cart.store');
+    Route::get('/cart/{product_id}/delete', 'CartController@delete')->name('cart.delete');
+    Route::get('/cart/checkout/cart', 'CartController@confirm')->name('cart.confirm');
 
-Route::resource('/promotion', 'PromotionController')->middleware('auth');
-Route::get('/promotion/edit/{id}', 'PromotionController@edit')->middleware('auth')->name('promotion.edit');
-Route::put('/promotion/update', 'PromotionController@update')->middleware('auth')->name('promotion.update');
 
-Route::resource('/store', 'StoreController')->middleware('auth');
-Route::get('/store/edit/{id}', 'StoreController@edit')->middleware('auth')->name('store.edit');
-Route::put('/store/update', 'StoreController@update')->middleware('auth')->name('store.update');
-Route::get('/store/destroy/{id}', 'StoreController@destroy')->middleware('auth')->name('store.destroy');
 
-Route::resource('/storetype', 'StoreTypeController')->middleware('auth');
-Route::get('/storetype/edit/{id}', 'StoreTypeController@edit')->middleware('auth')->name('storetype.edit');
-Route::put('/storetype/update', 'StoreTypeController@update')->middleware('auth')->name('storetype.update');
+    Route::group(['middleware' => ['role:Admin']], function () {
+        Route::get('/dashboard', 'DashboardController@index')->name('home');
 
-Route::resource('/product', 'ProductController')->middleware('auth');
-Route::get('/product/edit/{id}', 'ProductController@edit')->middleware('auth')->name('product.edit');
-Route::put('/product/update', 'ProductController@update')->middleware('auth')->name('product.update');
-Route::get('/product/destroy/{id}', 'ProductController@destroy')->middleware('auth')->name('product.destroy');
+        Route::resource('/type', 'TypeController');
+        Route::get('/type/edit/{id}', 'TypeController@edit')->name('type.edit');
+        Route::put('/type/update', 'TypeController@update')->name('type.update');
+        Route::get('/type/destroy/{id}', 'TypeController@destroy')->name('type.destroy');
+    
+        Route::resource('/store', 'StoreController');
+        Route::get('/store/edit/{id}', 'StoreController@edit')->name('store.edit');
+        Route::put('/store/update', 'StoreController@update')->name('store.update');
+        Route::get('/store/destroy/{id}', 'StoreController@destroy')->name('store.destroy');
+    
+        Route::resource('/promotion', 'PromotionController');
+        Route::get('/promotion/edit/{id}', 'PromotionController@edit')->name('promotion.edit');
+        Route::put('/promotion/update', 'PromotionController@update')->name('promotion.update');
+    
+        Route::resource('/storetype', 'StoreTypeController');
+        Route::get('/storetype/edit/{id}', 'StoreTypeController@edit')->name('storetype.edit');
+        Route::put('/storetype/update', 'StoreTypeController@update')->name('storetype.update');
+    
+        Route::resource('/product', 'ProductController');
+        Route::get('/product/edit/{id}', 'ProductController@edit')->name('product.edit');
+        Route::put('/product/update', 'ProductController@update')->name('product.update');
+        Route::get('/product/destroy/{id}', 'ProductController@destroy')->name('product.destroy');
+    
+        Route::resource('/order', 'OrderController');
+        Route::get('/order/edit/{id}', 'OrderController@edit')->name('order.edit');
+        Route::put('/order/update', 'OrderController@update')->name('order.update');
+        Route::get('/order/destroy/{id}', 'OrderController@destroy')->name('order.destroy');
+    });
 
-Route::resource('/order', 'OrderController')->middleware('auth');
-Route::get('/order/edit/{id}', 'OrderController@edit')->middleware('auth')->name('order.edit');
-Route::put('/order/update', 'OrderController@update')->middleware('auth')->name('order.update');
-Route::get('/order/destroy/{id}', 'OrderController@destroy')->middleware('auth')->name('order.destroy');
+});
 

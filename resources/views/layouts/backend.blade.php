@@ -75,11 +75,13 @@
                             <i class="nav-icon fa fa-bolt"></i> โปรโมชัน
                            </a>
                         </li>
+                        @role('Admin')
                         <li class="nav-item has-treeview">
                             <a href="{{ route('store.index')}}" class="nav-link">
                             <i class="nav-icon fa fa-shopping-bag"></i> ร้านค้า
                            </a>
                         </li>
+                        @endrole
                         <li class="nav-item has-treeview">
                             <a href="{{ route('order.index')}}" class="nav-link">
                             <i class="nav-icon fa fa-calendar-check-o"></i> คำสั่งซื้อ ออนไลน์

@@ -85,9 +85,11 @@
                       ยินดีต้อนรับคุณ {{ Auth::user()->name }} <span class="caret"></span>
                   </a>
                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item bg-primary" href="{{ route('home') }}">
-                      Dashboard
-                    </a>
+                    @role('Admin')
+                      <a class="dropdown-item bg-primary" href="{{ route('home') }}">
+                        Dashboard
+                      </a>
+                    @endrole
                     <a class="dropdown-item bg-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                       ออกจากระบบ
