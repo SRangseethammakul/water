@@ -49,7 +49,7 @@
                                         <td>
                                             <img class="img-responsive" height="60px" src="{!! Storage::disk('do_spaces')->url('products/' . $item->product_image) !!}" alt="thumb">
                                         </td>
-                                        <td>{{$item->created_at}}</td>
+                                        <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
                                         <td>
                                             <a href="{{ route('product.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                                 <li class="fa fa-pencil text-white"></li>
