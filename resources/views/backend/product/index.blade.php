@@ -44,7 +44,7 @@
                                         <td><i class="fa fa-bars row-moves sortable-handle"></i></td>
                                         <th scope="row">{{ ++$key }}</th>
                                         <td><a href="{{ route('product.edit',['id'=>$item->id])}}">{{$item->product_name}}</a></td>
-                                        <td>{{$item->sort_order}}</td>
+                                        <td>{{$item->product_price}}</td>
                                         <td>{{$item->type->type_name}}</td>
                                         <td>
                                             <img class="img-responsive" height="60px" src="{!! Storage::disk('do_spaces')->url('products/' . $item->product_image) !!}" alt="thumb">
@@ -57,7 +57,6 @@
                                             <a href="{{ url('product/destroy/'.$item->id)}}">
                                                 <button class="btn btn-danger" name="archive" type="submit">
                                                     <i class="fa fa-archive"></i>
-                                                        ลบข้อมูล
                                                 </button>
                                             </a>
                                         </td>
