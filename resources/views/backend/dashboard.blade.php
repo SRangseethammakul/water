@@ -58,7 +58,7 @@
                                 <div class="icon">
                                     <i class="fa fa-cart-plus"></i>
                                 </div>
-                                <a href="{{ route('order.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="{{ route('order.index',['status'=>'รอการยืนยัน'])}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -73,7 +73,7 @@
                                 <div class="icon">
                                     <i class="fa fa-bolt"></i>
                                 </div>
-                                <a href="{{ route('order.index')}}"class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="{{ route('order.index',['status'=>'รอการจัดส่ง'])}}"class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->

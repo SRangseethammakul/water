@@ -14,10 +14,14 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $orders = Order::with('ordersubs')->orderBy('created_at', 'desc')->get();
+        $orders = Order::with('ordersubs')->orderBy('created_at', 'desc');
+        if($request->status){
+            $orders = $orders->where('order_status',$request->status);
+        }
+        $orders = $orders->get();
         return view('backend.order.index',[
             'orders' => $orders
         ]);
