@@ -72,7 +72,6 @@
       $('table').DataTable();
     });
 </script>
-<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
     <script>
         function archiveFunction() {
             Swal.fire({

@@ -98,10 +98,15 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $sub = Type::find($id);
-        $sub->delete();
-        return redirect()->route('type.index')->with('feedback' ,'ลบข้อมูลเรียบร้อยแล้ว');
+        $id = $request->id;
+        $type = Type::find($id);
+        if($type){
+            $type->delete();
+            return response()->json(['status' => 1]);
+        }else{
+            return response()->json(['status' => 0]);
+        }
     }
 }

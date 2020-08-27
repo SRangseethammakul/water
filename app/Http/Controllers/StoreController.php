@@ -188,12 +188,16 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
-        $sub = Store::find($id);
-        Storage::disk('public')->delete('images/store/'.$sub->store_image);
-        $sub->delete();
-        return redirect()->route('store.index')->with('feedback' ,'ลบข้อมูลเรียบร้อยแล้ว');
+        $id = $request->id;
+        $store = Store::find($id);
+        if($store){
+            Storage::disk('public')->delete('images/store/'.$store->store_image);
+            $store->delete();
+            return response()->json(['status' => 1]);
+        }else{
+            return response()->json(['status' => 0]);
+        }
     }
 }

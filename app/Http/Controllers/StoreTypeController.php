@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\StoreType;
+use App\Store;
 class StoreTypeController extends Controller
 {
     /**
@@ -93,8 +94,23 @@ class StoreTypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $id = $request->id;
+        $type = StoreType::where('id', $id)->first();
+        if($type){
+            foreach ($type as $p) {
+                $store = Store::where('store_type_id',$type->id)->first();
+                if($store){
+                    $store->delete();
+                }
+            }
+            $type->delete();
+            return response()->json(['status' => 1]);
+        }else{
+            return response()->json(['status' => 0]);
+        }
+
     }
 }

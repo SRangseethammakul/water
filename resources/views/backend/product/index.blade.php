@@ -54,11 +54,7 @@
                                             <a href="{{ route('product.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                                 <li class="fa fa-pencil text-white"></li>
                                             </a>
-                                            <a href="{{ url('product/destroy/'.$item->id)}}">
-                                                <button class="btn btn-danger" name="archive" type="submit">
-                                                    <i class="fa fa-archive"></i>
-                                                </button>
-                                            </a>
+                                            <a href="#" class="btn btn-danger btn-delete" data-rowid="{{ $item->id }}" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>
                                         <input class="sortnumber" type="hidden" name="sequence[{{ $item->id }}]" value="{{ $item->sort_order }}">
                                     </tr>
@@ -73,8 +69,6 @@
     </section>
 @endsection
 @section('footerscript')
-<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
-<script src="{{ asset('js/jquery-ui.min.js')}}"></script>
 <script>
     $(document).ready(function () {
       $('table').DataTable();
@@ -98,6 +92,46 @@
             });
         },
         handle: '.sortable-handle'
+    });
+    $('.btn-delete').on('click', function() {
+        var id = $(this).data('rowid');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: 'api/product/destroy',
+                    method: 'GET',
+                    data: {
+                        id: id
+                    },
+                    success: function (response) {
+                        if (response.status) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'ลบข้อมูลสำเร็จ'
+                            }).then((result) => {
+                                location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'ลบข้อมูลไม่สำเร็จ!',
+                                footer: '<a href>Why do I have this issue?</a>'
+                            });
+                        }
+                        
+                    }
+                });
+            }
+        });
     });
 </script>
     <script>

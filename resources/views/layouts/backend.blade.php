@@ -126,6 +126,8 @@
     <!-- ./wrapper -->
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+    <script src="{{ asset('js/jquery-ui.min.js')}}"></script>
     @yield('footerscript')
 
 </body>

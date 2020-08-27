@@ -35,9 +35,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($type as $item)
+                            @foreach ($type as $key => $item)
                                 <tr>
-                                    <th scope="row">{{ $item->id}}</th>
+                                    <th scope="row">{{ ++$key }}</th>
                                     <td><a href="{{ route('storetype.edit',['id'=>$item->id])}}">{{$item->store_type_name}}</a></td>
                                     <td>{{$item->created_at}}</td>
                                     <td>{{$item->updated_at}}</td>
@@ -45,10 +45,7 @@
                                         <a href="{{ route('storetype.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>
                                         </a>
-                                        <button class="btn btn-danger" name="archive" type="submit" onclick="archiveFunction()">
-                                            <i class="fa fa-archive"></i>
-                                                Archive
-                                        </button>
+                                        <a href="#" class="btn btn-danger btn-delete" data-rowid="{{ $item->id }}" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -61,9 +58,12 @@
     </section>
 @endsection
 @section('footerscript')
-<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
-    <script>
-        function archiveFunction() {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+        $('.btn-delete').on('click', function() {
+            var id = $(this).data('rowid');
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -72,16 +72,36 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
+                }).then((result) => {
                 if (result.value) {
-                    Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                    )
+                    $.ajax({
+                        url: 'api/storetype/destroy',
+                        method: 'GET',
+                        data: {
+                            id: id
+                        },
+                        success: function (response) {
+                            if (response.status) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'ลบข้อมูลสำเร็จ'
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'ลบข้อมูลไม่สำเร็จ!',
+                                    footer: '<a href>Why do I have this issue?</a>'
+                                });
+                            }
+                            
+                        }
+                    });
                 }
-            })
-        }
+            });
+        });
     </script>
     @if(session('feedback'))
         

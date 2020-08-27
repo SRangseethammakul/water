@@ -127,12 +127,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $sub = Product::find($id);
-        Storage::disk('do_spaces')->delete('products/'.$sub->product_image);
-        $sub->delete();
-        return redirect()->route('product.index')->with('feedback' ,'ลบข้อมูลเรียบร้อยแล้ว');
+        $id = $request->id;
+        $product_edit = Product::where('id',$id)->first();
+        if($product_edit){
+            Storage::disk('do_spaces')->delete('products/'.$product_edit->product_image);
+            $product_edit->delete();
+            return response()->json(['status' => 1]);
+        }else{
+            return response()->json(['status' => 0]);
+        }
     }
 
     public function updateSequence(Request $request)

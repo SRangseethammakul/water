@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/storetype/destroy', 'StoreTypeController@destroy');
+Route::get('/product/destroy', 'ProductController@destroy');
+Route::get('/type/destroy', 'TypeController@destroy');
+Route::get('/store/destroy', 'StoreController@destroy');
+Route::get('/promotion/destroy', 'PromotionController@destroy');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

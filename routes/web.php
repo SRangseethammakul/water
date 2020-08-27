@@ -24,6 +24,10 @@ Route::get('/search_product', 'WelcomeController@search_product');
 
 Route::get('/profile', 'ProfileController@index');
 
+
+
+// Route::get('/storetype/destroy', 'StoreTypeController@destroy');
+
 // Route::get('/new/geo', 'JsonStoreController@index');
 // Route::get('/new/province', 'JsonStoreController@province');
 // Route::get('/new/districts', 'JsonStoreController@districts');
@@ -56,12 +60,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/type', 'TypeController');
         Route::get('/type/edit/{id}', 'TypeController@edit')->name('type.edit');
         Route::put('/type/update', 'TypeController@update')->name('type.update');
-        Route::get('/type/destroy/{id}', 'TypeController@destroy')->name('type.destroy');
+
     
         Route::resource('/store', 'StoreController');
         Route::get('/store/edit/{id}', 'StoreController@edit')->name('store.edit');
         Route::put('/store/update', 'StoreController@update')->name('store.update');
-        Route::get('/store/destroy/{id}', 'StoreController@destroy')->name('store.destroy');
+        
     
         Route::resource('/promotion', 'PromotionController');
         Route::get('/promotion/edit/{id}', 'PromotionController@edit')->name('promotion.edit');
@@ -75,7 +79,6 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('/product', 'ProductController');
         Route::get('/product/edit/{id}', 'ProductController@edit')->name('product.edit');
         Route::put('/product/update', 'ProductController@update')->name('product.update');
-        Route::get('/product/destroy/{id}', 'ProductController@destroy')->name('product.destroy');
         
 
         Route::resource('/order', 'OrderController');
