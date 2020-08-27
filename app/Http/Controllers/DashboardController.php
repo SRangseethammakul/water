@@ -24,12 +24,14 @@ class DashboardController extends Controller
         $promotion_count  = Promotion::count();
         $user_count = User::count();
         $order_count_wait = Order::where('order_status','รอการยืนยัน')->count();
+        $order_count_wait_delivery = Order::where('order_status','รอการจัดส่ง')->count();
         return view('backend.dashboard',[
             'type_count' => $type_count,
             'store_count' => $store_count,
             'promotion_count' => $promotion_count,
             'user_count' => $user_count,
-            'order_count_wait' => $order_count_wait
+            'order_count_wait' => $order_count_wait,
+            'order_count_wait_delivery' => $order_count_wait_delivery
         ]);
     }
 
