@@ -39,22 +39,17 @@
                         <tbody>
                             @foreach ($orders as $key => $item)
                                 <tr>
-                                    <th scope="row">{{ $key+1 }}</th>
+                                    <th scope="row">{{ ++$key }}</th>
                                     <td>{{$item->sum_qty}}</td>
                                     <td>{{$item->sum_total}}</td>
                                     <td>{{$item->order_status}}</td>
-                                    <td>{{$item->order_delivery}}</td>
-                                    <td>{{$item->created_at}}</td>
+                                    <td>{{ Carbon::parse($item->order_delivery)->format('d/m/Y') }}</td>
+                                    <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
                                     <td>
                                         <a href="{{ route('order.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>
                                         </a>
-                                        <a href="{{ url('order/destroy/'.$item->id)}}">
-                                            <button class="btn btn-danger" name="archive" type="submit">
-                                                <i class="fa fa-archive"></i>
-                                                    ลบข้อมูล
-                                            </button>
-                                        </a>
+                                        <a href="#" class="btn btn-danger btn-delete" data-rowid="{{ $item->id }}" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -67,13 +62,12 @@
     </section>
 @endsection
 @section('footerscript')
-<script>
-    $(document).ready(function () {
-      $('table').DataTable();
-    });
-</script>
     <script>
-        function archiveFunction() {
+        $(document).ready(function () {
+            $('table').DataTable();
+        });
+        $('.btn-delete').on('click', function() {
+            var id = $(this).data('rowid');
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -82,16 +76,36 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
+                }).then((result) => {
                 if (result.value) {
-                    Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                    )
+                    $.ajax({
+                        url: 'api/order/destroy',
+                        method: 'GET',
+                        data: {
+                            id: id
+                        },
+                        success: function (response) {
+                            if (response.status) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'ลบข้อมูลสำเร็จ'
+                                }).then((result) => {
+                                    location.reload();
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: 'ลบข้อมูลไม่สำเร็จ!',
+                                    footer: '<a href>Why do I have this issue?</a>'
+                                });
+                            }
+                            
+                        }
+                    });
                 }
-            })
-        }
+            });
+        });
     </script>
     @if(session('feedback'))
         

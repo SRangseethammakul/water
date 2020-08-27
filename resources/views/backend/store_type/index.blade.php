@@ -39,8 +39,8 @@
                                 <tr>
                                     <th scope="row">{{ ++$key }}</th>
                                     <td><a href="{{ route('storetype.edit',['id'=>$item->id])}}">{{$item->store_type_name}}</a></td>
-                                    <td>{{$item->created_at}}</td>
-                                    <td>{{$item->updated_at}}</td>
+                                    <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
+                                    <td>{{ Carbon::parse($item->updated_at)->format('d/m/Y') }}</td>
                                     <td>
                                         <a href="{{ route('storetype.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>

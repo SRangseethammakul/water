@@ -19,6 +19,7 @@ Route::get('/product/destroy', 'ProductController@destroy');
 Route::get('/type/destroy', 'TypeController@destroy');
 Route::get('/store/destroy', 'StoreController@destroy');
 Route::get('/promotion/destroy', 'PromotionController@destroy');
+Route::get('/order/destroy', 'OrderController@destroy');
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

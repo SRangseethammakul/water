@@ -44,7 +44,7 @@
                                     <td><a href="{{ route('store.edit',['id'=>$item->id])}}">{{$item->store_name}}</a></td>
                                     <td>{{$item->store_contact}}</td>
                                     <td>{{$item->store_type->store_type_name}}</td>
-                                    <td>{{$item->created_at}}</td>
+                                    <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
                                     <td>
                                         <img src="{{ asset('storage/images/store/'.$item->store_image) }}" width="60">
                                     </td>

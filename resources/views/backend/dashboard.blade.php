@@ -51,14 +51,14 @@
                             <!-- small box -->
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3>{{$type_count}}</h3>
+                                    <h3>{{$order_count_wait}}</h3>
 
-                                    <p>ประเภทสินค้า</p>
+                                    <p>จำนวนรายการรอคอนเฟริม</p>
                                 </div>
                                 <div class="icon">
                                     <i class="fa fa-cart-plus"></i>
                                 </div>
-                                <a href="{{ route('type.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                <a href="{{ route('order.index')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -107,6 +107,20 @@
                             </div>
                         </div>
                         <!-- ./col -->
+                        
+                        <!-- /.col -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <div class="info-box mb-3">
+                            <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-book"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">ประเภทสินค้า</span>
+                                <span class="info-box-number">{{ $type_count}}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->

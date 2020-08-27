@@ -100,11 +100,16 @@ class OrderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
-        $sub = Order::find($id);
-        $sub->delete();
-        return redirect()->route('order.index')->with('feedback' ,'ลบข้อมูลเรียบร้อยแล้ว');
+        $id = $request->id;
+        $order = Order::where('id',$id)->first();
+        if($order){
+            $order->delete();
+            return response()->json(['status' => 1]);
+        }else{
+            return response()->json(['status' => 0]);
+        }
     }
 }

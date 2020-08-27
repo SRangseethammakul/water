@@ -44,7 +44,7 @@
                                     <td>{{$item->product->product_name}}</td>
                                     <td>{{$item->promotion_price}}</td>
                                     <td>{{$item->promotion_status ? 'กำลังใช้งาน' : 'เลิกใช้งาน'}}</td>
-                                    <td>{{$item->created_at}}</td>
+                                    <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
                                     <td>
                                         <a href="{{ route('promotion.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>

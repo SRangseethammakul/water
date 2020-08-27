@@ -7,6 +7,7 @@ use App\Type;
 use App\Store;
 use App\Promotion;
 use App\User;
+use App\Order; 
 
 class DashboardController extends Controller
 {
@@ -22,11 +23,13 @@ class DashboardController extends Controller
         $store_count  = Store::count();
         $promotion_count  = Promotion::count();
         $user_count = User::count();
+        $order_count_wait = Order::where('order_status','รอการยืนยัน')->count();
         return view('backend.dashboard',[
             'type_count' => $type_count,
             'store_count' => $store_count,
             'promotion_count' => $promotion_count,
-            'user_count' => $user_count
+            'user_count' => $user_count,
+            'order_count_wait' => $order_count_wait
         ]);
     }
 
