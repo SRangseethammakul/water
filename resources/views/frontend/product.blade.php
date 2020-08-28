@@ -22,36 +22,26 @@
 
       <div class="col-lg-9">
 
-        <div id="carouselExampleIndicators" class="carousel slide my-4" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          </ol>
-          <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="First slide">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            @foreach($banners as $key => $item)
+            <div class="carousel-item{{ ($key) ? '' : ' active' }}">
+              <img class="d-block img-fluid"  src="{{ Storage::disk('do_spaces')->temporaryUrl('banners/'. $item->banner_image, now()->addMinutes(15) ) }}" style="width: 900px; height: 350px;">
             </div>
-            <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block img-fluid" src="http://placehold.it/900x350" alt="Third slide">
-            </div>
+            @endforeach
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
           </a>
-          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
           </a>
         </div>
 
-
         <!-- /.row -->
-        <div id="result" class="row">
+        <div id="result" class="row mt-5">
             
         </div>
 
@@ -68,7 +58,7 @@
 <script type="text/javascript">
   var type;
   var _xhr;
-  startSearch()
+  startSearch();
   function startSearch(){
       _xhr = $.ajax({
           url: '/search_product',

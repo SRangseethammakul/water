@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use App\Type;
 use App\Banner;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Image;
 
-class WelcomeController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,37 +17,11 @@ class WelcomeController extends Controller
      */
     public function index()
     {
-        
-        $category = Type::where('type_status',1)->get();
-        $product = Product::where('product_status',1)->orderby('sort_order','asc')->get();
-        $banners = Banner::where('is_publish',1)
-        ->whereDate('banner_enddate', '>=', Carbon::today()->toDateString())
-        ->whereDate('banner_startdate', '<=', Carbon::today()->toDateString())
-        ->orderby('sort_order','asc')
-        ->get();
-        return view('frontend.product',[
-            'category' => $category,
-            'products' => $product,
+        //
+        $banners = Banner::orderby('sort_order','asc')->get();
+        return view('backend.banner.index',[
             'banners' => $banners
         ]);
-    }
-
-    public function search_product(Request $request)
-    {
-        //
-        $search   =   $request->search;
-        $product = Product::where('product_status',1)->orderby('sort_order','asc');
-        if($search){
-            $product = $product->where('type_id', $search);
-        }
-        $product = $product->get();
-        if($product){
-            return response()->json(['status' => 1, 'data' => $product]);
-        }
-        else{
-            return response()->json(['status' => 0]);
-        }
-        
     }
 
     /**
@@ -59,6 +32,7 @@ class WelcomeController extends Controller
     public function create()
     {
         //
+        return view('backend.banner.add');
     }
 
     /**
@@ -70,6 +44,21 @@ class WelcomeController extends Controller
     public function store(Request $request)
     {
         //
+        $new_banner = new Banner();
+        $new_banner->banner_name = $request->banner_name;
+        $new_banner->is_publish = $request->banner_is_publish;
+        $new_banner->banner_startdate = Carbon::createFromFormat('d/m/Y', $request->banner_startdate)->format('Y-m-d');
+        $new_banner->banner_enddate = Carbon::createFromFormat('d/m/Y', $request->banner_enddate)->format('Y-m-d');
+        $new_banner->banner_url = $request->banner_url;
+        $new_banner->banner_description = $request->banner_description;
+        if($request->hasFile('banner_image')){
+            $newFileName    =   uniqid().'.'.$request->banner_image->extension();//gen name
+            $image = $request->file('banner_image');
+            $t = Storage::disk('do_spaces')->put('banners/'.$newFileName, file_get_contents($image));
+            $new_banner->banner_image = $newFileName;
+        }
+        $new_banner->save();
+        return "Add Banner Success";
     }
 
     /**

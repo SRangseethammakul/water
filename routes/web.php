@@ -85,6 +85,11 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/order/edit/{id}', 'OrderController@edit')->name('order.edit');
         Route::put('/order/update', 'OrderController@update')->name('order.update');
         Route::get('/order/destroy/{id}', 'OrderController@destroy')->name('order.destroy');
+
+        Route::resource('/banner', 'BannerController');
+        Route::get('/banner/edit/{id}', 'BannerController@edit')->name('banner.edit');
+        Route::put('/banner/update', 'BannerController@update')->name('banner.update');
+        Route::get('/banner/destroy/{id}', 'BannerController@destroy')->name('banner.destroy');
     });
 
 });

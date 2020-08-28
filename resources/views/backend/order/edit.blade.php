@@ -98,7 +98,6 @@
     </div>
 @endsection
 @section('footerscript')
-<script src="{{ asset('js/jquery-ui.min.js')}}"></script>
     <script>
         $( "#datepicker" ).datepicker({
             dateFormat : 'dd/mm/yy',

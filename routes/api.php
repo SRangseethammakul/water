@@ -21,6 +21,8 @@ Route::get('/store/destroy', 'StoreController@destroy');
 Route::get('/promotion/destroy', 'PromotionController@destroy');
 Route::get('/order/destroy', 'OrderController@destroy');
 
+// Route::get('/show/banners', 'BannerAPIController@showbanner');
+
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
