@@ -22,7 +22,7 @@
 
       <div class="col-lg-9">
 
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide my-4" data-ride="carousel">
           <div class="carousel-inner">
             @foreach($banners as $key => $item)
             <div class="carousel-item{{ ($key) ? '' : ' active' }}">
