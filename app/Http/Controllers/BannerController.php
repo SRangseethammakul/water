@@ -58,7 +58,7 @@ class BannerController extends Controller
             $new_banner->banner_image = $newFileName;
         }
         $new_banner->save();
-        return "Add Banner Success";
+        return redirect()->route('banner.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
     /**
@@ -104,5 +104,19 @@ class BannerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function updateSequence(Request $request)
+    {
+        try {
+            foreach ($request->sequence as $key => $val) {
+                $banner = Banner::find($key);
+                $banner->sort_order = $val;
+                $banner->save();
+            }
+            return response()->json(['status' => 1]);
+        } catch (Exception $e) {
+            return response()->json(['status' => 0]);
+        }
     }
 }

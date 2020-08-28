@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/product/updatesequence', 'ProductController@updateSequence')->name('product.updatesequence');
+Route::get('/banner/updatesequence', 'BannerController@updateSequence')->name('banner.updatesequence');
 
 Route::get('/store/search', 'AjaxSearchController@index');
 Route::get('/detail/{id}', 'AjaxSearchController@show');

@@ -137,7 +137,6 @@
     });
 </script>
     @if(session('feedback'))
-        
         <script>
             Swal.fire(
                 '{{ session('feedback')}}', //
