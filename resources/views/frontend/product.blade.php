@@ -26,7 +26,7 @@
           <div class="carousel-inner">
             @foreach($banners as $key => $item)
             <div class="carousel-item{{ ($key) ? '' : ' active' }}">
-              <img class="d-block img-fluid"  src="{{ Storage::disk('do_spaces')->temporaryUrl('banners/'. $item->banner_image, now()->addMinutes(15) ) }}" style="width: 900px; height: 350px;">
+              <img class="d-block img-fluid"  src="{{ Storage::disk('do_spaces')->temporaryUrl('banners/'. $item->banner_image, now()->addMinutes(15) ) }}">
             </div>
             @endforeach
           </div>
