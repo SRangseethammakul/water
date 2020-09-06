@@ -23,6 +23,8 @@ Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/search_product', 'WelcomeController@search_product');
 
+Route::get('/test', 'WelcomeController@test');
+
 Route::get('/profile', 'ProfileController@index');
 
 
