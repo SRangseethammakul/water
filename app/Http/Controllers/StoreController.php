@@ -40,6 +40,69 @@ class StoreController extends Controller
         ]);
     }
 
+    public function staff_create()
+    {
+        //
+        $promotions = Promotion::where('promotion_status',1);
+        $store_types = StoreType::get();
+        return view('backend.store.staff_add',[
+            'promotions' => $promotions,
+            'store_types' => $store_types
+        ]);
+    }
+
+    public function store_staff_add(Request $request)
+    {
+        //
+        // dd($request->all());
+        try{
+            $check_tel = Store::where('store_tel',$request->store_tel)->get();
+            if($check_tel->count() > 0){
+                return redirect()->route('store.index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้ เบอร์ช้ำ');
+            }
+            else{
+                $new_store = new Store();
+                $new_store->store_name = $request->store_name;
+                $new_store->store_tel  = $request->store_tel;
+                $new_store->store_type_id  = $request->store_type;
+                $new_store->store_lineid  = $request->store_line;
+                $new_store->store_contact  = $request->store_contact;
+                $new_store->store_address = $request->store_address;
+                $new_store->store_detail = $request->store_detail;
+                $new_store->store_status = $request->store_status;
+                $new_store->store_tax_contact = $request->store_tax_contact;
+                $new_store->store_tax_name = $request->store_tax_name;
+                $new_store->store_tax_id = $request->store_tax_id;
+                $new_store->store_lat = $request->store_lat;
+                $new_store->store_lng = $request->store_lng;
+                $new_store->create_by = auth()->user()->name;
+                $tmp = '';
+                if($request->check_list){
+                    foreach($request->check_list as $key =>  $item){
+                        if($key == 0){
+                            $tmp = $item;
+                        }
+                        else{
+                            $tmp = $item.','.$tmp;
+                        }         
+                    }
+                }
+                $new_store->store_promotion = $tmp;
+                $new_store->store_status = $request->store_status;
+                if($request->hasFile('storeimage')){
+                    $newFileName    =   uniqid().'.'.$request->storeimage->extension();//gen name
+                    //upload file
+                    $request->storeimage->storeAs('images/store',$newFileName,'public'); // upload file
+                    $new_store->store_image = $newFileName;
+                }
+                $new_store->save();
+                return redirect()->route('store.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
+            }
+        }catch(Exception $e){
+            return redirect()->route('store.index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้');
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      *

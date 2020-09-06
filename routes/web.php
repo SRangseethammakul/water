@@ -28,6 +28,9 @@ Route::get('/test', 'WelcomeController@test');
 Route::get('/profile', 'ProfileController@index');
 
 
+Route::get('/store/staff_create', 'StoreController@staff_create')->name('store.staff_create');
+Route::post('/store/store_staff_add', 'StoreController@store_staff_add')->name('store.store_staff_add');
+
 
 // Route::get('/storetype/destroy', 'StoreTypeController@destroy');
 
@@ -66,6 +69,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     
         Route::resource('/store', 'StoreController');
+        
         Route::get('/store/edit/{id}', 'StoreController@edit')->name('store.edit');
         Route::put('/store/update', 'StoreController@update')->name('store.update');
         
