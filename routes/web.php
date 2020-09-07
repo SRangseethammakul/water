@@ -97,6 +97,18 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/banner/edit/{id}', 'BannerController@edit')->name('banner.edit');
         Route::put('/banner/update', 'BannerController@update')->name('banner.update');
         Route::get('/banner/destroy/{id}', 'BannerController@destroy')->name('banner.destroy');
+
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/', 'UserManagementController@index')->name('user.index');
+            Route::get('/edit/{id}', 'UserManagementController@edit')->name('user.edit');
+            Route::put('/update', 'UserManagementController@update')->name('user.update');
+        });
+    
+        Route::group(['prefix' => 'role'], function () {
+            Route::get('/', 'RoleManagementController@index')->name('role.index');
+            Route::get('/create', 'RoleManagementController@create')->name('role.create');
+            Route::post('/store', 'RoleManagementController@store')->name('role.store');
+        });
     });
 
 });
