@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-    Route::group(['middleware' => ['role:Admin,Staff']], function () {
+    Route::group(['middleware' => ['role:Admin|Staff']], function () {
 
         Route::get('/dashboard', 'DashboardController@index')->name('home');
 
