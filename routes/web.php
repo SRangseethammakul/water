@@ -16,7 +16,7 @@ Route::get('/product/updatesequence', 'ProductController@updateSequence')->name(
 Route::get('/banner/updatesequence', 'BannerController@updateSequence')->name('banner.updatesequence');
 
 Route::get('/store/search', 'AjaxSearchController@index');
-Route::get('/detail/{id}', 'AjaxSearchController@show');
+Route::get('/store/detail/{id}', 'AjaxSearchController@show');
 
 Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
 
