@@ -56,6 +56,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-header">ข้อมูลหลัก</li>
+                        @role('Admin')
                         <li class="nav-item">
                             <a href="{{ route('type.index')}}" class="nav-link">
                             <i class="nav-icon fa fa-cart-plus"></i>  ประเภทสินค้า</a>
@@ -75,7 +76,6 @@
                             <i class="nav-icon fa fa-bolt"></i> โปรโมชัน
                            </a>
                         </li>
-                        @role('Admin')
                         <li class="nav-item has-treeview">
                             <a href="{{ route('store.index')}}" class="nav-link">
                             <i class="nav-icon fa fa-shopping-bag"></i> ร้านค้า
@@ -86,12 +86,12 @@
                             <i class="nav-icon fa fa-users"></i> ผู้ใช้งาน
                            </a>
                         </li>
-                        @endrole
                         <li class="nav-item has-treeview">
                             <a href="{{ route('order.index')}}" class="nav-link">
                             <i class="nav-icon fa fa-calendar-check-o"></i> คำสั่งซื้อ ออนไลน์
                            </a>
                         </li>
+                        @endrole
                         <li class="nav-item has-treeview">
                             <a href="{{ route('store.staff_create')}}" class="nav-link">
                             <i class="nav-icon fa fa-shopping-bag"></i> เพิ่มร้านค้า
