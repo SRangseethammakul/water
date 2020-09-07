@@ -51,7 +51,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="../store/search">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('welcome') }}">เลือกดูสินค้า</a>
