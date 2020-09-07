@@ -107,10 +107,10 @@ class StoreController extends Controller
                     $new_store->store_image = $newFileName;
                 }
                 $new_store->save();
-                return redirect()->route('store.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
+                return redirect()->route('store.staff_index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
             }
         }catch(Exception $e){
-            return redirect()->route('store.index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้');
+            return redirect()->route('store.staff_index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้');
         }
     }
 

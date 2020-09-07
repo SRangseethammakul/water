@@ -41,10 +41,11 @@
                             @foreach ($store as $item)
                                 <tr>
                                     <th scope="row">{{ $item->id}}</th>
-                                    <td><a href="{{ route('store.edit',['id'=>$item->id])}}">{{$item->store_name}}</a></td>
+                                    <td>{{$item->store_name}}</td>
                                     <td>{{$item->store_contact}}</td>
                                     <td>{{$item->store_type->store_type_name}}</td>
                                     <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
+                                    @role('Admin')
                                     <td>
                                         <img src="{{ asset('storage/images/store/'.$item->store_image) }}" width="60">
                                     </td>
@@ -54,6 +55,7 @@
                                         </a>
                                         <a href="#" class="btn btn-danger btn-delete" data-rowid="{{ $item->id }}" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
+                                    @endrole
                                 </tr>
                             @endforeach
                         </tbody>
