@@ -88,6 +88,11 @@
                            </a>
                         </li>
                         <li class="nav-item has-treeview">
+                            <a href="{{ route('store.staff_create')}}" class="nav-link">
+                            <i class="nav-icon fa fa-shopping-bag"></i> เพิ่มร้านค้า
+                           </a>
+                        </li>
+                        <li class="nav-item has-treeview">
                             <a href="{{ route('welcome')}}" class="nav-link">
                             <i class="nav-icon fa fa-compass"></i> กลับหน้าโชว์สินค้า
                            </a>
