@@ -93,6 +93,11 @@
                         </li>
                         @endrole
                         <li class="nav-item has-treeview">
+                            <a href="{{ route('store.staff_index')}}" class="nav-link">
+                            <i class="nav-icon fa fa-book"></i> ร้านค้า
+                           </a>
+                        </li>
+                        <li class="nav-item has-treeview">
                             <a href="{{ route('store.staff_create')}}" class="nav-link">
                             <i class="nav-icon fa fa-shopping-bag"></i> เพิ่มร้านค้า
                            </a>

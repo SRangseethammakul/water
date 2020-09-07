@@ -24,6 +24,16 @@ class StoreController extends Controller
         ]);
     }
 
+    public function staff_index()
+    {
+        //
+        $store = Store::with('store_type')->where('create_by_id',auth()->user()->id)->get();
+        return view('backend.store.index',[
+            'store' => $store
+        ]);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -76,6 +86,7 @@ class StoreController extends Controller
                 $new_store->store_lat = $request->store_lat;
                 $new_store->store_lng = $request->store_lng;
                 $new_store->create_by = auth()->user()->name;
+                $new_store->create_by_id = auth()->user()->id;
                 $tmp = '';
                 if($request->check_list){
                     foreach($request->check_list as $key =>  $item){

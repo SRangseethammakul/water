@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         Route::get('/dashboard', 'DashboardController@index')->name('home');
 
+        Route::get('/store/staff_index', 'StoreController@staff_index')->name('store.staff_index');
         Route::get('/store/staff_create', 'StoreController@staff_create')->name('store.staff_create');
         Route::post('/store/store_staff_add', 'StoreController@store_staff_add')->name('store.store_staff_add');
 
