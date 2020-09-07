@@ -85,7 +85,7 @@
                       ยินดีต้อนรับคุณ {{ Auth::user()->name }} <span class="caret"></span>
                   </a>
                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    @role('Staff')
+                    @role('Staff|Admin')
                       <a class="dropdown-item bg-primary" href="{{ route('home') }}">
                         Dashboard
                       </a>
