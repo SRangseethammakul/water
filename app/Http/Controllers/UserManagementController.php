@@ -96,8 +96,16 @@ class UserManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $id = $request->id;
+        $user = User::find($id);
+        if($user){
+            $user->delete();
+            return response()->json(['status' => 1]);
+        }else{
+            return response()->json(['status' => 0]);
+        }
     }
 }

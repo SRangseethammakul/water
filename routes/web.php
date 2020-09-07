@@ -102,6 +102,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/', 'UserManagementController@index')->name('user.index');
             Route::get('/edit/{id}', 'UserManagementController@edit')->name('user.edit');
             Route::put('/update', 'UserManagementController@update')->name('user.update');
+            Route::get('/destroy', 'UserManagementController@destroy')->name('user.destroy');
         });
     
         Route::group(['prefix' => 'role'], function () {

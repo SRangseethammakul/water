@@ -75,7 +75,7 @@
                 }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: 'api/storetype/destroy',
+                        url: 'user/destroy',
                         method: 'GET',
                         data: {
                             id: id
