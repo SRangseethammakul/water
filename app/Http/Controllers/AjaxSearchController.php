@@ -41,7 +41,7 @@ class AjaxSearchController extends Controller
     {
         try {
             $search   =   $request->search;
-            $stores = Store::where('store_status',1);
+            $stores = Store::where('store_status',1)->where('confirm',1);
             if($search){
                 $stores = $stores->where(function ($query) use ($search)  {
                     $query->where('store_address', 'like', '%' . $search . '%')
