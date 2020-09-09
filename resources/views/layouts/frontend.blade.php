@@ -89,7 +89,7 @@
                       <a class="dropdown-item bg-primary" href="{{ route('home') }}">
                         Dashboard
                       </a>
-                      <a class="dropdown-item bg-primary" href="../store/search">
+                      <a class="dropdown-item bg-success" href="../store/search">
                         ระบบค้นหาร้านค้า
                       </a>
                     @endrole
