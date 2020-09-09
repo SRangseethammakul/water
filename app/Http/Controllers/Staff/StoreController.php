@@ -59,7 +59,7 @@ class StoreController extends Controller
         try{
             $check_tel = Store::where('store_tel',$request->store_tel)->get();
             if($check_tel->count() > 0){
-                return redirect()->route('store.index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้ เบอร์ช้ำ');
+                return redirect()->route('store.staff_index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้ เบอร์ช้ำ');
             }
             else{
                 $new_store = new Store();
