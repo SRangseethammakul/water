@@ -51,7 +51,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../store/search">About</a>
+              <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('welcome') }}">เลือกดูสินค้า</a>
@@ -88,6 +88,9 @@
                     @role('Staff|Admin')
                       <a class="dropdown-item bg-primary" href="{{ route('home') }}">
                         Dashboard
+                      </a>
+                      <a class="dropdown-item bg-primary" href="../store/search">
+                        ระบบค้นหาร้านค้า
                       </a>
                     @endrole
                     <a class="dropdown-item bg-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
