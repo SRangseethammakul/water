@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="store_name">ชื่อร้านค้า</label>
+                        <label for="store_name">ชื่อร้านค้า <Span style="color: red">*</Span></label>
                         <input type="text" class="form-control" id="store_name" name="store_name" required>
                     </div>
                 </div>
@@ -31,13 +31,13 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="store_contact">ชื่อลูกค้า</label>
+                        <label for="store_contact">ชื่อลูกค้า <Span style="color: red">*</Span></label>
                         <input type="text" class="form-control" id="store_contact" name="store_contact" required>
                     </div>
                 </div>
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">เลือกประเภทร้านค้า</label>
+                        <label for="exampleFormControlSelect1">เลือกประเภทร้านค้า <Span style="color: red">*</Span></label>
                         <select class="form-control" id="exampleFormControlSelect1" name="store_type">
                         @foreach ($store_types as $item)
                             <option value="{{ $item->id }}">{{ $item->store_type_name }}</option>
@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="store_tel">เบอร์ร้านค้า</label>
+                        <label for="store_tel">เบอร์ร้านค้า <Span style="color: red">*</Span></label>
                         <input type="tel" class="form-control" id="store_tel" name="store_tel" maxlength="10">
                     </div>
                 </div>
@@ -63,7 +63,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="exampleFormControlTextarea1">ที่อยู่ร้านค้า</label>
+                        <label for="exampleFormControlTextarea1">ที่อยู่ร้านค้า <Span style="color: red">*</Span></label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" name="store_address" rows="3"></textarea>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
 
 
                 <div class="form-group">
-                    <label for="store_detail">รายละเอียด ร้านค้า</label>
+                    <label for="store_detail">รายละเอียด ร้านค้า <Span style="color: red">*</Span></label>
                     <textarea class="form-control" id="store_detail" name="store_detail" rows="3"></textarea>
                 </div>
                 <div class="row mt-5">

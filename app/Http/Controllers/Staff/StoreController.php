@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Store;
 use App\Promotion;
 use App\StoreType;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Image;
@@ -97,11 +98,35 @@ class StoreController extends Controller
                     $new_store->store_image = $newFileName;
                 }
                 $new_store->save();
+                $this->line_send($new_store);
                 return redirect()->route('store.staff_index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
             }
         }catch(Exception $e){
             return redirect()->route('store.staff_index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้');
         }
+    }
+
+    public function line_send(Store $store){
+        // ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e
+        //g4P4S28Br4NUSNE2sRsuI9zFlsAcVQHOu5oQ64mYeZe ส่วนตัว
+        $token = 'ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e';
+        $message = "คนที่ทำการเพิ่มร้านค้า : ".auth()->user()->name."\n".
+                    "ชื่อร้านค้า : ".$store->store_name."\n".
+                    "เบอร์โทรร้านค้า : ".$store->store_tel."\n";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$message);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-type: application/x-www-form-urlencoded',
+        'Authorization: Bearer '.$token,
+        ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($ch);
+        curl_close($ch);
     }
 
     /**

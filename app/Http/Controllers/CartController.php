@@ -123,9 +123,5 @@ class CartController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_exec($ch);
         curl_close($ch);
-
-        
-
-
     }
 }
