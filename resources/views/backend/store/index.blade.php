@@ -34,6 +34,7 @@
                             <th scope="col">ประเภทร้านค้า</th>
                             <th scope="col">วันที่เพิ่ม</th>
                             <th scope="col">รูปภาพ</th>
+                            <th scope="col">การยืนยัน</th>
                             <th scope="col">Tools</th>
                             </tr>
                         </thead>
@@ -45,17 +46,16 @@
                                     <td>{{$item->store_contact}}</td>
                                     <td>{{$item->store_type->store_type_name}}</td>
                                     <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
-                                    @role('Admin')
                                     <td>
                                         <img src="{{ asset('storage/images/store/'.$item->store_image) }}" width="60">
                                     </td>
+                                    <td>{{$item->confirm ? "ยืนยันแล้ว" : "รอดำเนินการ"}}</td>
                                     <td>
                                         <a href="{{ route('store.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
                                             <li class="fa fa-pencil text-white"></li>
                                         </a>
                                         <a href="#" class="btn btn-danger btn-delete" data-rowid="{{ $item->id }}" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
-                                    @endrole
                                 </tr>
                             @endforeach
                         </tbody>

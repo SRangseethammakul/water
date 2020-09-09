@@ -142,6 +142,7 @@ class StoreController extends Controller
                 $new_store->store_tax_contact = $request->store_tax_contact;
                 $new_store->store_tax_name = $request->store_tax_name;
                 $new_store->store_tax_id = $request->store_tax_id;
+                $new_store->confirm = 1;
                 $tmp = '';
                 if($request->check_list){
                     foreach($request->check_list as $key =>  $item){
@@ -229,6 +230,7 @@ class StoreController extends Controller
         $store_edit->store_tax_contact = $request->store_tax_contact;
         $store_edit->store_tax_name = $request->store_tax_name;
         $store_edit->store_tax_id = $request->store_tax_id;
+        $store_edit->confirm = $request->confirm;
         $tmp = '';
         if($request->check_list){
             foreach($request->check_list as $key =>  $item){

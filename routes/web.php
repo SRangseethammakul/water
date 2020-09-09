@@ -58,67 +58,69 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/cart/checkout/cart', 'CartController@confirm')->name('cart.confirm');
 
 
-
     Route::group(['middleware' => ['role:Admin|Staff']], function () {
-
         Route::get('/dashboard', 'DashboardController@index')->name('home');
-
-        Route::get('/store/staff_index', 'StoreController@staff_index')->name('store.staff_index');
-        Route::get('/store/staff_create', 'StoreController@staff_create')->name('store.staff_create');
-        Route::post('/store/store_staff_add', 'StoreController@store_staff_add')->name('store.store_staff_add');
-
-        Route::group(['middleware' => ['role:Admin']], function () {
-            
-
-            Route::resource('/type', 'TypeController');
-            Route::get('/type/edit/{id}', 'TypeController@edit')->name('type.edit');
-            Route::put('/type/update', 'TypeController@update')->name('type.update');
-    
-        
-            Route::resource('/store', 'StoreController');
-            
-            Route::get('/store/edit/{id}', 'StoreController@edit')->name('store.edit');
-            Route::put('/store/update', 'StoreController@update')->name('store.update');
-            
-        
-            Route::resource('/promotion', 'PromotionController');
-            Route::get('/promotion/edit/{id}', 'PromotionController@edit')->name('promotion.edit');
-            Route::put('/promotion/update', 'PromotionController@update')->name('promotion.update');
-            
-        
-            Route::resource('/storetype', 'StoreTypeController');
-            Route::get('/storetype/edit/{id}', 'StoreTypeController@edit')->name('storetype.edit');
-            Route::put('/storetype/update', 'StoreTypeController@update')->name('storetype.update');
-        
-            Route::resource('/product', 'ProductController');
-            Route::get('/product/edit/{id}', 'ProductController@edit')->name('product.edit');
-            Route::put('/product/update', 'ProductController@update')->name('product.update');
-            
-    
-            Route::resource('/order', 'OrderController');
-            Route::get('/order/edit/{id}', 'OrderController@edit')->name('order.edit');
-            Route::put('/order/update', 'OrderController@update')->name('order.update');
-            Route::get('/order/destroy/{id}', 'OrderController@destroy')->name('order.destroy');
-    
-            Route::resource('/banner', 'BannerController');
-            Route::get('/banner/edit/{id}', 'BannerController@edit')->name('banner.edit');
-            Route::put('/banner/update', 'BannerController@update')->name('banner.update');
-            Route::get('/banner/destroy/{id}', 'BannerController@destroy')->name('banner.destroy');
-    
-            Route::group(['prefix' => 'user'], function () {
-                Route::get('/', 'UserManagementController@index')->name('user.index');
-                Route::get('/edit/{id}', 'UserManagementController@edit')->name('user.edit');
-                Route::put('/update', 'UserManagementController@update')->name('user.update');
-                Route::get('/destroy', 'UserManagementController@destroy')->name('user.destroy');
-            });
-        
-            Route::group(['prefix' => 'role'], function () {
-                Route::get('/', 'RoleManagementController@index')->name('role.index');
-                Route::get('/create', 'RoleManagementController@create')->name('role.create');
-                Route::post('/store', 'RoleManagementController@store')->name('role.store');
+        Route::group(['prefix' => 'staff'], function () {
+            Route::group(['prefix' => 'store'], function () {
+                Route::get('/', 'Staff\StoreController@index')->name('store.staff_index');
+                Route::get('/create', 'Staff\StoreController@create')->name('store.staff_create');
+                Route::post('/store', 'Staff\StoreController@store')->name('store.store_staff_add');
             });
         });
     });
+
+
+    Route::group(['middleware' => ['role:Admin']], function () {
+
+        Route::resource('/type', 'TypeController');
+        Route::get('/type/edit/{id}', 'TypeController@edit')->name('type.edit');
+        Route::put('/type/update', 'TypeController@update')->name('type.update');
+
+    
+        Route::resource('/store', 'StoreController');
+        
+        Route::get('/store/edit/{id}', 'StoreController@edit')->name('store.edit');
+        Route::put('/store/update', 'StoreController@update')->name('store.update');
+        
+    
+        Route::resource('/promotion', 'PromotionController');
+        Route::get('/promotion/edit/{id}', 'PromotionController@edit')->name('promotion.edit');
+        Route::put('/promotion/update', 'PromotionController@update')->name('promotion.update');
+        
+    
+        Route::resource('/storetype', 'StoreTypeController');
+        Route::get('/storetype/edit/{id}', 'StoreTypeController@edit')->name('storetype.edit');
+        Route::put('/storetype/update', 'StoreTypeController@update')->name('storetype.update');
+    
+        Route::resource('/product', 'ProductController');
+        Route::get('/product/edit/{id}', 'ProductController@edit')->name('product.edit');
+        Route::put('/product/update', 'ProductController@update')->name('product.update');
+        
+
+        Route::resource('/order', 'OrderController');
+        Route::get('/order/edit/{id}', 'OrderController@edit')->name('order.edit');
+        Route::put('/order/update', 'OrderController@update')->name('order.update');
+        Route::get('/order/destroy/{id}', 'OrderController@destroy')->name('order.destroy');
+
+        Route::resource('/banner', 'BannerController');
+        Route::get('/banner/edit/{id}', 'BannerController@edit')->name('banner.edit');
+        Route::put('/banner/update', 'BannerController@update')->name('banner.update');
+        Route::get('/banner/destroy/{id}', 'BannerController@destroy')->name('banner.destroy');
+
+        Route::group(['prefix' => 'user'], function () {
+            Route::get('/', 'UserManagementController@index')->name('user.index');
+            Route::get('/edit/{id}', 'UserManagementController@edit')->name('user.edit');
+            Route::put('/update', 'UserManagementController@update')->name('user.update');
+            Route::get('/destroy', 'UserManagementController@destroy')->name('user.destroy');
+        });
+    
+        Route::group(['prefix' => 'role'], function () {
+            Route::get('/', 'RoleManagementController@index')->name('role.index');
+            Route::get('/create', 'RoleManagementController@create')->name('role.create');
+            Route::post('/store', 'RoleManagementController@store')->name('role.store');
+        });
+    });
+
 
 });
 

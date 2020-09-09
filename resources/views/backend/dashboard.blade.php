@@ -46,6 +46,7 @@
             <section class="content">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
+                    @role('Admin')
                     <div class="row">
                         <div class="col-lg-3 col-6">
                             <!-- small box -->
@@ -134,6 +135,59 @@
                         </div>
                         <!-- /.col -->
                     </div>
+                    @endrole
+                    @role('Staff')
+                    <div class="row">
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-info">
+                                <div class="inner">
+                                    <h3>{{$staff_store_count_wait}}</h3>
+
+                                    <p>จำนวนร้านค้าที่ดำเนินการ</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-clock-o"></i>
+                                </div>
+                                <a href="{{ route('store.staff_index',['status'=>'0'])}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-success">
+                                <div class="inner">
+                                    <h3>{{$staff_store_count_con}}</h3>
+
+                                    <p>จำนวนร้านค้าที่ยืนยันแล้ว</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-check"></i>
+                                </div>
+                                <a href="{{ route('store.staff_index',['status'=>'1'])}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+                        <div class="col-lg-3 col-6">
+                            <!-- small box -->
+                            <div class="small-box bg-danger">
+                                <div class="inner">
+                                    <h3>{{$staff_store_count_den}}</h3>
+
+                                    <p>จำนวนร้านค้าที่ถูกปฏิเสธ</p>
+                                </div>
+                                <div class="icon">
+                                    <i class="fa fa-exclamation"></i>
+                                </div>
+                                <a href="{{ route('store.staff_index',['status'=>'2'])}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            </div>
+                        </div>
+                        <!-- ./col -->
+
+                        
+
+                    </div>
+                    @endrole
                     <!-- /.row -->
                     <!-- Main row -->
                     <div class="row">
@@ -141,11 +195,11 @@
                             <!-- Default box -->
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Title</h3>
+                                    <h3 class="card-title">สวัสดีคุณ {{ auth()->user()->name }}</h3>
 
                                 </div>
                                 <div class="card-body">
-                                    Start creating your amazing application!
+                                    ยิ่งคุณหาร้านค้าได้เยอะ รายได้ของคุณยิ่งเยอะตาม
                                 </div>
                                 <!-- /.card-body -->
 

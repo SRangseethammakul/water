@@ -25,13 +25,21 @@ class DashboardController extends Controller
         $user_count = User::count();
         $order_count_wait = Order::where('order_status','รอการยืนยัน')->count();
         $order_count_wait_delivery = Order::where('order_status','รอการจัดส่ง')->count();
+
+        $staff_store_count_wait  = Store::where('confirm',0)->where('create_by_id',auth()->user()->id)->count();
+        $staff_store_count_con  = Store::where('confirm',1)->where('create_by_id',auth()->user()->id)->count();
+        $staff_store_count_den  = Store::where('confirm',2)->where('create_by_id',auth()->user()->id)->count();
+
         return view('backend.dashboard',[
             'type_count' => $type_count,
             'store_count' => $store_count,
             'promotion_count' => $promotion_count,
             'user_count' => $user_count,
             'order_count_wait' => $order_count_wait,
-            'order_count_wait_delivery' => $order_count_wait_delivery
+            'order_count_wait_delivery' => $order_count_wait_delivery,
+            'staff_store_count_wait' => $staff_store_count_wait,
+            'staff_store_count_con' => $staff_store_count_con,
+            'staff_store_count_den' => $staff_store_count_den
         ]);
     }
 
