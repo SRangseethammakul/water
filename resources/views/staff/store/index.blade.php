@@ -65,4 +65,23 @@
             $('table').DataTable();
         });
     </script>
+    @if(session('feedback'))
+        
+        <script>
+            Swal.fire(
+                '{{ session('feedback')}}', //
+                'You clicked the button!',
+                'success'
+            )
+        </script>
+    @endif
+    @if(session('unsuccess'))    
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('unsuccess')}}'
+            })
+        </script>
+    @endif
 @endsection
