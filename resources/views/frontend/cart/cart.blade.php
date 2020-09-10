@@ -163,12 +163,12 @@
     }
     else{
         Swal.fire(
-  'The Internet?',
-  'That thing is still around?',
-  'question'
-).then((result) => {
-                    window.location = '/../../profile/create';
-                });
+            'คุณยังไม่มีที่อยู่ในการจัดส่ง',
+            'โปรดเพิ่มที่อยู่ให้เราหน่อย',
+            'question'
+            ).then((result) => {
+                window.location = '/../../profile/create';
+            });
     }
   }
 </script>
