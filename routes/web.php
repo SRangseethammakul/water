@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', 'ProfileController@index')->name('profile.index');
+        Route::get('/create', 'ProfileController@create')->name('profile.create');
         Route::post('/store', 'ProfileController@store')->name('profile.store');
     });
 

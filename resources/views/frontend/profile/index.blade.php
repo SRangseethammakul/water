@@ -26,7 +26,7 @@
                 คุณยังไม่มีที่อยู่ในการจัดส่ง
             </div>
             <div class="card-body">
-                <a href="{{ route('profile.index') }}" <button type="button" class="btn btn-primary">Primary</button></a>
+                <a href="{{ route('profile.create') }}" <button type="button" class="btn btn-primary">Primary</button></a>
             </div>
         </div>
         @endforelse
