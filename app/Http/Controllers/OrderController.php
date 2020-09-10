@@ -7,6 +7,8 @@ use App\Order;
 use App\OrderSub;
 use App\User; 
 use Carbon\Carbon;
+use App\Profile;
+
 class OrderController extends Controller
 {
     /**
@@ -69,12 +71,14 @@ class OrderController extends Controller
     {
         //
         $order = Order::find($id);
+        $profile =  Profile::where('id',$order->profile_id)->first();
         $order_subs = OrderSub::with('product')->where('order_id',$id)->get();
         $user = User::find($order->user_id);
         return view('backend.order.edit',[
             'user' => $user,
             'order' => $order,
-            'order_subs' => $order_subs
+            'order_subs' => $order_subs,
+            'profile' => $profile
         ]);
 
     }

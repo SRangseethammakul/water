@@ -93,6 +93,9 @@
                         ระบบค้นหาร้านค้า
                       </a>
                     @endrole
+                    <a class="dropdown-item bg-success" href="{{ route('profile.index') }}">
+                      ที่อยู่ในการจัดส่ง
+                    </a>
                     <a class="dropdown-item bg-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();">
                       ออกจากระบบ

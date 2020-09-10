@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart; 
+use App\Profile; 
 use App\Order; 
 use App\OrderSub; 
 use Carbon\Carbon;
@@ -16,7 +17,7 @@ class CartController extends Controller
         $deliverry = 100;
         $discount = 0;
         $listCart = auth()->user()->products()->latest()->get();
-        
+        $profiles = Profile::where('user_id',auth()->user()->id)->get();
         foreach ($listCart as $p) {
             $sumPrice = $sumPrice + ($p->pivot->qty*$p->product_price);
         }
@@ -32,7 +33,8 @@ class CartController extends Controller
            'sumQty' => $sumQty,
            'deliverry' => $deliverry,
            'discount' => $discount,
-           'sumProduct' => $sumProduct
+           'sumProduct' => $sumProduct,
+           'profiles' => $profiles
        ]);
     }
 
@@ -55,7 +57,7 @@ class CartController extends Controller
         return back()->with('feedback','ลบสินค้าในตะกร้าเรียบร้อย');
     }
 
-    public function confirm() {
+    public function confirm(Request $request) {
         $modifiedMutable =  Carbon::now()->add(7, 'day')->format('d-m-Y');
         $listCart = auth()->user()->products()->latest()->get();
         $sumPrice = 0;
@@ -63,7 +65,8 @@ class CartController extends Controller
         $order = new Order();
         $order->user_id = auth()->user()->id; 
         $order->order_status = "รอการยืนยัน"; 
-        $order->order_description = "รอการยืนยัน"; 
+        $order->order_description = "รอการยืนยัน";
+        $order->profile_id = $request->profile;
         if($order->save()){
             foreach ($listCart as $p) {
                 $ordersub = new OrderSub();
@@ -95,17 +98,18 @@ class CartController extends Controller
 
         $this->line_send($order_sum);
   
-
-        return redirect()->route('welcome')->with('feedback','สั่งซื้อสินค้าเรียบร้อยแล้ว')->with('day',$modifiedMutable);
+        return response()->json(['status' => 1, 'day' => $modifiedMutable]);
 
     
     }
     public function line_send(Order $order){
         // ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e
         //g4P4S28Br4NUSNE2sRsuI9zFlsAcVQHOu5oQ64mYeZe ส่วนตัว
-        $user = User::find($order->user_id);
+        $profile = Profile::find($order->profile_id);
         $token = 'ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e';
-        $message = "ชื่อลูกค้า : ".$user->name."\n".
+        $message = "ชื่อลูกค้า : ".$profile->first_name." ".$profile->last_name."\n".
+                    "หมายเลขโทรศัพท์ : ".$profile->profile_tel."\n".
+                    "ที่อยู่ในการจัดส่ง : ".$profile->profile_address."\n".
                     "จำนวนที่สั่ง : ".$order->sum_qty."\n".
                     "ราคา : ".$order->sum_total."\n".
                     "จัดส่งภายใน : ".Carbon::createFromFormat('Y-m-d', $order->order_delivery)->format('d-m-Y');

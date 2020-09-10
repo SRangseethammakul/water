@@ -25,7 +25,7 @@ Route::get('/search_product', 'WelcomeController@search_product');
 
 Route::get('/test', 'WelcomeController@test');
 
-Route::get('/profile', 'ProfileController@index');
+
 
 
 
@@ -51,6 +51,11 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', 'ProfileController@index')->name('profile.index');
+        Route::post('/store', 'ProfileController@store')->name('profile.store');
+    });
 
     Route::get('/cart', 'CartController@index')->name('cart.index');
     Route::get('/cart/{product_id}', 'CartController@store')->name('cart.store');

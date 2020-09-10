@@ -22,19 +22,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($listCart as $indexKey => $cart)
+                    @foreach ($listCart as $indexKey => $cart)
                     <tr>
-                    <td>{{ ++$indexKey }}</td>
+                        <td>{{ ++$indexKey }}</td>
                         <td>
                             <figure class="media">
                                 <figcaption class="media-body">
-                                <h6 class="title text-truncate">{{ $cart->product_name }}</h6>
+                                    <h6 class="title text-truncate">{{ $cart->product_name }}</h6>
                                 </figcaption>
                             </figure>
                         </td>
                         <td>
 
-                                {{ $cart->pivot->qty }}
+                            {{ $cart->pivot->qty }}
 
                         </td>
                         <td>
@@ -44,7 +44,8 @@
                             <!-- price-wrap .// -->
                         </td>
                         <td class="text-right">
-                        <a href="{{ route('cart.delete',['product_id' => $cart->id])}}" class="btn btn-outline-danger"> × ลบ</a>
+                            <a href="{{ route('cart.delete',['product_id' => $cart->id])}}"
+                                class="btn btn-outline-danger"> × ลบ</a>
                         </td>
                     </tr>
                     @endforeach
@@ -58,12 +59,27 @@
                 </tbody>
             </table>
         </div>
-        <!-- card.// -->
+
+
+
+        <div class="form-group">
+            <label for="profileselect">เลือกที่อยู่</label>
+            <select class="form-control" id="profileselect">
+                @forelse ($profiles as $item)
+                <option value={{$item->id}}>{{$item->first_name}} {{$item->last_name}} {{$item->profile_tel }}
+                    {{$item->profile_address }}</option>
+                @empty
+                <button type="button" class="btn btn-primary">Primary</button>
+                @endforelse
+
+            </select>
+        </div>
+
 
         <div class="container">
             <div class="row">
                 <div class="col-md-3 offset-md-3">
-                  <h2>ราคาสินค้า</h2>
+                    <h2>ราคาสินค้า</h2>
                 </div>
                 <div class="col-md-3 offset-md-3">
                     <h2>฿ {{ number_format($sumProduct,2) }}</h2>
@@ -71,7 +87,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3 offset-md-3">
-                  <h2>ค่าขนส่ง</h2>
+                    <h2>ค่าขนส่ง</h2>
                 </div>
                 <div class="col-md-3 offset-md-3">
                     <h2>฿ {{ number_format($deliverry,2) }}</h2>
@@ -79,7 +95,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3 offset-md-3">
-                  <h2>ส่วนลดค่าขนส่ง</h2>
+                    <h2>ส่วนลดค่าขนส่ง</h2>
                 </div>
                 <div class="col-md-3 offset-md-3">
                     <h2>฿ {{ number_format($discount,2) }}</h2>
@@ -87,7 +103,7 @@
             </div>
             <div class="row">
                 <div class="col-md-3 offset-md-3">
-                  <h2>ราคารวม</h2>
+                    <h2>ราคารวม</h2>
                 </div>
                 <div class="col-md-3 offset-md-3">
                     <h2>฿ {{ number_format($sumPrice,2) }}</h2>
@@ -95,13 +111,12 @@
             </div>
         </div>
         <div class="text-right">
-            
-            <a href="{{ route('cart.confirm')}}" class="btn btn-primary btn-lg">ยืนยันการสั่งซื้อ</a>
+            <a onclick="startSearch()" class="btn btn-primary btn-lg">ยืนยันการสั่งซื้อ</a>
         </div>
 
         @else
 
-            <p>--- ยังไม่ได้เลือกสินค้า ---</p>
+        <p>--- ยังไม่ได้เลือกสินค้า ---</p>
 
         @endif
 
@@ -113,14 +128,49 @@
 <!-- /.row -->
 @endsection
 @section('footerscript')
-    @if(session('feedback'))
-    <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
-    <script>
-        Swal.fire(
-            '{{ session('feedback')}}', //
-            'You clicked the button!',
-            'success'
-        )
-    </script>
-    @endif
+<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
+<script>
+  function startSearch(){
+    var profile = $('#profileselect').val();
+    console.log(profile);
+      $.ajax({
+          url: '/cart/checkout/cart',
+          method: 'GET',
+          data: {
+              profile : profile
+          },
+        success: function (response) {
+            if (response.status) {
+                Swal.fire(
+                'สั่งซื้อสำเร็จ', //
+                'จัดส่งสินค้าภายใน '+response.day,
+                'success'
+                ).then((result) => {
+                    window.location = '/';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'สั่งซื้อไม่สำเร็จ!',
+                    footer: '<a href>Why do I have this issue?</a>'
+                });
+            }
+            
+        }
+      });
+  }
+</script>
+@if(session('feedback'))
+
+<script>
+    Swal.fire(
+        '{{ session('
+        feedback ')}}', //
+        'You clicked the button!',
+        'success'
+    )
+
+</script>
+@endif
 @endsection

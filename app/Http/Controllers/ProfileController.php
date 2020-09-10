@@ -8,6 +8,7 @@ use App\Province;
 use App\District;
 use App\SubDistrict;
 use App\ZipCode;
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -18,11 +19,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
-        // $type = Type::orderBy('id','asc')->get();
-        $provinces = Province::orderByRaw('convert (province_name using tis620) ASC') ->get();
+        $profiles =  Profile::where('user_id',auth()->user()->id)->get();
         return view('frontend.profile.index',[
-            'provinces' => $provinces
+            'profiles' => $profiles
         ]);
     }
 
@@ -34,6 +33,10 @@ class ProfileController extends Controller
     public function create()
     {
         //
+        $provinces = Province::orderByRaw('convert (province_name using tis620) ASC') ->get();
+        return view('frontend.profile.index',[
+            'provinces' => $provinces
+        ]);
     }
 
     /**
@@ -45,6 +48,22 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
+        $new_profile = new Profile();
+        $new_profile->user_id = auth()->user()->id; 
+        $new_profile->first_name = $request->profile_name;
+        $new_profile->last_name = $request->profile_lastname;
+        $new_profile->lineid  = $request->name;
+        $new_profile->profile_tel  = $request->profile_tel;
+        $new_profile->profile_tel_2 = $request->profile_tel_2;
+        $new_profile->profile_address = $request->address_delivery;
+        $new_profile->profile_province = $request->province;
+        $new_profile->profile_amphure = $request->amphure;
+        $new_profile->profile_sub_district = $request->sub_district;
+        $new_profile->profile_zipcode = $request->zipcode;
+        $new_profile->profile_lat = $request->profile_lat;
+        $new_profile->profile_lng = $request->profile_lng;
+        $new_profile->save();
+        return redirect()->route('welcome')->with('feedback','สั่งซื้อสินค้าเรียบร้อยแล้ว')->with('feedback','เพิ่มที่อยู่สำเร็จ');
     }
 
     /**
