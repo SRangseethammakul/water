@@ -48,7 +48,7 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
-        $check_tel = Profile::where('profile_tel ',$request->profile_tel)->get();
+        $check_tel = Profile::where('profile_tel',$request->profile_tel)->get();
         if($check_tel->count() > 0){
             return redirect()->route('profile.index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้ เบอร์ช้ำ');
         }
