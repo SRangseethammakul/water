@@ -63,16 +63,15 @@
 
 
         <div class="form-group">
-            <label for="profileselect">Example multiple select</label>
+            <label for="profileselect">ที่อยู่ในการจัดส่ง</label>
             <select class="form-control" id="profileselect">
                 @forelse ($profiles as $item)
                 <option value={{$item->id}}>{{$item->first_name}} {{$item->last_name}} {{$item->profile_tel }}
                     {{$item->profile_address }}</option>
                 @empty
-                <button type="button" class="btn btn-primary">Primary</button>
-                @endforelse
-
             </select>
+            <button type="button" class="btn btn-primary">Primary</button>
+            @endforelse
         </div>
 
 
