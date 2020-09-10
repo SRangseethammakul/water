@@ -48,6 +48,10 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         //
+        $check_tel = Store::where('profile_tel ',$request->profile_tel)->get();
+        if($check_tel->count() > 0){
+            return redirect()->route('profile.index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้ เบอร์ช้ำ');
+        }
         $new_profile = new Profile();
         $new_profile->user_id = auth()->user()->id; 
         $new_profile->first_name = $request->profile_name;

@@ -38,7 +38,7 @@
 
 @endsection
 @section('footerscript')
-
+<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         function matchStart(params, data) {
@@ -56,10 +56,7 @@
     });
 
 </script>
-
 @if(session('feedback'))
-<script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
-
 <script>
     Swal.fire(
         '{{ session('
@@ -68,6 +65,15 @@
         'success'
     )
 
+</script>
+@endif
+@if(session('unsuccess'))    
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '{{ session('unsuccess')}}'
+    })
 </script>
 @endif
 @endsection
