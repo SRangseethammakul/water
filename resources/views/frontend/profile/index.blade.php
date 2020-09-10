@@ -2,7 +2,15 @@
 
 @section('content')
 <section class="content" id="app">
+
     <div class="container mt-5">
+        <div class="container">
+            <div class="row">
+              <div class="col align-self-end">
+                <a href="{{ route('profile.create')}}" class="btn btn-info">แก้ไขข้อมูล</a>
+              </div>
+            </div>
+        </div>
         @forelse ($profiles as $item)
         <div class="card">
             <div class="card-header">
