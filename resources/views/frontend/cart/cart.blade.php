@@ -133,7 +133,8 @@
   function startSearch(){
     var profile = $('#profileselect').val();
     console.log(profile);
-      $.ajax({
+    if(profile){
+        $.ajax({
           url: '/cart/checkout/cart',
           method: 'GET',
           data: {
@@ -159,6 +160,16 @@
             
         }
       });
+    }
+    else{
+        Swal.fire(
+  'The Internet?',
+  'That thing is still around?',
+  'question'
+).then((result) => {
+                    window.location = '/../../profile/create';
+                });
+    }
   }
 </script>
 @if(session('feedback'))
