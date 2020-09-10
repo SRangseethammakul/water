@@ -34,7 +34,7 @@ class ProfileController extends Controller
     {
         //
         $provinces = Province::orderByRaw('convert (province_name using tis620) ASC') ->get();
-        return view('frontend.profile.index',[
+        return view('frontend.profile.add',[
             'provinces' => $provinces
         ]);
     }
