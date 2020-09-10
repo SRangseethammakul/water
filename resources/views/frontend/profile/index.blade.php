@@ -4,10 +4,10 @@
 <section class="content" id="app">
 
     <div class="container mt-5">
-        <div class="container">
+        <div class="container mb-3">
             <div class="row">
               <div class="col align-self-end">
-                <a href="{{ route('profile.create')}}" class="btn btn-info">แก้ไขข้อมูล</a>
+                <a href="{{ route('profile.create')}}" class="btn btn-success">เพิ่มที่อยู่สำหรับการจัดส่ง</a>
               </div>
             </div>
         </div>
