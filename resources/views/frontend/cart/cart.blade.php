@@ -69,17 +69,17 @@
                 <option value={{$item->id}}>{{$item->first_name}} {{$item->last_name}} {{$item->profile_tel }}
                     {{$item->profile_address }}
                 </option>
+                @empty
+                <div class="card text-center">
+                    <div class="card-header">
+                        คุณยังไม่มีที่อยู่ในการจัดส่ง
+                    </div>
+                    <div class="card-body">
+                        <a href="{{ route('profile.create') }}" class="btn btn-primary">เพิ่มที่อยู่</a>
+                    </div>
+                </div>
+                @endforelse
             </select>
-            @empty
-            <div class="card text-center">
-                <div class="card-header">
-                    คุณยังไม่มีที่อยู่ในการจัดส่ง
-                </div>
-                <div class="card-body">
-                    <a href="{{ route('profile.create') }}" class="btn btn-primary">เพิ่มที่อยู่</a>
-                </div>
-            </div>
-            @endforelse
         </div>
 
 
@@ -140,32 +140,40 @@
     function startSearch() {
         var profile = $('#profileselect').val();
         console.log(profile);
-        $.ajax({
-            url: '/cart/checkout/cart',
-            method: 'GET',
-            data: {
-                profile: profile
-            },
-            success: function (response) {
-                if (response.status) {
-                    Swal.fire(
-                        'สั่งซื้อสำเร็จ', //
-                        'จัดส่งสินค้าภายใน ' + response.day,
-                        'success'
-                    ).then((result) => {
-                        window.location = '/';
-                    });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'สั่งซื้อไม่สำเร็จ!',
-                        footer: '<a href>Why do I have this issue?</a>'
-                    });
-                }
+        if (profile > 0) {
+            $.ajax({
+                url: '/cart/checkout/cart',
+                method: 'GET',
+                data: {
+                    profile: profile
+                },
+                success: function (response) {
+                    if (response.status) {
+                        Swal.fire(
+                            'สั่งซื้อสำเร็จ', //
+                            'จัดส่งสินค้าภายใน ' + response.day,
+                            'success'
+                        ).then((result) => {
+                            window.location = '/';
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'สั่งซื้อไม่สำเร็จ!',
+                            footer: '<a href>Why do I have this issue?</a>'
+                        });
+                    }
 
-            }
-        });
+                }
+            });
+        }else{
+            Swal.fire(
+                'The Internet?',
+                'That thing is still around?',
+                'question'
+            )
+        }
     }
 
 </script>
