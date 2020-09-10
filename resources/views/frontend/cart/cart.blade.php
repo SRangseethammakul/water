@@ -67,12 +67,19 @@
             <select class="form-control" id="profileselect">
                 @forelse ($profiles as $item)
                 <option value={{$item->id}}>{{$item->first_name}} {{$item->last_name}} {{$item->profile_tel }}
-                    {{$item->profile_address }}</option>
-                @empty
-                <a href="{{ route('profile.index') }}" <button type="button" class="btn btn-primary">Primary</button></a>
-                @endforelse
-
+                    {{$item->profile_address }}
+                </option>
             </select>
+            @empty
+            <div class="card text-center">
+                <div class="card-header">
+                    คุณยังไม่มีที่อยู่ในการจัดส่ง
+                </div>
+                <div class="card-body">
+                    <a href="{{ route('profile.create') }}" class="btn btn-primary">เพิ่มที่อยู่</a>
+                </div>
+            </div>
+            @endforelse
         </div>
 
 
