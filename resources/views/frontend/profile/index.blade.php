@@ -6,7 +6,7 @@
     <div class="container mt-5">
         <div class="container mb-3">
             <div class="row">
-              <div class="col align-self-end">
+              <div class="col-md-3 ml-md-auto">
                 <a href="{{ route('profile.create')}}" class="btn btn-success">เพิ่มที่อยู่สำหรับการจัดส่ง</a>
               </div>
             </div>
