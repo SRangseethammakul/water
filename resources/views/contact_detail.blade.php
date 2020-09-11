@@ -126,7 +126,6 @@
 </div>
 @endsection
 @section('footerscript')
-<script src="{{ asset('js/app.js') }}"></script>
 <script>
     var _xhr;
     function startSearch(){
