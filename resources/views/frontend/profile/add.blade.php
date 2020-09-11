@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="address_delivery">ที่อยู่ในการจัดส่ง</label>
+                    <label for="address_delivery">ที่อยู่ในการจัดส่ง <Span style="color: red">*</Span></label>
                     <textarea class="form-control" id="address_delivery" name="address_delivery" rows="3" required></textarea>
                 </div>
                 <div class="row">

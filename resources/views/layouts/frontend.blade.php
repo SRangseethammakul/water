@@ -51,7 +51,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">ติดต่อเรา</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('welcome') }}">เลือกดูสินค้า</a>
@@ -72,7 +72,7 @@
              <!-- Authentication Links -->
              @guest
              <li class="nav-item ">
-                 <a class="nav-link" href="{{ route('login') }}">เข้าระบบ</a>
+                 <a class="nav-link" href="{{ route('login') }}">เข้าสู่ระบบ</a>
              </li>
              @if (Route::has('register'))
              <li class="nav-item ">
@@ -89,7 +89,7 @@
                       <a class="dropdown-item bg-primary" href="{{ route('home') }}">
                         Dashboard
                       </a>
-                      <a class="dropdown-item bg-success" href="../store/search">
+                      <a class="dropdown-item bg-warning" href="../store/search">
                         ระบบค้นหาร้านค้า
                       </a>
                     @endrole
@@ -120,6 +120,57 @@
 
 
   </div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">ติดต่อเรา</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="firstname" class="col-form-label">ชื่อ:</label>
+            <input type="text" class="form-control" name="firstname" id="firstname" required>
+          </div>
+          <div class="form-group">
+            <label for="lastname" class="col-form-label">นามสกุล:</label>
+            <input type="text" class="form-control" id="lastname" required>
+          </div>
+          <div class="form-group">
+            <label for="tel" class="col-form-label">เบอร์โทรศัพท์:</label>
+            <input type="text" class="form-control" id="tel" required>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">หัวข้อที่ต้องการติดต่อ</label>
+            <select class="form-control" id="exampleFormControlSelect1" required>
+              <option value="สอบถามโปรโมชันเพิ่มเติม">สอบถามโปรโมชันเพิ่มเติม</option>
+              <option value="สอบถามสินค้าเพิ่มเติม">สอบถามสินค้าเพิ่มเติม</option>
+              <option value="สอบถามราคาสินค้าเพิ่มเติม">สอบถามราคาสินค้าเพิ่มเติม</option>
+              <option value="สอบถามการส่งสินค้า">สอบถามการส่งสินค้า</option>
+              <option value="สนใจร่วมงานกับเรา">สนใจร่วมงานกับเรา</option>
+              <option value="อื่นๆ">อื่น ๆ</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Message:</label>
+            <textarea class="form-control" id="message-text" name="message" required></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('js/app.js') }}"></script>

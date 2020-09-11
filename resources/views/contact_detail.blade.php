@@ -118,12 +118,40 @@
             </div>
           </div>
         </div>
+        <div class="card">
+          <div class="card-header" id="headingFour">
+            <h2 class="mb-0">
+              <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                การนำทาง
+              </button>
+            </h2>
+          </div>
+          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 offset-md-2">
+                          <a href="https://maps.google.com/?daddr={{$store->store_lat}},{{$store->store_lng}}" target="_blank">
+                            <img src="{{ asset('images/map.png') }}" width="40%" style=" display: block;margin-left: auto;margin-right: auto">
+                          <a>
+                        </div>
+                        <div class="col-md-4 ml-auto">
+                          <a href="https://maps.google.com/?daddr={{$store->store_lat}},{{$store->store_lng}}" target="_blank">
+                            <h2>
+                            นำทางด้วย Google Map
+                            </h2>
+                          <a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
     </div>
     <a href="/">
         <button type="button" class="btn btn-primary btn-lg btn-block">กลับไปค้นหาร้านค้า</button>
     </a>
-</div>
-</div>
+</div>  
 @endsection
 @section('footerscript')
 <script>
