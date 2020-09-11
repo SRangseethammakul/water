@@ -46,7 +46,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="{{ route('welcome') }}">Home
+              <a class="nav-link" href="{{ route('welcome') }}">หน้าแรก
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -144,8 +144,8 @@
             <input type="text" class="form-control" id="lastname" required>
           </div>
           <div class="form-group">
-            <label for="tel" class="col-form-label">เบอร์โทรศัพท์:</label>
-            <input type="text" class="form-control" id="tel" required>
+            <label for="profile_tel" class="col-form-label">เบอร์โทรศัพท์:</label>
+            <input type="tel" class="form-control" id="profile_tel" required>
           </div>
           <div class="form-group">
             <label for="exampleFormControlSelect1">หัวข้อที่ต้องการติดต่อ</label>
@@ -174,8 +174,14 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('js/app.js') }}"></script>
-
+  <script>
+    $('#profile_tel').on('input', function() {
+        var profile_tel = $('#profile_tel').val().replace(/,/g, "").replace(/%/g, "");
+        $('#profile_tel').val(profile_tel.toString().replace(/[^0-9]/g, ""));
+    });
+    </script>
   @yield('footerscript')
+
 </body>
 
 </html>
