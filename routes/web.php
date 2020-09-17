@@ -47,7 +47,7 @@ Route::group(['prefix' => 'ajax'], function () {
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => 'Verify'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
