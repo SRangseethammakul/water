@@ -39,9 +39,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($store as $item)
+                            @foreach ($store as $key => $item)
                                 <tr>
-                                    <th scope="row">{{ $item->id}}</th>
+                                    <th scope="row">{{ ++$key }}</th>
                                     <td>{{$item->store_name}}</td>
                                     <td>{{$item->store_contact}}</td>
                                     <td>{{$item->store_type->store_type_name}}</td>

@@ -85,6 +85,11 @@ class UserManagementController extends Controller
         //
         $id = $request->id;
         $user = User::find($id);
+        $user->user_verify = 0;
+        if($request->Switch){
+            $user->user_verify = 1;
+        }
+        $user->save();
         DB::table('model_has_roles')->where('model_id',$id)->delete();
         $user->assignRole($request->role);
         return redirect()->route('user.index')->with('feedback' ,'แก้ไขเรียบร้อยแล้ว');

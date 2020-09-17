@@ -30,6 +30,7 @@
                             <th scope="col">รหัสลูกค้า</th>
                             <th scope="col">ชื่อ</th>
                             <th scope="col">Email</th>
+                            <th scope="col">สถานนะ</th>
                             <th scope="col">วันที่เพิ่ม</th>
                             <th scope="col">Tools</th>
                             </tr>
@@ -40,6 +41,7 @@
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{$item->name}}</a></td>
                                     <td>{{ $item->email }}</td>
+                                    <td>{{ $item->user_verify ? 'ปกติ' : 'ระงับการใช้งาน' }}</td>
                                     <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
                                     <td>
                                         <a href="{{ route('user.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
