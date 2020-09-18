@@ -122,6 +122,7 @@ Route::group(['middleware' => 'Verify'], function () {
         Route::get('/banner/edit/{id}', 'BannerController@edit')->name('banner.edit');
         Route::put('/banner/update', 'BannerController@update')->name('banner.update');
         Route::get('/banner/destroy/{id}', 'BannerController@destroy')->name('banner.destroy');
+        Route::get('/banner/ajax/updatePublish', 'BannerController@updatePublish');
 
         Route::group(['prefix' => 'user'], function () {
             Route::get('/', 'UserManagementController@index')->name('user.index');

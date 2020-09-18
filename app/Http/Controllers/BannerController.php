@@ -119,4 +119,17 @@ class BannerController extends Controller
             return response()->json(['status' => 0]);
         }
     }
+    public function updatePublish(Request $request){
+        $id = $request->id;
+        $verify = $request->verify;
+        $user = Banner::find($id);
+        if($user){
+            $user->is_publish = $verify;
+            $user->save();
+            return response()->json(['status' => 1]);
+        }
+        else{
+            return response()->json(['status' => 0]);
+        }
+    }
 }
