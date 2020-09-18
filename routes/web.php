@@ -126,6 +126,7 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::get('/edit/{id}', 'UserManagementController@edit')->name('user.edit');
             Route::put('/update', 'UserManagementController@update')->name('user.update');
             Route::get('/destroy', 'UserManagementController@destroy')->name('user.destroy');
+            Route::get('/ajax/updatePublish', 'UserManagementController@updatePublish')->name('user.updatePublish');
         });
     
         Route::group(['prefix' => 'role'], function () {

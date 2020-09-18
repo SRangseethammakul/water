@@ -85,11 +85,6 @@ class UserManagementController extends Controller
         //
         $id = $request->id;
         $user = User::find($id);
-        $user->user_verify = 0;
-        if($request->Switch){
-            $user->user_verify = 1;
-        }
-        $user->save();
         DB::table('model_has_roles')->where('model_id',$id)->delete();
         $user->assignRole($request->role);
         return redirect()->route('user.index')->with('feedback' ,'แก้ไขเรียบร้อยแล้ว');
@@ -101,15 +96,29 @@ class UserManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
-    {
-        //
+
+    // public function destroy(Request $request)
+    // {
+    //     $id = $request->id;
+    //     $user = User::find($id);
+    //     if($user){
+    //         $user->delete();
+    //         return response()->json(['status' => 1]);
+    //     }else{
+    //         return response()->json(['status' => 0]);
+    //     }
+    // }
+
+    public function updatePublish(Request $request){
         $id = $request->id;
+        $verify = $request->verify;
         $user = User::find($id);
         if($user){
-            $user->delete();
+            $user->user_verify = $verify;
+            $user->save();
             return response()->json(['status' => 1]);
-        }else{
+        }
+        else{
             return response()->json(['status' => 0]);
         }
     }
