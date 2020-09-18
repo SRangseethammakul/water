@@ -60,6 +60,5 @@
             var promotion_price = $('#promotion_price').val().replace(/,/g, "").replace(/%/g, "");
             $('#promotion_price').val(promotion_price.toString().replace(/[^0-9]/g, ""));
         });
-    
     </script>
 @endsection

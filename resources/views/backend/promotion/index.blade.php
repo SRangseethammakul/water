@@ -32,7 +32,7 @@
                         <tr>
                             <th scope="col">รหัสโปรโมชั่น</th>
                             <th scope="col">ชื่อโปรโมชั่น</th>
-                            <th scope="col">ประเภท</th>
+                            <th scope="col">ประเภทสินค้า</th>
                             <th scope="col">ราคา</th>
                             <th scope="col">สถานะ</th>
                             <th scope="col">วันที่เพิ่ม</th>
