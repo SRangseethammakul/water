@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="store_name">ชื่อร้านค้า</label>
+                        <label for="store_name">ชื่อร้านค้า <Span style="color: red">*</Span></label>
                         <input type="text" class="form-control" id="store_name" name="store_name" required>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="store_contact">ชื่อลูกค้า</label>
+                        <label for="store_contact">ชื่อลูกค้า <Span style="color: red">*</Span></label>
                         <input type="text" class="form-control" id="store_contact" name="store_contact" required>
                     </div>
                 </div>
@@ -49,8 +49,8 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="store_tel">เบอร์ร้านค้า</label>
-                        <input type="text" class="form-control" id="store_tel" name="store_tel" maxlength="10">
+                        <label for="store_tel">เบอร์ร้านค้า <Span style="color: red">*</Span></label>
+                        <input type="text" class="form-control" id="store_tel" name="store_tel" maxlength="10" required>
                     </div>
                 </div>
                 <div class="col-sm">
@@ -86,7 +86,7 @@
                     <textarea class="form-control" id="store_detail" name="store_detail" rows="3"></textarea>
                 </div>
                 <div class="form-group">
-                    <h5>สถานนะของร้านค้า</h5>
+                    <h5>สถานนะของร้านค้า <Span style="color: red">*</Span></h5>
                     <div class="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="store_status_1" value="1" name="store_status" class="custom-control-input" required>
                         <label class="custom-control-label" for="store_status_1">ใช้งาน</label>

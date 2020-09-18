@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="store_name">ชื่อร้านค้า</label>
+                        <label for="store_name">ชื่อร้านค้า <Span style="color: red">*</Span></label>
                         <input type="text" class="form-control" id="store_name" name="store_name"
                             value="{{ $store->store_name }}" required>
                     </div>
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="store_contact">ชื่อลูกค้า</label>
+                        <label for="store_contact">ชื่อลูกค้า <Span style="color: red">*</Span></label>
                         <input type="text" class="form-control" id="store_contact" name="store_contact"
                             value="{{ $store->store_contact }}" required>
                     </div>
@@ -49,18 +49,11 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm">
-                    <div class="form-group">
-                        <label for="store_tel">เบอร์ร้านค้า</label>
-                        <input type="text" class="form-control" id="store_tel" name="store_tel" maxlength="10"
-                            value="{{ $store->store_tel }}">
-                    </div>
-                </div>
             </div>
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="store_tel">เบอร์ร้านค้า</label>
+                        <label for="store_tel">เบอร์ร้านค้า <Span style="color: red">*</Span></label>
                         <input type="text" class="form-control" id="store_tel" name="store_tel" maxlength="10"
                             value="{{ $store->store_tel }}">
                     </div>
@@ -105,7 +98,7 @@
                     value="{{ $store->store_detail }}">{{ $store->store_detail }}</textarea>
             </div>
             <div class="form-group">
-                <h5>สถานนะของร้านค้า</h5>
+                <h5>สถานนะของร้านค้า <Span style="color: red">*</Span></h5>
                 <div class="custom-control custom-radio custom-control-inline">
                     <input type="radio" id="store_status_1" value="1" name="store_status" class="custom-control-input"
                         {{ ($store->store_status=="1")? "checked" : "" }}>
@@ -118,7 +111,7 @@
                 </div>
             </div>
             <div class="form-group mt-5 mb-5">
-                <h5>การยืนยันร้านค้า</h5>
+                <h5>การยืนยันร้านค้า <Span style="color: red">*</Span></h5>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="confirm" id="exampleRadios1"
                         value=1 {{ ($store->confirm=="1")? "checked" : "" }}>
