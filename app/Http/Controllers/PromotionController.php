@@ -120,13 +120,25 @@ class PromotionController extends Controller
      */
     public function destroy(Request $request)
     {
-        //
         $id = $request->id;
         $type = Promotion::where('id', $id)->first();
         if($type){
             $type->delete();
             return response()->json(['status' => 1]);
         }else{
+            return response()->json(['status' => 0]);
+        }
+    }
+    public function updatePublish(Request $request){
+        $id = $request->id;
+        $verify = $request->verify;
+        $model = Promotion::find($id);
+        if($model){
+            $model->promotion_status = $verify;
+            $model->save();
+            return response()->json(['status' => 1]);
+        }
+        else{
             return response()->json(['status' => 0]);
         }
     }

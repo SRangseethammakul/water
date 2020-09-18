@@ -153,4 +153,17 @@ class ProductController extends Controller
             return response()->json(['status' => 0]);
         }
     }
+    public function updatePublish(Request $request){
+        $id = $request->id;
+        $verify = $request->verify;
+        $model = Product::find($id);
+        if($model){
+            $model->product_status = $verify;
+            $model->save();
+            return response()->json(['status' => 1]);
+        }
+        else{
+            return response()->json(['status' => 0]);
+        }
+    }
 }

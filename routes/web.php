@@ -100,6 +100,7 @@ Route::group(['middleware' => 'Verify'], function () {
         Route::resource('/promotion', 'PromotionController');
         Route::get('/promotion/edit/{id}', 'PromotionController@edit')->name('promotion.edit');
         Route::put('/promotion/update', 'PromotionController@update')->name('promotion.update');
+        Route::get('/promotion/ajax/updatePublish', 'PromotionController@updatePublish');
         
     
         Route::resource('/storetype', 'StoreTypeController');
@@ -109,6 +110,7 @@ Route::group(['middleware' => 'Verify'], function () {
         Route::resource('/product', 'ProductController');
         Route::get('/product/edit/{id}', 'ProductController@edit')->name('product.edit');
         Route::put('/product/update', 'ProductController@update')->name('product.update');
+        Route::get('/product/ajax/updatePublish', 'ProductController@updatePublish');
         
 
         Route::resource('/order', 'OrderController');
