@@ -82,11 +82,19 @@ Route::group(['middleware' => 'Verify'], function () {
         Route::get('/type/edit/{id}', 'TypeController@edit')->name('type.edit');
         Route::put('/type/update', 'TypeController@update')->name('type.update');
 
+        // Route::group(['prefix' => 'store'], function () {
+        //     Route::get('/', 'StoreController@index')->name('store.index');
+        //     Route::get('/create', 'StoreController@index')->name('store.index');
+        //     Route::get('/', 'StoreController@index')->name('store.index');
+        //     Route::get('/edit/{id}', 'StoreController@edit')->name('store.edit');
+        //     Route::put('/update', 'StoreController@update')->name('store.update');
+        //     Route::get('/destroy', 'StoreController@destroy')->name('store.destroy');
+        // });
     
         Route::resource('/store', 'StoreController');
-        
         Route::get('/store/edit/{id}', 'StoreController@edit')->name('store.edit');
         Route::put('/store/update', 'StoreController@update')->name('store.update');
+        Route::get('/store/ajax/updatePublish', 'StoreController@updatePublish');
         
     
         Route::resource('/promotion', 'PromotionController');

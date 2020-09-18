@@ -276,4 +276,18 @@ class StoreController extends Controller
             return response()->json(['status' => 0]);
         }
     }
+
+    public function updatePublish(Request $request){
+        $id = $request->id;
+        $verify = $request->verify;
+        $store = Store::find($id);
+        if($store){
+            $store->store_status = $verify;
+            $store->save();
+            return response()->json(['status' => 1]);
+        }
+        else{
+            return response()->json(['status' => 0]);
+        }
+    }
 }

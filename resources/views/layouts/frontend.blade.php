@@ -19,6 +19,9 @@
   <!-- Custom styles for this template -->
   <link href=" {{ asset('css/theme.css') }}" rel = "stylesheet">
 
+  {{-- This page and all of the switch buttons shown are running on Bootstrap 4.3 --}}
+  <link rel="stylesheet" href="css/bootstrap4-toggle-3.6.1/bootstrap4-toggle.css">
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176282105-1"></script>
 <script>
@@ -174,6 +177,11 @@
 
   <!-- Bootstrap core JavaScript -->
   <script src="{{ asset('js/app.js') }}"></script>
+
+  {{-- This page and all of the switch buttons shown are running on Bootstrap 4.3 --}}
+  <script src="js/bootstrap4-toggle-3.6.1/bootstrap4-toggle.js"></script>
+
+
   <script>
     $('#profile_tel').on('input', function() {
         var profile_tel = $('#profile_tel').val().replace(/,/g, "").replace(/%/g, "");
