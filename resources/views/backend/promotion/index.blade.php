@@ -48,8 +48,8 @@
                             <td>{{$item->product->product_name}}</td>
                             <td>{{$item->promotion_price}}</td>
                             <td><input class="chk1" {{$item->promotion_status ? "checked" : ""}} type="checkbox"
-                                    data-toggle="toggle" data-on="กำลังใช้งาน" data-off="เลิกใช้งาน" data-onstyle="success"
-                                    data-offstyle="danger" data-id="{{$item->id}}">
+                                    data-toggle="toggle" data-on="กำลังใช้งาน" data-off="เลิกใช้งาน"
+                                    data-onstyle="success" data-offstyle="danger" data-id="{{$item->id}}">
                             </td>
                             {{-- <td>{{$item->promotion_status ? 'กำลังใช้งาน' : 'เลิกใช้งาน'}}</td> --}}
                             <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
@@ -117,32 +117,55 @@
     });
     $('.chk1').on('change', function () {
         var dataId = $(this).attr("data-id");
-        $.ajax({
-            url: '/promotion/ajax/updatePublish',
-            method: 'GET',
-            data: {
-                id: dataId,
-                verify: ($(this).prop('checked') ? 1 : 0)
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
             },
-            success: function (response) {
-                if (response.status) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'สำเร็จ',
-                        timer: 1000,
-                        showConfirmButton: false
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'ไม่สำเร็จ กรุณาลองอีกครั้ง',
-                        type: 'error',
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                }
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload();
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                $.ajax({
+                    url: '/promotion/ajax/updatePublish',
+                    method: 'GET',
+                    data: {
+                        id: dataId,
+                        verify: ($(this).prop('checked') ? 1 : 0)
+                    },
+                    success: function (response) {
+                        if (response.status) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'สำเร็จ',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'ไม่สำเร็จ กรุณาลองอีกครั้ง',
+                                type: 'error',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        }
+                    }
+                });
             }
-        });
+        })
     });
+
 </script>
 @if(session('feedback'))
 
