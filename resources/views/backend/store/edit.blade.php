@@ -171,11 +171,30 @@
                     </div>
                 </div>
             </div>
-            <img src="{{ asset('storage/images/store/'.$store->store_image) }}" width="60">
+
+
+            <div class="show-image">
+                <img src="{{ asset('storage/images/store/'.$store->store_image) }}" id="edit-image-store" width="90%" height="40%">
+            </div>
             <div class="form-group">
                 <label for="storeimage">รูปร้านค้า</label>
-                <input type="file" class="form-control-file" id="storeimage" name="storeimage">
+                <input type="file" class="form-control-file" onchange="readURL(this);" id="storeimage" name="storeimage">
             </div>
+            <div class="show-image">
+                <img src="{{ asset('storage/images/store/'.$store->store_lineid_image) }}" id="edit-image-line" width="90%" height="40%">
+            </div>
+            <div class="form-group">
+                <label for="storeimageline">รูปไลน์ไอดี</label>
+                <input type="file" class="form-control-file" onchange="readURLLine(this);" id="storeimageline" name="storeimageline">
+            </div>
+            <div class="show-image">
+                <img src="{{ asset('storage/images/store/'.$store->store_tax_image) }}" id="edit-image-tax" width="90%" height="40%">
+            </div>
+            <div class="form-group">
+                <label for="storeimagetax">รูปใบกำกับภาษี</label>
+                <input type="file" class="form-control-file" onchange="readURLTax(this);" id="storeimagetax" name="storeimagetax">
+            </div>
+
             <button type="submit" class="btn btn-primary mt-5">Submit</button>
         </form>
 
