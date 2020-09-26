@@ -117,27 +117,19 @@
         });
     });
     $('.chk1').on('change', function () {
-        var dataId = $(this).attr("data-id");
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-        })
-
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+        Swal.fire({
+            title: 'ต้องการเปลี่ยนสถานะ ?',
+            text: "ยืนยันสถานะ",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
+            focusCancel: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก',
         }).then((result) => {
             if (result.isConfirmed) {
-                location.reload();
-            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                var dataId = $(this).attr("data-id");
                 $.ajax({
                     url: '/promotion/ajax/updatePublish',
                     method: 'GET',
@@ -165,6 +157,7 @@
                 });
             }
         })
+
     });
 
 </script>
