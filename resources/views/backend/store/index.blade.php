@@ -122,36 +122,53 @@
         });
     });
     $('.chk1').on('change', function () {
-        var dataId = $(this).attr("data-id");
-        $.ajax({
-            url: '/store/ajax/updatePublish',
-            method: 'GET',
-            data: {
-                id: dataId,
-                verify: ($(this).prop('checked') ? 1 : 0)
-            },
-            success: function (response) {
-                if (response.status) {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'สำเร็จ',
-                        timer: 1000,
-                        showConfirmButton: false
-                    });
-                } else {
-                    Swal.fire({
-                        title: 'ไม่สำเร็จ กรุณาลองอีกครั้ง',
-                        type: 'error',
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                }
+        Swal.fire({
+            title: 'ต้องการเปลี่ยนสถานะ ?',
+            text: "ยืนยันสถานะ",
+            icon: 'warning',
+            showCancelButton: true,
+            focusCancel: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'ยืนยัน',
+            cancelButtonText: 'ยกเลิก',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var dataId = $(this).attr("data-id");
+                $.ajax({
+                    url: '/store/ajax/updatePublish',
+                    method: 'GET',
+                    data: {
+                        id: dataId,
+                        verify: ($(this).prop('checked') ? 1 : 0)
+                    },
+                    success: function (response) {
+                        if (response.status) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'สำเร็จ',
+                                timer: 1000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'ไม่สำเร็จ กรุณาลองอีกครั้ง',
+                                type: 'error',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        }
+                    }
+                });
             }
-        });
+            else{
+                location.reload();
+            }
+        })
+
     });
 </script>
 @if(session('feedback'))
-
 <script>
     Swal.fire(
         '{{ session('feedback')}}', //

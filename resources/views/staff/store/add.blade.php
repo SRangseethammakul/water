@@ -124,9 +124,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="show-image">
+                    <img id="edit-image-store" width="90%" height="40%">
+                </div>
                 <div class="form-group">
                     <label for="storeimage">รูปร้านค้า</label>
-                    <input type="file" class="form-control-file" id="storeimage" name="storeimage">
+                    <input type="file" class="form-control-file" onchange="readURL(this);" id="storeimage" name="storeimage">
+                </div>
+                <div class="show-image">
+                    <img id="edit-image-line" width="90%" height="40%">
+                </div>
+                <div class="form-group">
+                    <label for="storeimageline">รูปไลน์ไอดี</label>
+                    <input type="file" class="form-control-file" onchange="readURLLine(this);" id="storeimageline" name="storeimageline">
+                </div>
+                <div class="show-image">
+                    <img id="edit-image-tax" width="90%" height="40%">
+                </div>
+                <div class="form-group">
+                    <label for="storeimagetax">รูปใบกำกับภาษี</label>
+                    <input type="file" class="form-control-file" onchange="readURLTax(this);" id="storeimagetax" name="storeimagetax">
                 </div>
                 <button type="submit mb-5" class="btn btn-primary mt-5">Submit</button>
             </form>
@@ -162,5 +179,33 @@
                 }
             })
         });
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#edit-image-store').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function readURLLine(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#edit-image-line').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    function readURLTax(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#edit-image-tax').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
     </script>
 @endsection

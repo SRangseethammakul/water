@@ -106,6 +106,18 @@ class StoreController extends Controller
                     $request->storeimage->storeAs('images/store',$newFileName,'public'); // upload file
                     $new_store->store_image = $newFileName;
                 }
+                if($request->hasFile('storeimageline')){
+                    $newFileName    =   uniqid().'.'.$request->storeimageline->extension();//gen name
+                    //upload file
+                    $request->storeimageline->storeAs('images/store',$newFileName,'public'); // upload file
+                    $new_store->store_lineid_image = $newFileName;
+                }
+                if($request->hasFile('storeimagetax')){
+                    $newFileName    =   uniqid().'.'.$request->storeimagetax->extension();//gen name
+                    //upload file
+                    $request->storeimagetax->storeAs('images/store',$newFileName,'public'); // upload file
+                    $new_store->store_tax_image = $newFileName;
+                }
                 $new_store->save();
                 return redirect()->route('store.staff_index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
             }
@@ -161,6 +173,18 @@ class StoreController extends Controller
                     //upload file
                     $request->storeimage->storeAs('images/store',$newFileName,'public'); // upload file
                     $new_store->store_image = $newFileName;
+                }
+                if($request->hasFile('storeimageline')){
+                    $newFileName    =   uniqid().'.'.$request->storeimageline->extension();//gen name
+                    //upload file
+                    $request->storeimageline->storeAs('images/store',$newFileName,'public'); // upload file
+                    $new_store->store_lineid_image = $newFileName;
+                }
+                if($request->hasFile('storeimagetax')){
+                    $newFileName    =   uniqid().'.'.$request->storeimagetax->extension();//gen name
+                    //upload file
+                    $request->storeimagetax->storeAs('images/store',$newFileName,'public'); // upload file
+                    $new_store->store_tax_image = $newFileName;
                 }
                 $new_store->save();
                 return redirect()->route('store.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
