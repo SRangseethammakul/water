@@ -177,8 +177,7 @@
 @if(session('feedback'))
 <script>
     Swal.fire(
-        '{{ session('
-        feedback ')}}', //
+        '{{ session('feedback')}}', //
         'You clicked the button!',
         'success'
     )
