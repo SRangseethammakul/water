@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "admin-lte": "^3.0.5",
+        "chart.js": "^2.9.3",
         "datatables.net": "^1.10.21",
         "jquery-ui": "^1.12.1",
         "select2": "^4.0.13",

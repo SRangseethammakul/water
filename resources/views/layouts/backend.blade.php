@@ -153,6 +153,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
     <script src="{{ asset('js/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('js/Chart.min.js')}}"></script>
     {{-- This page and all of the switch buttons shown are running on Bootstrap 4.3 --}}
     <script src="/js/bootstrap4-toggle-3.6.1/bootstrap4-toggle.js"></script>
     @yield('footerscript')
