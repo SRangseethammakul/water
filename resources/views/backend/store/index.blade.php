@@ -158,7 +158,6 @@
         'You clicked the button!',
         'success'
     )
-
 </script>
 @endif
 @if(session('unsuccess'))

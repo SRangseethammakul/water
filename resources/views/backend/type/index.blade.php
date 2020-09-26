@@ -50,10 +50,9 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                        </table>
+                    </table>
                 </div>
             </div>
-            {{-- end row --}}
         </div>
     </section>
 @endsection
@@ -106,10 +105,9 @@
 
     </script>
     @if(session('feedback'))
-        
         <script>
             Swal.fire(
-                '{{ session('feedback')}}', //
+                '{{ session('feedback')}}',
                 'You clicked the button!',
                 'success'
             )
