@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Type;
+use App\StoreType;
 use App\Store;
 use App\Promotion;
 use App\User;
@@ -74,5 +75,21 @@ class AjaxSearchController extends Controller
     {
         $zipcode = ZipCode::where('sub_district_id', $sub_district_code)->get();
         return response()->json(['status' => 1, 'data' => $zipcode]);
+    }
+
+    public function count_store_type()
+    {
+        $data = [];
+        $types = StoreType::get();
+        if($types){
+            foreach($types as $key => $type){
+                $store_count = Store::where('store_type_id',$type->id)->count();
+                $data[]   =   [
+                    'name' => $type->store_type_name,
+                    'count' => $store_count
+                ]; 
+            }
+        }
+        return response()->json(['status' => 1,'data' => $data]);
     }
 }

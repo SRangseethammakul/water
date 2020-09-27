@@ -21,6 +21,8 @@ Route::get('/store/destroy', 'StoreController@destroy');
 Route::get('/promotion/destroy', 'PromotionController@destroy');
 Route::get('/order/destroy', 'OrderController@destroy');
 
+Route::get('/ajax/coutetype', 'AjaxSearchController@count_store_type');
+
 // Route::get('/show/banners', 'BannerAPIController@showbanner');
 
 
