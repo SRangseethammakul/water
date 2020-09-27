@@ -93,7 +93,7 @@
             <div class="form-group">
                 <h5>สถานนะของร้านค้า <Span style="color: red">*</Span></h5>
                 <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="store_status_1" value="1" name="store_status" class="custom-control-input"
+                    <input type="radio" id="store_status_1" value="1" checked name="store_status" class="custom-control-input"
                         required>
                     <label class="custom-control-label" for="store_status_1">ใช้งาน</label>
                 </div>
