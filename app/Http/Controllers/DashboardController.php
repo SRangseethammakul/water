@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
+
+
 use App\Type;
 use App\Store;
 use App\Promotion;
@@ -19,6 +24,60 @@ class DashboardController extends Controller
     public function index()
     {
         //
+
+
+        // $curl = curl_init();
+
+        // curl_setopt_array($curl, array(
+        //   CURLOPT_URL => "https://trackapi.thailandpost.co.th/post/api/v1/authenticate/token",
+        //   CURLOPT_RETURNTRANSFER => true,
+        //   CURLOPT_ENCODING => "",
+        //   CURLOPT_MAXREDIRS => 10,
+        //   CURLOPT_TIMEOUT => 0,
+        //   CURLOPT_FOLLOWLOCATION => true,
+        //   CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //   CURLOPT_CUSTOMREQUEST => "POST",
+        //   CURLOPT_HTTPHEADER => array(
+        //     'Authorization: Token VkYiV4C?NPTSE1XmGOKiY5RPSsDSGBM:DwPKFWWiZ_XOZrD:Z3VSRzJJSsRIOUNJNyVNLLRMShXkIARpH$WOPTFLA~RaG7EhEzU2',
+        //     "Content-Type: application/json"
+        //   ),
+        // ));
+        
+        // $response = curl_exec($curl);
+        
+        // curl_close($curl);
+        // $decode = json_decode($response);
+
+        // $curl = curl_init();
+
+        // curl_setopt_array($curl, array(
+        //     CURLOPT_URL => "https://trackapi.thailandpost.co.th/post/api/v1/track",
+        //     CURLOPT_RETURNTRANSFER => true,
+        //     CURLOPT_ENCODING => "",
+        //     CURLOPT_MAXREDIRS => 10,
+        //     CURLOPT_TIMEOUT => 0,
+        //     CURLOPT_FOLLOWLOCATION => true,
+        //     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        //     CURLOPT_CUSTOMREQUEST => "POST",
+        //     CURLOPT_POSTFIELDS =>"{\r\n   \"status\": \"all\",\r\n   \"language\": \"TH\",\r\n   \"barcode\": [\r\n       \"EF582568151TH\"\r\n  ]\r\n}",
+        //     CURLOPT_HTTPHEADER => array(
+        //         "Authorization: Token ".$decode->token,
+        //         "Content-Type: application/json"
+        //     ),
+        // ));
+
+        // $response = curl_exec($curl);
+
+        // curl_close($curl);
+
+        // $decode = json_decode($response);
+
+        // dd($decode->response->item[0]);
+
+        $client = new Client();
+        $response = $client->get('https://covid19.th-stat.com/api/open/today');
+        $res = json_decode($response->getBody()->getContents());
+
         $type_count = Type::count();
         $store_count  = Store::count();
         $promotion_count  = Promotion::count();
@@ -39,7 +98,8 @@ class DashboardController extends Controller
             'order_count_wait_delivery' => $order_count_wait_delivery,
             'staff_store_count_wait' => $staff_store_count_wait,
             'staff_store_count_con' => $staff_store_count_con,
-            'staff_store_count_den' => $staff_store_count_den
+            'staff_store_count_den' => $staff_store_count_den,
+            'covids' => $res
         ]);
     }
 

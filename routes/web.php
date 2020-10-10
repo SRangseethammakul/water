@@ -131,6 +131,15 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::get('/destroy', 'UserManagementController@destroy')->name('user.destroy');
             Route::get('/ajax/updatePublish', 'UserManagementController@updatePublish')->name('user.updatePublish');
         });
+
+        Route::group(['prefix' => 'dailyreport'], function () {
+            Route::get('/', 'DailyReportController@index')->name('dailyreport.index');
+            Route::get('/create', 'DailyReportController@create')->name('dailyreport.create');
+            Route::post('/store', 'DailyReportController@store')->name('dailyreport.store');
+            Route::get('/edit/{id}', 'DailyReportController@edit')->name('dailyreport.edit');
+            Route::put('/update', 'DailyReportController@update')->name('dailyreport.update');
+            Route::get('/destroy', 'DailyReportController@destroy')->name('dailyreport.destroy');
+        });
     
         Route::group(['prefix' => 'role'], function () {
             Route::get('/', 'RoleManagementController@index')->name('role.index');

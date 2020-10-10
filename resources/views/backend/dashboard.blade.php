@@ -237,7 +237,71 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <iframe width="195" height="420" src="http://www.pttor.com/oilprice-board.aspx?lang=en" frameborder="0"></iframe>
+            </div>
         </div>
+
+        {{--  --}}
+
+        <div class="row">
+            <h5 class="mb-2">สถานะการ Covid-19 ประจำวัน</h5> <h6 class="mb-2 ml-3"> อัพเดทเมื่อ {{$covids->UpdateDate}} กรมควบคุมโรค กระทรวงสาธารณสุข</h6>
+        </div>
+        <div class="row">
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-info"><i class="fa fa-medkit"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">ติดเชื้อสะสม</span>
+                <span class="info-box-number">{{$covids->Confirmed}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-success"><i class="fa fa-stethoscope"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">ผู้ติดเชื้อใหม่</span>
+                <span class="info-box-number">{{$covids->NewConfirmed}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-warning"><i class="fa fa-hospital-o"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">รักษาอยู่ใน รพ.</span>
+                <span class="info-box-number">{{$covids->Hospitalized}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+          <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+              <span class="info-box-icon bg-danger"><i class="fa fa-heart"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">หายแล้ว</span>
+                <span class="info-box-number">{{$covids->Recovered}}</span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
     </div>
 </section>
 <!-- /.content -->
