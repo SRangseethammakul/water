@@ -238,7 +238,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <iframe width="195" height="420" src="http://www.pttor.com/oilprice-board.aspx?lang=en" frameborder="0"></iframe>
+                
             </div>
         </div>
 
