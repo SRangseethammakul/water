@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
+
+
 use App\Type;
 use App\StoreType;
 use App\Store;
@@ -89,6 +94,83 @@ class AjaxSearchController extends Controller
                     'count' => $store_count
                 ]; 
             }
+        }
+        return response()->json(['status' => 1,'data' => $data]);
+    }
+
+    // emstracking
+
+    public function EmsTracking()
+    {
+        return view('backend.api.emstracking');
+    }
+
+    public function EmsTrackingConnect(Request $request)
+    {
+        $number_tracking = $request->search;
+
+        // return response()->json(['status' => 1, 'data' => $number_tracking]);
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "https://trackapi.thailandpost.co.th/post/api/v1/authenticate/token",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_HTTPHEADER => array(
+            'Authorization: Token VkYiV4C?NPTSE1XmGOKiY5RPSsDSGBM:DwPKFWWiZ_XOZrD:Z3VSRzJJSsRIOUNJNyVNLLRMShXkIARpH$WOPTFLA~RaG7EhEzU2',
+            "Content-Type: application/json"
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        $decode = json_decode($response);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://trackapi.thailandpost.co.th/post/api/v1/track",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\r\n   \"status\": \"all\",\r\n   \"language\": \"TH\",\r\n   \"barcode\": [\r\n       \"$number_tracking\"\r\n  ]\r\n}",
+            // CURLOPT_POSTFIELDS => {"status": "all","language": "TH","barcode": "EF582568151TH"},
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Token ".$decode->token,
+                "Content-Type: application/json"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
+        $decode = json_decode($response);
+
+        $act = $decode;
+        $act = $act->response;
+        $act = $act->items;
+        $data = [];
+        $count = 0;
+        foreach($act as $item){
+            $data[]   =   [
+                'barcode'   =>  $item[$count]->barcode,
+                'status_description'   =>  $item[$count]->status_description,
+                'receiver_name'   =>  $item[$count]->receiver_name,
+                'status_date'   =>  $item[$count]->status_date,
+            ]; 
+            $count++;
         }
         return response()->json(['status' => 1,'data' => $data]);
     }

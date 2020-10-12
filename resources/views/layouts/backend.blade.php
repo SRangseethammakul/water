@@ -111,6 +111,11 @@
                         </li>
                         @endrole
                         <li class="nav-item has-treeview">
+                            <a href="{{ route('emstracking.index')}}" class="nav-link">
+                                <i class="nav-icon fa fa-truck"></i> ไปรษณีย์ไทย
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
                             <a href="{{ route('welcome')}}" class="nav-link">
                                 <i class="nav-icon fa fa-compass"></i> กลับหน้าโชว์สินค้า
                             </a>

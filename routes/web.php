@@ -146,6 +146,11 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::get('/create', 'RoleManagementController@create')->name('role.create');
             Route::post('/store', 'RoleManagementController@store')->name('role.store');
         });
+
+        Route::group(['prefix' => 'emstracking'], function () {
+            Route::get('/', 'AjaxSearchController@EmsTracking')->name('emstracking.index');
+            Route::get('/search', 'AjaxSearchController@EmsTrackingConnect');
+        });
     });
 
 
