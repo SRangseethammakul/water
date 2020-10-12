@@ -52,6 +52,7 @@
 @section('footerscript')
 <script type="text/javascript">
     var _xhr;
+    document.getElementById("text").style.display = "none";
     $("#loader").hide();
     function startSearch() {
         var ems_tracking = $('#ems_tracking').val();
