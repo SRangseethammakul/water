@@ -153,25 +153,33 @@ class AjaxSearchController extends Controller
         ));
 
         $response = curl_exec($curl);
-
+        
         curl_close($curl);
 
         $decode = json_decode($response);
-
         $act = $decode;
         $act = $act->response;
         $act = $act->items;
         $data = [];
         $count = 0;
-        foreach($act as $item){
-            $data[]   =   [
-                'barcode'   =>  $item[$count]->barcode,
-                'status_description'   =>  $item[$count]->status_description,
-                'receiver_name'   =>  $item[$count]->receiver_name,
-                'status_date'   =>  $item[$count]->status_date,
-            ]; 
-            $count++;
+        if($decode->status){
+            foreach($act as $item){
+                if(count($item) > 0){
+                    $data[]   =   [
+                        'barcode'   =>  $item[$count]->barcode,
+                        'status_description'   =>  $item[$count]->status_description,
+                        'receiver_name'   =>  $item[$count]->receiver_name,
+                        'status_date'   =>  $item[$count]->status_date,
+                    ]; 
+                    $count++;
+                }else{
+                    return response()->json(['status' => 0]);
+                }
+            }
+            return response()->json(['status' => 1,'data' => $data]);
         }
-        return response()->json(['status' => 1,'data' => $data]);
+        else{
+            return response()->json(['status' => 0]);
+        }
     }
 }
