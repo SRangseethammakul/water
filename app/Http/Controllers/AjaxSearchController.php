@@ -88,14 +88,17 @@ class AjaxSearchController extends Controller
         $types = StoreType::get();
         if($types){
             foreach($types as $key => $type){
-                $store_count = Store::where('store_type_id',$type->id)->count();
+                $store_count = Store::where('store_type_id',$type->id)->where('store_status',1)->count();
                 $data[]   =   [
                     'name' => $type->store_type_name,
                     'count' => $store_count
                 ]; 
             }
+            return response()->json(['status' => 1,'data' => $data]);
+        }else{
+            return response()->json(['status' => 0]);
         }
-        return response()->json(['status' => 1,'data' => $data]);
+        
     }
 
     // emstracking
