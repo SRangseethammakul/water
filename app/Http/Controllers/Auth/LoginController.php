@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Socialite;
+use Auth;
+use Exception;
+use App\User;
+use App\AuthProvider;
 
 class LoginController extends Controller
 {
@@ -36,5 +41,42 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    public function redirectToGithub() {
+        return Socialite::driver('github')->redirect();
+    }
+    public function handleGithubCallback() {
+        
+        try {
+            $user = Socialite::driver('github')->user();
+            $finduser = AuthProvider::where('provider_id', $user->id)->first();
+            if ($finduser) {
+                $user = User::where('id', $finduser->user_id)->first();
+                Auth::login($user);
+                return redirect('/');
+            } else {
+                $newUser = new User();
+                $newUser->name = $user->nickname;
+                $newUser->email = $user->email;
+                $newUser->save();
+                $newUser->assignRole('Member');
+                
+                $new_user = new AuthProvider();
+                $new_user->user_id = $newUser->id;
+                $new_user->provider = 'github';
+                $new_user->provider_id = $user->id;
+                $new_user->save();
+                Auth::login($newUser);
+                return redirect('/');
+            }
+        }
+        catch(Exception $e) {
+            Log::error($e->getMessage());
+            return redirect('/');
+        }
+    }
+
+    public function redirectToFaceBook() {
+        return Socialite::driver('facebook')->redirect();
     }
 }

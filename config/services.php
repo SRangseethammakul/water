@@ -30,4 +30,16 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'github' => [
+        'client_id'     => env('GIT_HUB_ID'),
+        'client_secret' => env('GIT_HUB_SECRET'),
+        'redirect' => 'http://127.0.0.1:8000/auth/github/callback',
+    ],
+
+    'facebook' => [
+        'client_id'     => env('FACEBOOK_ID'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => '/',
+    ]
+
 ];

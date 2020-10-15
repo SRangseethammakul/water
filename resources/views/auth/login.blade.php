@@ -51,6 +51,21 @@
                             </div>
                         </div>
 
+                        <div class="row mb-5 text-center">
+                            <a href="{{ url('auth/github') }}">
+                                <button type="button" class="btn btn-outline-secondary ml-2">Login with GitHub</button>
+                            </a>
+                            <a href="{{ url('auth/facebook') }}">
+                                <button type="button" class="btn btn-outline-info ml-2">Login with Facebook</button>
+                            </a>
+                            <a href="{{ url('#') }}">
+                                <button type="button" class="btn btn-outline-info ml-2">Login with Twitter</button>
+                            </a>
+                            <a href="{{ url('#') }}">
+                                <button type="button" class="btn btn-outline-success ml-2">Login with Googlew</button>
+                            </a>
+                        </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
