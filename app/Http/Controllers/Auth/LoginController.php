@@ -79,4 +79,8 @@ class LoginController extends Controller
     public function redirectToFaceBook() {
         return Socialite::driver('facebook')->redirect();
     }
+    public function handleFaceBookCallback() {
+        dd("fdgh");
+        return Socialite::driver('facebook')->redirect();
+    }
 }
