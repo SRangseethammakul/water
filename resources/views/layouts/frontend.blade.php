@@ -13,6 +13,8 @@
 
   <title> {{ __('WATER')}} </title>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <!-- Bootstrap core CSS -->
   <link href=" {{ asset('css/app.css') }}" rel = "stylesheet">
 
@@ -75,7 +77,7 @@
              <!-- Authentication Links -->
              @guest
              <li class="nav-item ">
-                 <a class="nav-link" href="{{ route('login') }}">เข้าสู่ระบบ</a>
+                 <a class="nav-link" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">เข้าสู่ระบบ</a>
              </li>
              @if (Route::has('register'))
              <li class="nav-item ">
@@ -119,7 +121,10 @@
           @yield('content')
       </div>
       <!-- /.container -->
+
     @include('partials.footer')
+    @include('partials.login')
+
 
 
   </div>
