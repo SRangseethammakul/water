@@ -56,7 +56,7 @@ class LoginController extends Controller
                 return redirect('/');
             } else {
                 $newUser = new User();
-                $newUser->name = $user->nickname;
+                $newUser->name = $user->name ? $user->name : $user->nickname;
                 $newUser->email = $user->email;
                 $newUser->save();
                 $newUser->assignRole('Member');
