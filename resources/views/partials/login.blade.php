@@ -73,12 +73,12 @@
                     <div class="row">
                       <div class="col align-self-center">
                         <a href="{{ url('auth/github') }}">
-                            <button type="button" class="btn btn-outline-secondary ml-2" style="padding: 12px 16px"><i
+                            <button type="button" class="btn btn-outline-secondary btn-block ml-2" style="padding: 12px 16px"><i
                                     class="fa fa-github" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
                                 with GitHub</button>
                         </a>
                         <a href="{{ url('auth/facebook') }}">
-                            <button type="button" class="btn btn-outline-info ml-2" style="padding: 12px 16px"><i
+                            <button type="button" class="btn btn-outline-info btn-block ml-2 mt-2" style="padding: 12px 16px"><i
                                     class="fa fa-facebook ml-2" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
                                 with Facebook</button>
                         </a>
