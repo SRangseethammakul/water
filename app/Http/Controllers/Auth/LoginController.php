@@ -80,7 +80,23 @@ class LoginController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
     public function handleFaceBookCallback() {
-        dd("fdgh");
-        return Socialite::driver('facebook')->redirect();
+
+        $user = Socialite::driver('facebook')->user();
+        dd($user);
+        $finduser = AuthProvider::where('provider_id', $user->id)->first();
+
+        $newUser = new User();
+        $newUser->name = $user->name ? $user->name : $user->nickname;
+        $newUser->email = $user->email;
+        $newUser->save();
+        $newUser->assignRole('Member');
+        
+        $new_user = new AuthProvider();
+        $new_user->user_id = $newUser->id;
+        $new_user->provider = 'facebook';
+        $new_user->provider_id = $user->id;
+        $new_user->save();
+        Auth::login($newUser);
+        return redirect('/');
     }
 }
