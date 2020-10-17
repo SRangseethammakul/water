@@ -81,7 +81,7 @@
              </li>
              @if (Route::has('register'))
              <li class="nav-item ">
-                 <a class="nav-link" href="{{ route('register') }}">ลงทะเบียน</a>
+              <a class="nav-link" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">ลงทะเบียน</a>
              </li>
              @endif @else
              <li class="nav-item dropdown">
@@ -124,6 +124,7 @@
 
     @include('partials.footer')
     @include('partials.login')
+    @include('partials.register')
 
 
 
