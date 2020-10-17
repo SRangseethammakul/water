@@ -82,11 +82,11 @@
                                     class="fa fa-facebook ml-2" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
                                 with Facebook</button>
                         </a>
-                        <a href="{{ url('auth/google') }}">
+                        {{-- <a href="{{ url('auth/google') }}">
                             <button type="button" class="btn btn-outline-success btn-block ml-2 mt-2" style="padding: 12px 16px"><i
                                     class="fa fa-google ml-2" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
                                 with Google</button>
-                        </a>
+                        </a> --}}
                       </div>
                     </div>
                 </div>
