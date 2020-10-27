@@ -67,7 +67,7 @@ class ProfileController extends Controller
         $new_profile->profile_lat = $request->profile_lat;
         $new_profile->profile_lng = $request->profile_lng;
         $new_profile->save();
-        return redirect()->route('welcome')->with('feedback','สั่งซื้อสินค้าเรียบร้อยแล้ว')->with('feedback','เพิ่มที่อยู่สำเร็จ');
+        return redirect()->back()->with('feedback','สั่งซื้อสินค้าเรียบร้อยแล้ว')->with('feedback','เพิ่มที่อยู่สำเร็จ');
     }
 
     /**
