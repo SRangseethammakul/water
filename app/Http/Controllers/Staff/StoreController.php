@@ -107,9 +107,7 @@ class StoreController extends Controller
     }
 
     public function line_send(Store $store){
-        // ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e
-        //g4P4S28Br4NUSNE2sRsuI9zFlsAcVQHOu5oQ64mYeZe ส่วนตัว
-        $token = 'ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e';
+        $token = env('LINE_TOKEN_GROUP');
         $message = "คนที่ทำการเพิ่มร้านค้า : ".auth()->user()->name."\n".
                     "ชื่อร้านค้า : ".$store->store_name."\n".
                     "เบอร์โทรร้านค้า : ".$store->store_tel."\n";

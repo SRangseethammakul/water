@@ -103,10 +103,9 @@ class CartController extends Controller
     
     }
     public function line_send(Order $order){
-        // ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e
-        //g4P4S28Br4NUSNE2sRsuI9zFlsAcVQHOu5oQ64mYeZe ส่วนตัว
+        // 
         $profile = Profile::find($order->profile_id);
-        $token = 'ba5PZeTIypFtYj2LMoLflC0tkZklQnh905ULXMaYm2e';
+        $token = env('LINE_TOKEN_GROUP');
         $message = "ชื่อลูกค้า : ".$profile->first_name." ".$profile->last_name."\n".
                     "หมายเลขโทรศัพท์ : ".$profile->profile_tel."\n".
                     "ที่อยู่ในการจัดส่ง : ".$profile->profile_address."\n".
