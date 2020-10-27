@@ -156,6 +156,15 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::get('/', 'AjaxSearchController@EmsTracking')->name('emstracking.index');
             Route::get('/search', 'AjaxSearchController@EmsTrackingConnect');
         });
+
+        Route::group(['prefix' => 'healthcare'], function () {
+            Route::get('/', 'HealthCareController@index')->name('healthcare.index');
+            Route::get('/create', 'HealthCareController@create')->name('healthcare.create');
+            Route::post('/store', 'HealthCareController@store')->name('healthcare.store');
+            Route::get('/edit/{id}', 'HealthCareController@edit')->name('healthcare.edit');
+            Route::put('/update', 'HealthCareController@update')->name('healthcare.update');
+            Route::get('/destroy', 'HealthCareController@destroy')->name('healthcare.destroy');
+        });
     });
 
 
