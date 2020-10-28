@@ -163,7 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
@@ -230,7 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Carbon' => 'Carbon\Carbon',
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+
     ],
 
 ];
