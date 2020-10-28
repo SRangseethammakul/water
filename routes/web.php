@@ -33,7 +33,15 @@ Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 
-
+Route::get('qr-code-g', function () {
+  
+    \QrCode::size(500)
+            ->format('png')
+            ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+    
+  return view('qrCode');
+    
+});
 
 
 // Route::get('/storetype/destroy', 'StoreTypeController@destroy');
