@@ -58,10 +58,10 @@
             <li class="nav-item">
               <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">ติดต่อเรา</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('welcome') }}">เลือกดูสินค้า</a>
-            </li>
             @auth
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('welcome') }}">ประวัติการสั่งซื้อ</a>
+            </li>
             <li class="nav-item">
             <a class="nav-link" href="{{ route('cart.index') }}">
                 ตะกร้าสินค้า
