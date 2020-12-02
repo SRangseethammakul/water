@@ -56,7 +56,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">ติดต่อเรา</a>
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#contact">ติดต่อเรา</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('welcome') }}">เลือกดูสินค้า</a>
@@ -133,11 +133,11 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="contact" tabindex="-1" aria-labelledby="contactLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">ติดต่อเรา</h5>
+        <h5 class="modal-title" id="contactLabel">ติดต่อเรา</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
