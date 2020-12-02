@@ -26,7 +26,7 @@
 </section>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">ผลการค้นหาพัสดุ</h5>
@@ -69,32 +69,34 @@
             success: function (response) {
                 if (response.status == 1) {
                     $.each(response.data, function (index, item) {
-                        var html_q =
+                        let html_q =
                             `
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-4">หมายเลข</div>
-                                <div class="col-md-4 ml-auto">` + item.barcode + `</div>
+                            <div class="jumbotron jumbotron-fluid">
+                                <div class="container-fluid mt-2">
+                                    <div class="row">
+                                        <div class="col-md-4">หมายเลข</div>
+                                        <div class="col-md-4 ml-auto">` + item.barcode + `</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">สถานะพัสดุ</div>
+                                        <div class="col-md-4 ml-auto">` + item.status_description + `</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">ชื่อผู้รับ</div>
+                                        <div class="col-md-4 ml-auto">` + item.receiver_name + `</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">วันที่จัดส่ง</div>
+                                        <div class="col-md-4 ml-auto">` + item.status_date + `</div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">สถานะพัสดุ</div>
-                                <div class="col-md-4 ml-auto">` + item.status_description + `</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">ชื่อผู้รับ</div>
-                                <div class="col-md-4 ml-auto">` + item.receiver_name + `</div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">วันที่จัดส่ง</div>
-                                <div class="col-md-4 ml-auto">` + item.status_date + `</div>
-                            </div>
-                        </div>
                          `
                         $("#result").append(html_q);
                     });
                     $('#exampleModal').modal('show');
                 } else {
-                    var html_q =
+                    let html_q =
                         `
                         <div class="container-fluid">
                             <div class="row">

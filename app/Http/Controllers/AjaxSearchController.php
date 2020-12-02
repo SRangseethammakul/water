@@ -16,6 +16,7 @@ use App\User;
 use App\District;
 use App\SubDistrict;
 use App\ZipCode;
+use App\Order;
 
 class AjaxSearchController extends Controller
 {
@@ -158,31 +159,26 @@ class AjaxSearchController extends Controller
         $response = curl_exec($curl);
         
         curl_close($curl);
-
-        $decode = json_decode($response);
-        $act = $decode;
-        $act = $act->response;
-        $act = $act->items;
-        $data = [];
-        $count = 0;
-        if($decode->status){
-            foreach($act as $item){
-                if(count($item) > 0){
-                    $data[]   =   [
-                        'barcode'   =>  $item[$count]->barcode,
-                        'status_description'   =>  $item[$count]->status_description,
-                        'receiver_name'   =>  $item[$count]->receiver_name,
-                        'status_date'   =>  $item[$count]->status_date,
-                    ]; 
-                    $count++;
-                }else{
-                    return response()->json(['status' => 0]);
-                }
+        $decode = json_decode($response, true);
+        $items = $decode['response']['items'][$number_tracking];
+        if(!empty($items)){  
+            $data = [];
+            foreach($items as $key => $item){
+                $data[] = [
+                    'barcode'   =>  $item['barcode'],
+                    'status_description'   =>  $item['status_description'],
+                    'receiver_name'   =>  $item['receiver_name'],
+                    'status_date'   =>  $item['status_date'],
+                ];
             }
             return response()->json(['status' => 1,'data' => $data]);
         }
-        else{
-            return response()->json(['status' => 0]);
-        }
+        return response()->json(['status' => 0]);
+    }
+
+    public function getOrderById()
+    {
+        $stores = Store::limit(10)->orderby('id','desc')->get();
+        return response()->json(['status' => 1,'data' => $stores],200);
     }
 }
