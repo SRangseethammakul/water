@@ -20,8 +20,10 @@ Route::get('/type/destroy', 'TypeController@destroy');
 Route::get('/store/destroy', 'StoreController@destroy');
 Route::get('/promotion/destroy', 'PromotionController@destroy');
 Route::get('/order/destroy', 'OrderController@destroy');
-
+Route::get('/getorder', 'AjaxSearchController@getOrderById');
 Route::get('/ajax/coutetype', 'AjaxSearchController@count_store_type');
+Route::get('/store/testAPI', 'StoreController@testAPI');
+
 
 // Route::get('/show/banners', 'BannerAPIController@showbanner');
 
