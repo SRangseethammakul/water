@@ -112,14 +112,12 @@ class ProductController extends Controller
         $product_edit->product_price = $request->product_price;
         $product_edit->type_id = $request->product_type;
         //ลบไฟล์เก่า แล้วอัพไฟล์ใหม่เข้าไป
-        dd($request->hasFile('productimage'), $request->productimage);
         if($request->hasFile('productimage')){
             Storage::disk('do_spaces')->delete('products/'.$product_edit->product_image);
             $newFileName    =   uniqid().'.'.$request->productimage->extension();//gen name
             $image = $request->file('productimage');
             $t = Storage::disk('do_spaces')->put('products/'.$newFileName, file_get_contents($image), 'public');
             $product_edit->product_image = $newFileName;
-            dd($t);
         }
         $product_edit->save();
         return redirect()->route('product.index')->with('feedback' ,'แก้ไขข้อมูลเรียบร้อยแล้ว');

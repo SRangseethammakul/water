@@ -134,8 +134,7 @@ class StoreController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        dd($request->all());
+        //de
         try{
             $check_tel = Store::where('store_tel',$request->store_tel)->get();
             if($check_tel->count() > 0){
@@ -172,7 +171,6 @@ class StoreController extends Controller
                 $new_store->store_status = $request->store_status;
                 if($request->hasFile('storeimage')){
                     $newFileName    =   uniqid().'.'.$request->storeimage->extension();//gen name
-                    dd($newFileName);
                     $imageStore = $request->file('storeimage');
                     $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStore), 'public');
                     $new_store->store_image = $newFileName;
