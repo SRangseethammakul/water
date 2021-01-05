@@ -112,6 +112,7 @@ class ProductController extends Controller
         $product_edit->product_price = $request->product_price;
         $product_edit->type_id = $request->product_type;
         //ลบไฟล์เก่า แล้วอัพไฟล์ใหม่เข้าไป
+        dd($request->hasFile('productimage'), $request->productimage);
         if($request->hasFile('productimage')){
             Storage::disk('do_spaces')->delete('products/'.$product_edit->product_image);
             $newFileName    =   uniqid().'.'.$request->productimage->extension();//gen name
