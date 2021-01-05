@@ -36,7 +36,6 @@
                             <th scope="col">ติดต่อ</th>
                             <th scope="col">ประเภทร้านค้า</th>
                             <th scope="col">วันที่เพิ่ม</th>
-                            <th scope="col">รูปภาพ</th>
                             <th scope="col">สถานะร้านค้า</th>
                             <th scope="col">การยืนยัน</th>
                             <th scope="col">Tools</th>
@@ -50,9 +49,6 @@
                             <td>{{$item->store_contact}}</td>
                             <td>{{$item->store_type->store_type_name}}</td>
                             <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
-                            <td>
-                                <img src="{{ asset('storage/images/store/'.$item->store_image) }}" width="60">
-                            </td>
                             <td><input class="chk1" {{$item->store_status ? "checked" : ""}} type="checkbox"
                                     data-toggle="toggle" data-on="ปกติ" data-off="ระงับการขาย" data-onstyle="success"
                                     data-offstyle="danger" data-id="{{$item->id}}">

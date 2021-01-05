@@ -154,6 +154,8 @@ class StoreController extends Controller
                 $new_store->store_tax_contact = $request->store_tax_contact;
                 $new_store->store_tax_name = $request->store_tax_name;
                 $new_store->store_tax_id = $request->store_tax_id;
+                $new_store->store_lat = $request->store_lat;
+                $new_store->store_lng = $request->store_lng;
                 $new_store->confirm = 1;
                 $tmp = '';
                 if($request->check_list){
@@ -171,19 +173,19 @@ class StoreController extends Controller
                 if($request->hasFile('storeimage')){
                     $newFileName    =   uniqid().'.'.$request->storeimage->extension();//gen name
                     $imageStore = $request->file('storeimage');
-                    $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStore));
+                    $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStore), 'public');
                     $new_store->store_image = $newFileName;
                 }
                 if($request->hasFile('storeimageline')){
                     $newFileName    =   uniqid().'.'.$request->storeimageline->extension();//gen name
                     $imageStoreLine = $request->file('storeimageline');
-                    $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreLine));
+                    $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreLine), 'public');
                     $new_store->store_lineid_image = $newFileName;
                 }
                 if($request->hasFile('storeimagetax')){
                     $newFileName    =   uniqid().'.'.$request->storeimagetax->extension();//gen name
                     $imageStoreTax = $request->file('storeimagetax');
-                    $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreTax));
+                    $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreTax), 'public');
                     $new_store->store_tax_image = $newFileName;
                 }
                 $new_store->save();
@@ -255,6 +257,8 @@ class StoreController extends Controller
         $store_edit->store_tax_name = $request->store_tax_name;
         $store_edit->store_tax_id = $request->store_tax_id;
         $store_edit->confirm = $request->confirm;
+        $store_edit->store_lat = $request->store_lat;
+        $store_edit->store_lng = $request->store_lng;
         $tmp = '';
         if($request->check_list){
             foreach($request->check_list as $key =>  $item){
@@ -274,21 +278,21 @@ class StoreController extends Controller
             Storage::disk('do_spaces')->delete('stores/'.$store_edit->store_image); 
             $newFileName    =   uniqid().'.'.$request->storeimage->extension();//gen name
             $imageStore = $request->file('storeimage');
-            $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStore));
+            $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStore), 'public');
             $store_edit->store_image = $newFileName;
         }
         if($request->hasFile('storeimageline')){
             Storage::disk('do_spaces')->delete('stores/'.$store_edit->store_lineid_image);
             $newFileName    =   uniqid().'.'.$request->storeimageline->extension();//gen name
             $imageStoreLine = $request->file('storeimageline');
-            $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreLine));
+            $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreLine), 'public');
             $store_edit->store_lineid_image = $newFileName;
         }
         if($request->hasFile('storeimagetax')){
             Storage::disk('do_spaces')->delete('stores/'.$store_edit->store_tax_image);
             $newFileName    =   uniqid().'.'.$request->storeimagetax->extension();//gen name
             $imageStoreTax = $request->file('storeimagetax');
-            $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreTax));
+            $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreTax), 'public');
             $store_edit->store_tax_image = $newFileName;
         }
         $store_edit->save();

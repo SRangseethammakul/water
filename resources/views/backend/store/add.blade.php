@@ -70,6 +70,24 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="store_lat" name="store_lat" placeholder="Latitude">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="store_lng" name="store_lng" placeholder="Longtude">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <button onclick="getLocation()" type="button" class="btn btn-success btn-block" id="get_ltlng" data-toggle="button" aria-pressed="false">
+                        ค้นหาพิกัดร้านค้า
+                    </button>
+                </div>
+            </div>
+
             @foreach($promotions as $infraction)
             <div class="row">
                 <div class="col-sm">

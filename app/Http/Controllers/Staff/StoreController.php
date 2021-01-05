@@ -93,9 +93,21 @@ class StoreController extends Controller
                 $new_store->store_status = $request->store_status;
                 if($request->hasFile('storeimage')){
                     $newFileName    =   uniqid().'.'.$request->storeimage->extension();//gen name
-                    //upload file
-                    $request->storeimage->storeAs('images/store',$newFileName,'public'); // upload file
+                    $imageStore = $request->file('storeimage');
+                    $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStore), 'public');
                     $new_store->store_image = $newFileName;
+                }
+                if($request->hasFile('storeimageline')){
+                    $newFileName    =   uniqid().'.'.$request->storeimageline->extension();//gen name
+                    $imageStoreLine = $request->file('storeimageline');
+                    $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreLine), 'public');
+                    $new_store->store_lineid_image = $newFileName;
+                }
+                if($request->hasFile('storeimagetax')){
+                    $newFileName    =   uniqid().'.'.$request->storeimagetax->extension();//gen name
+                    $imageStoreTax = $request->file('storeimagetax');
+                    $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStoreTax), 'public');
+                    $new_store->store_tax_image = $newFileName;
                 }
                 $new_store->save();
                 $this->line_send($new_store);

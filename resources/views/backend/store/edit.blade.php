@@ -75,6 +75,23 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="store_lat" name="store_lat" value="{{ $store->store_lat }}">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="store_lng" name="store_lng" value="{{ $store->store_lng }}">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <button onclick="getLocation()" type="button" class="btn btn-success btn-block" id="get_ltlng" data-toggle="button" aria-pressed="false">
+                        ค้นหาพิกัดร้านค้า
+                    </button>
+                </div>
+            </div>
             @foreach($promotions as $infraction)
             <div class="row">
                 <div class="col-sm">
@@ -174,21 +191,21 @@
 
 
             <div class="show-image">
-                <img src="{{ asset('storage/images/store/'.$store->store_image) }}" id="edit-image-store" width="90%" height="40%">
+                <img src="{!! Storage::disk('do_spaces')->url('stores/' . $store->store_image) !!}" id="edit-image-store" width="90%" height="40%">
             </div>
             <div class="form-group">
                 <label for="storeimage">รูปร้านค้า</label>
                 <input type="file" class="form-control-file" onchange="readURL(this);" id="storeimage" name="storeimage">
             </div>
             <div class="show-image">
-                <img src="{{ asset('storage/images/store/'.$store->store_lineid_image) }}" id="edit-image-line" width="90%" height="40%">
+                <img src="{!! Storage::disk('do_spaces')->url('stores/' . $store->store_lineid_image) !!}" id="edit-image-line" width="90%" height="40%">
             </div>
             <div class="form-group">
                 <label for="storeimageline">รูปไลน์ไอดี</label>
                 <input type="file" class="form-control-file" onchange="readURLLine(this);" id="storeimageline" name="storeimageline">
             </div>
             <div class="show-image">
-                <img src="{{ asset('storage/images/store/'.$store->store_tax_image) }}" id="edit-image-tax" width="90%" height="40%">
+                <img src="{!! Storage::disk('do_spaces')->url('stores/' . $store->store_tax_image) !!}" id="edit-image-tax" width="90%" height="40%">
             </div>
             <div class="form-group">
                 <label for="storeimagetax">รูปใบกำกับภาษี</label>
