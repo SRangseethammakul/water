@@ -53,13 +53,15 @@ class ProductController extends Controller
         $new_product->product_status = $request->product_status;
         $new_product->product_price = $request->product_price;
         $new_product->type_id = $request->product_type;
+        $newFileName = null;
         if($request->hasFile('productimage')){
             $newFileName    =   uniqid().'.'.$request->productimage->extension();//gen name
             // $imageName = time().'.'.$request->image->getClientOriginalExtension();
             $image = $request->file('productimage');
             $t = Storage::disk('do_spaces')->put('products/'.$newFileName, file_get_contents($image), 'public');
-            $new_product->product_image = $newFileName;
+            
         }
+        $new_product->product_image = $newFileName;
         $new_product->save();
         return redirect()->route('product.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
