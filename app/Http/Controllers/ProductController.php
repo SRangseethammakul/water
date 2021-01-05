@@ -59,7 +59,7 @@ class ProductController extends Controller
             // $imageName = time().'.'.$request->image->getClientOriginalExtension();
             $image = $request->file('productimage');
             $t = Storage::disk('do_spaces')->put('products/'.$newFileName, file_get_contents($image), 'public');
-            
+            dd($t);
         }
         $new_product->product_image = $newFileName;
         $new_product->save();
@@ -118,6 +118,7 @@ class ProductController extends Controller
             $image = $request->file('productimage');
             $t = Storage::disk('do_spaces')->put('products/'.$newFileName, file_get_contents($image), 'public');
             $product_edit->product_image = $newFileName;
+            dd($t);
         }
         $product_edit->save();
         return redirect()->route('product.index')->with('feedback' ,'แก้ไขข้อมูลเรียบร้อยแล้ว');
