@@ -135,7 +135,7 @@ class StoreController extends Controller
     public function store(Request $request)
     {
         //
-        // dd($request->all());
+        dd($request->all());
         try{
             $check_tel = Store::where('store_tel',$request->store_tel)->get();
             if($check_tel->count() > 0){
