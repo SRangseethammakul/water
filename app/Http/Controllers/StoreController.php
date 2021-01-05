@@ -172,6 +172,7 @@ class StoreController extends Controller
                 $new_store->store_status = $request->store_status;
                 if($request->hasFile('storeimage')){
                     $newFileName    =   uniqid().'.'.$request->storeimage->extension();//gen name
+                    dd($newFileName);
                     $imageStore = $request->file('storeimage');
                     $t = Storage::disk('do_spaces')->put('stores/'.$newFileName, file_get_contents($imageStore), 'public');
                     $new_store->store_image = $newFileName;
