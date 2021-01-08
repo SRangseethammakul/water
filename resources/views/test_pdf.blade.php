@@ -55,7 +55,7 @@
 ขอขอบคุณในการสั่งซื้อ
 
 <div class="alert alert-primary" role="alert">
-    A simple primary alert—check it out!
+    สุทธิพงศ์ รังสีธรรมกุล
 </div>
 
 </body>
