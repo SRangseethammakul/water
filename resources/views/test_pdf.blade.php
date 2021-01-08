@@ -54,5 +54,9 @@
 <h1>ใบแจ้งหนี้สำหรับ</h1>
 ขอขอบคุณในการสั่งซื้อ
 
+<div class="alert alert-primary" role="alert">
+    A simple primary alert—check it out!
+</div>
+
 </body>
 </html>
