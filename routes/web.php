@@ -23,7 +23,7 @@ Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/search_product', 'WelcomeController@search_product');
 
-Route::get('/test', 'WelcomeController@test');
+Route::get('/example/pdf', 'WelcomeController@pdf_index');
 
 Route::get('/auth/github', 'Auth\LoginController@redirectToGithub');
 Route::get('/auth/github/callback', 'Auth\LoginController@handleGithubCallback');
@@ -31,18 +31,6 @@ Route::get('/auth/facebook', 'Auth\LoginController@redirectToFaceBook');
 Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFaceBookCallback');
 Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
-
-
-Route::get('qr-code-g', function () {
-  
-    \QrCode::size(500)
-            ->format('png')
-            ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
-    
-  return view('qrCode');
-    
-});
-
 
 // Route::get('/storetype/destroy', 'StoreTypeController@destroy');
 

@@ -59,7 +59,6 @@ class ProductController extends Controller
             // $imageName = time().'.'.$request->image->getClientOriginalExtension();
             $image = $request->file('productimage');
             $t = Storage::disk('do_spaces')->put('products/'.$newFileName, file_get_contents($image), 'public');
-            dd($t);
         }
         $new_product->product_image = $newFileName;
         $new_product->save();

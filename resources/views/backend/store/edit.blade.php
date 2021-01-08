@@ -220,17 +220,17 @@
 @endsection
 @section('footerscript')
 <script>
-            function getLocation() {
-            if(navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    $("#store_lat").val(position.coords.latitude);
-                    $("#store_lng").val(position.coords.longitude);
-                    // 
-                });
-            } else {
-                alert("Sorry, your browser does not support HTML5 geolocation.");
-            }
+    function getLocation() {
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                $("#store_lat").val(position.coords.latitude);
+                $("#store_lng").val(position.coords.longitude);
+                // 
+            });
+        } else {
+            alert("Sorry, your browser does not support HTML5 geolocation.");
         }
+    }
     $('#store_tel').on('input', function () {
         var store_tel = $('#store_tel').val().replace(/,/g, "").replace(/%/g, "");
         $('#store_tel').val(store_tel.toString().replace(/[^0-9]/g, ""));

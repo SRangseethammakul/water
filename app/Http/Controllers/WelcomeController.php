@@ -7,6 +7,7 @@ use App\Product;
 use App\Type;
 use App\Banner;
 use Carbon\Carbon;
+use PDF;
 use Illuminate\Support\Facades\Storage;
 
 class WelcomeController extends Controller
@@ -16,6 +17,14 @@ class WelcomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        ini_set('post_max_size', '256M');
+        ini_set('upload_max_filesize', '256M');
+        ini_set('max_execution_time', '36000');
+        ini_set('memory_limit', '2048M');
+    }
+    
     public function index()
     {
         
@@ -119,6 +128,12 @@ class WelcomeController extends Controller
     public function test()
     {
         //
-        return view('frontend.test');
+    }
+
+    public function pdf_index() {
+        $data = ["a" => "...", "b" => "..."  ];
+        $pdf = PDF::loadView('test_pdf',$data);
+        return $pdf->stream('test.pdf'); //แบบนี้จะ stream มา preview
+        //return $pdf->download('test.pdf'); //แบบนี้จะดาวโหลดเลย
     }
 }
