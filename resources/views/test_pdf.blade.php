@@ -54,6 +54,10 @@
 <h1>ใบแจ้งหนี้สำหรับ</h1>
 ขอขอบคุณในการสั่งซื้อ
 
+<div class="col align-self-center">
+    <img src="{{ asset('images/water.png') }}" width="10%" style=" display: block;margin-left: auto;margin-right: auto">
+</div>
+
 <div class="alert alert-primary" role="alert">
     สุทธิพงศ์ รังสีธรรมกุล
 </div>
