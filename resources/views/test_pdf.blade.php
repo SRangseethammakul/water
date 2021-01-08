@@ -55,7 +55,7 @@
 ขอขอบคุณในการสั่งซื้อ
 
 <div class="col align-self-center">
-    <img src="{{ asset('images/water.png') }}" width="10%" style=" display: block;margin-left: auto;margin-right: auto">
+    <img src="{{ public_path('images/water.png') }}">
 </div>
 {{-- 
 <div class="alert alert-primary" role="alert">
