@@ -44,6 +44,9 @@
     </style>
 </head>
 <body>
+    <td align="center">
+        <img src="{{ public_path('images/water.png') }}g" alt="Logo" width="64" class="logo"/>
+    </td>
 <h1>ใบแจ้งหนี้สำหรับ</h1>
 ขอขอบคุณในการสั่งซื้อ
 
