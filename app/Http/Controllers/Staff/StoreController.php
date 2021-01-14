@@ -124,7 +124,7 @@ class StoreController extends Controller
                     "ชื่อร้านค้า : ".$store->store_name."\n".
                     "เบอร์โทรร้านค้า : ".$store->store_tel."\n";
         $imageFile  = Storage::disk('do_spaces')->get('stores/'.$store->storeimage);
-        $imageFile = new CURLFILE($imageFile);
+        $imageFile = new \CURLFILE($imageFile);
         $message_data = array(
             'message' => $message,
             'imageFile' => $imageFile,
