@@ -124,9 +124,12 @@ class StoreController extends Controller
                     "ชื่อร้านค้า : ".$store->store_name."\n".
                     "เบอร์โทรร้านค้า : ".$store->store_tel."\n";
         $imageFile  = Storage::disk('do_spaces')->get('stores/'.$store->storeimage);
+        $imageFile = new CURLFILE($imageFile);
         $message_data = array(
             'message' => $message,
-            'imageFile' => $imageFile
+            'imageFile' => $imageFile,
+            'stickerPackageId' => $sticker_package_id,
+            'stickerId' => $sticker_id
         );
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
