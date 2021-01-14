@@ -128,8 +128,8 @@ class StoreController extends Controller
         $message_data = array(
             'message' => $message,
             'imageFile' => $imageFile,
-            'stickerPackageId' => $sticker_package_id,
-            'stickerId' => $sticker_id
+            'stickerPackageId' => 2,
+            'stickerId' => 34
         );
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
