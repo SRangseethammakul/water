@@ -123,12 +123,17 @@ class StoreController extends Controller
         $message = "คนที่ทำการเพิ่มร้านค้า : ".auth()->user()->name."\n".
                     "ชื่อร้านค้า : ".$store->store_name."\n".
                     "เบอร์โทรร้านค้า : ".$store->store_tel."\n";
+        $imageFile  = Storage::disk('do_spaces')->get('stores/'.$store->storeimage);
+        $message_data = array(
+            'message' => $message,
+            'imageFile' => $imageFile
+        );
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$message);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $message_data);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Content-type: application/x-www-form-urlencoded',
