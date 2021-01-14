@@ -112,7 +112,7 @@ class LoginController extends Controller
     }
     public function handleLineCallback() {
         $user = Socialite::driver('line')->user();
-        $finduser = AuthProvider::where('provider_id', $user->id)->first();
+        $finduser = AuthProvider::where('provider', 'line')->where('provider_id', $user->id)->first();
         if ($finduser) {
             Auth::login($finduser);
             return redirect('/');
