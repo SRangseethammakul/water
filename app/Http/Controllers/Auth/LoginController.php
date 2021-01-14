@@ -114,7 +114,8 @@ class LoginController extends Controller
         $user = Socialite::driver('line')->user();
         $finduser = AuthProvider::where('provider', 'line')->where('provider_id', $user->id)->first();
         if ($finduser) {
-            Auth::login($finduser);
+            $user = User::where('id', $finduser->user_id)->first();
+            Auth::login($user);
             return redirect('/');
         } else {
             $newUser = new User();
