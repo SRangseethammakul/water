@@ -51,7 +51,7 @@ return [
     'line' => [
         'client_id'     => env('LINE_ID'),
         'client_secret' => env('LINE_SECRET'),
-        'redirect' => 'https://suttipongact.info/auth/google/callback',
+        'redirect' => 'https://suttipongact.info/auth/line/callback',
     ]
 
 ];
