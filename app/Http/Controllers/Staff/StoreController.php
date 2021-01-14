@@ -59,7 +59,7 @@ class StoreController extends Controller
         try{
             $check_tel = Store::where('store_tel',$request->store_tel)->get();
             if($check_tel->count() > 0){
-                // return redirect()->route('store.staff_index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้ เบอร์ช้ำ');
+                return redirect()->route('store.staff_index')->with('unsuccess' ,'ไม่สามรถเพิ่มข้อมูลได้ เบอร์ช้ำ');
             }
             else{
                 $new_store = new Store();
@@ -123,24 +123,16 @@ class StoreController extends Controller
         $message = "คนที่ทำการเพิ่มร้านค้า : ".auth()->user()->name."\n".
                     "ชื่อร้านค้า : ".$store->store_name."\n".
                     "เบอร์โทรร้านค้า : ".$store->store_tel."\n";
-        $url = Storage::disk('do_spaces')->temporaryUrl('stores/'.$store->storeimage, now()->addMinutes(15));
-        $message_data = array(
-            'message' => $message,
-            'imageThumbnail' => $url,
-            'imageFullsize' => $url,
-            'stickerPackageId' => 2,
-            'stickerId' => 34
-        );
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $message_data);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$message);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-type: application/x-www-form-urlencoded',
-            'Authorization: Bearer '.$token,
+        'Content-type: application/x-www-form-urlencoded',
+        'Authorization: Bearer '.$token,
         ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_exec($ch);
