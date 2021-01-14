@@ -37,8 +37,6 @@ Route::get('/auth/facebook', 'Auth\LoginController@redirectToFaceBook');
 Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFaceBookCallback');
 Route::get('/auth/line', 'Auth\LoginController@redirectToLine');
 Route::get('/auth/line/callback', 'Auth\LoginController@handleLineCallback');
-// Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
-// Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 // Route::get('/storetype/destroy', 'StoreTypeController@destroy');
 
