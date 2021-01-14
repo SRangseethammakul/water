@@ -112,6 +112,7 @@ class LoginController extends Controller
     }
     public function handleLineCallback() {
         $user = Socialite::driver('line')->user();
+        dd($user);
         $finduser = AuthProvider::where('provider_id', $user->id)->first();
         if ($finduser) {
             Auth::login($finduser);
