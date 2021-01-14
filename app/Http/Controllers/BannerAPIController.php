@@ -44,7 +44,7 @@ class BannerAPIController extends Controller
     }
 
     public function line_send(Banner $banner){
-        $token = env('LINE_TOKEN_GROUP');
+        $token = env('LINE_TOKEN_PRIVATE');
         $message = "คนที่ทำการเพิ่มร้านค้า : ";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
@@ -54,8 +54,8 @@ class BannerAPIController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$message);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Content-type: application/x-www-form-urlencoded',
-        'Authorization: Bearer '.$token,
+            'Content-type: application/x-www-form-urlencoded',
+            'Authorization: Bearer '.$token,
         ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_exec($ch);
