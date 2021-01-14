@@ -25,7 +25,7 @@ Route::get('/ajax/coutetype', 'AjaxSearchController@count_store_type');
 Route::get('/store/testAPI', 'StoreController@testAPI');
 
 
-// Route::get('/show/banners', 'BannerAPIController@showbanner');
+Route::get('/show/banners', 'BannerAPIController@showbanner');
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

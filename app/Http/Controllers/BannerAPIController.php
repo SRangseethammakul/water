@@ -15,21 +15,22 @@ class BannerAPIController extends Controller
         try{
             $data = [];
             $banners = Banner::where('is_publish',1)
-                ->whereDate('banner_enddate', '>=', Carbon::today()->toDateString())
                 ->whereDate('banner_startdate', '<=', Carbon::today()->toDateString())
+                ->whereDate('banner_enddate', '>', Carbon::today()->toDateString())
                 ->orderby('sort_order','asc')
                 ->get();
+            $this->line_send($banners);
             if($banners){
                 foreach($banners as $key => $banner){
-                    $url = Storage::disk('do_spaces')->temporaryUrl('banners/'.$banner->banner_image, now()->addMinutes(5));
+                    $url = Storage::disk('do_spaces')->temporaryUrl('banners/'.$banner->banner_image, now()->addMinutes(15));
                     $data[]   =   [
                         'img'   =>  $url
-                    ]; 
+                    ];
                 }
-                return response()->json($data, 200); 
+                return response()->json(['status' => 1, 'banners' => $data], 200); 
             }else{
                 $data = "Promotion Not Found";
-                return response()->json($data, 200); 
+                return response()->json($data, 204); 
             }
 
         }catch(Exception $e){
@@ -39,5 +40,24 @@ class BannerAPIController extends Controller
             ];
             return response()->json($reponse, 400);
         }
+    }
+
+    public function line_send(Banner $banner){
+        $token = env('LINE_TOKEN_GROUP');
+        $message = "คนที่ทำการเพิ่มร้านค้า : ".auth()->user()->name."\n";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$message);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-type: application/x-www-form-urlencoded',
+        'Authorization: Bearer '.$token,
+        ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_exec($ch);
+        curl_close($ch);
     }
 }
