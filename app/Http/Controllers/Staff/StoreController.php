@@ -123,11 +123,11 @@ class StoreController extends Controller
         $message = "คนที่ทำการเพิ่มร้านค้า : ".auth()->user()->name."\n".
                     "ชื่อร้านค้า : ".$store->store_name."\n".
                     "เบอร์โทรร้านค้า : ".$store->store_tel."\n";
-        $imageFile  = Storage::disk('do_spaces')->get('stores/'.$store->storeimage);
-        $imageFile = new \CURLFILE($imageFile);
+        $url = Storage::disk('do_spaces')->temporaryUrl('stores/'.$store->storeimage, now()->addMinutes(15));
         $message_data = array(
             'message' => $message,
-            'imageFile' => $imageFile,
+            'imageThumbnail' => $url,
+            'imageFullsize' => $url,
             'stickerPackageId' => 2,
             'stickerId' => 34
         );
