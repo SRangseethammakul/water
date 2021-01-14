@@ -45,7 +45,7 @@ class BannerAPIController extends Controller
 
     public function line_send(Banner $banner){
         $token = env('LINE_TOKEN_GROUP');
-        $message = "คนที่ทำการเพิ่มร้านค้า : ".auth()->user()->name."\n";
+        $message = "คนที่ทำการเพิ่มร้านค้า : ";
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
