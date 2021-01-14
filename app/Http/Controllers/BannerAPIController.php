@@ -44,7 +44,6 @@ class BannerAPIController extends Controller
     }
 
     public function line_send(Banner $banner){
-        dd($banner);
         $token = env('LINE_TOKEN_PRIVATE');
         $message = "คนที่ทำการเพิ่มร้านค้า : ";
         $ch = curl_init();
