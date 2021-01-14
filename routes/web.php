@@ -15,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/product/updatesequence', 'ProductController@updateSequence')->name('product.updatesequence');
 Route::get('/banner/updatesequence', 'BannerController@updateSequence')->name('banner.updatesequence');
 
+Route::get('/banner/getContent', 'BannerAPIController@showbanner')->name('banner.updatesequence');
+
+Route::get("/page", function(){
+    return view("frontend.new_design");
+ });
+
 Route::get('/store/search', 'AjaxSearchController@index');
 Route::get('/store/detail/{id}', 'AjaxSearchController@show');
 
@@ -29,8 +35,10 @@ Route::get('/auth/github', 'Auth\LoginController@redirectToGithub');
 Route::get('/auth/github/callback', 'Auth\LoginController@handleGithubCallback');
 Route::get('/auth/facebook', 'Auth\LoginController@redirectToFaceBook');
 Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFaceBookCallback');
-Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
-Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
+Route::get('/auth/line', 'Auth\LoginController@redirectToLine');
+Route::get('/auth/line/callback', 'Auth\LoginController@handleLineCallback');
+// Route::get('auth/google', 'Auth\LoginController@redirectToGoogle');
+// Route::get('auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
 // Route::get('/storetype/destroy', 'StoreTypeController@destroy');
 

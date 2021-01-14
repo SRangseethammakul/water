@@ -46,6 +46,12 @@ return [
         'client_id'     => env('GOOGLE_ID'),
         'client_secret' => env('GOOGLE_SECRET'),
         'redirect' => 'https://suttipongact.info/auth/google/callback',
+    ],
+
+    'line' => [
+        'client_id'     => env('LINE_ID'),
+        'client_secret' => env('LINE_SECRET'),
+        'redirect' => 'https://suttipongact.info/auth/google/callback',
     ]
 
 ];
