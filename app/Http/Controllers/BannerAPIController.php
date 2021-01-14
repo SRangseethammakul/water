@@ -19,9 +19,10 @@ class BannerAPIController extends Controller
                 ->whereDate('banner_enddate', '>', Carbon::today()->toDateString())
                 ->orderby('sort_order','asc')
                 ->get();
-            $this->line_send($banners);
+            
             if($banners){
                 foreach($banners as $key => $banner){
+                    $this->line_send($banner);
                     $url = Storage::disk('do_spaces')->temporaryUrl('banners/'.$banner->banner_image, now()->addMinutes(15));
                     $data[]   =   [
                         'img'   =>  $url
