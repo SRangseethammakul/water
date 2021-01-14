@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Banner;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 use Image;
 
 class BannerAPIController extends Controller
