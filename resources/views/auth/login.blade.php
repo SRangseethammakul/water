@@ -50,35 +50,35 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row mb-5 text-center">
-                            <a href="{{ url('auth/github') }}">
-                                <button type="button" class="btn btn-outline-secondary ml-2">Login with GitHub</button>
-                            </a>
-                            <a href="{{ url('auth/facebook') }}">
-                                <button type="button" class="btn btn-outline-info ml-2">Login with Facebook</button>
-                            </a>
-                            <a href="{{ url('#') }}">
-                                <button type="button" class="btn btn-outline-info ml-2">Login with Twitter</button>
-                            </a>
-                            <a href="{{ url('#') }}">
-                                <button type="button" class="btn btn-outline-success ml-2">Login with Googlew</button>
-                            </a>
-                        </div>
-
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                                {{-- @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
-                                @endif
+                                @endif --}}
                             </div>
                         </div>
+
+                        <hr>
+
+                        <div class="d-flex justify-content-center mt-5">
+                            <a href="{{ url('auth/github') }}">
+                                <button type="button" class="btn btn-outline-secondary ml-2">Login with GitHub</button>
+                            </a>
+                            <a href="{{ url('auth/facebook') }}">
+                                <button type="button" class="btn btn-outline-info ml-2">Login with Facebook</button>
+                            </a>
+                            <a href="{{ url('auth/line') }}">
+                                <button type="button" class="btn btn-outline-success ml-2">Login with Line</button>
+                            </a>
+                        </div>
+
+
                     </form>
                 </div>
             </div>
