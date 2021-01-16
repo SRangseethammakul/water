@@ -97,7 +97,7 @@ class CartController extends Controller
         $order_sum->save();
 
         event(new SendNoti("event : "));
-        $this->line_send($order_sum);
+        // $this->line_send($order_sum);
   
         return response()->json(['status' => 1, 'day' => $modifiedMutable]);
 

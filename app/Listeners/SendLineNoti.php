@@ -24,7 +24,7 @@ class SendLineNoti
      * @param  SendNoti  $event
      * @return void
      */
-    public function handle($event)
+    public function handle(SendNoti $message)
     {
         $token = env('LINE_TOKEN_GROUP');
         $ch = curl_init();
