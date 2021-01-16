@@ -85,11 +85,11 @@
                             <div class="card-footer">
                               <div class="input-group mb-3">
                                 <div class="input-group-prepend">
-                                  <button class="btn btn-outline-danger" onclick="stepDownFunction(${item.id})" type="button" id="button-addon1">Button</button>
+                                  <button class="btn btn-outline-danger" onclick="stepDownFunction(${item.id})" type="button" id="button-addon${item.id}"><i class="fa fa-minus"></i></button>
                                 </div>
                                 <input type="number" id="myNumber-${item.id}" class="form-control" value=1>
                                 <div class="input-group-prepend">
-                                  <button class="btn btn-outline-success" onclick="stepUpFunction(${item.id})" type="button" id="button-addon1">Button</button>
+                                  <button class="btn btn-outline-success" onclick="stepUpFunction(${item.id})" type="button" id="button-deleteon${item.id}"><i class="fa fa-plus"></i></button>
                                 </div>
                               </div>
                               <div class="row">
