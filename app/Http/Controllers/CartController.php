@@ -93,8 +93,16 @@ class CartController extends Controller
         $order_sum->order_delivery = Carbon::createFromFormat('d-m-Y', $modifiedMutable)->format('Y-m-d');
         $order_sum->save();
 
-        event(new SendNoti("event : "));
-        $this->line_send($order_sum);
+        $profile = Profile::find($request->profile);
+        $message = "ชื่อลูกค้า : ".$profile->first_name." ".$profile->last_name."\n".
+                    "หมายเลขโทรศัพท์ : ".$profile->profile_tel."\n".
+                    "ที่อยู่ในการจัดส่ง : ".$profile->profile_address."\n".
+                    "จำนวนที่สั่ง : ".$order_sum->sum_qty."\n".
+                    "ราคา : ".$order_sum->sum_total."\n".
+                    "จัดส่งภายใน : ".Carbon::createFromFormat('Y-m-d', $order_sum->order_delivery)->format('d-m-Y');
+
+        $str = 'message='.$message;
+        event(new SendNoti($str));
   
         return response()->json(['status' => 1, 'day' => $modifiedMutable]);
 
@@ -104,12 +112,7 @@ class CartController extends Controller
         // 
         $profile = Profile::find($order->profile_id);
         $token = env('LINE_TOKEN_GROUP');
-        $message = "ชื่อลูกค้า : ".$profile->first_name." ".$profile->last_name."\n".
-                    "หมายเลขโทรศัพท์ : ".$profile->profile_tel."\n".
-                    "ที่อยู่ในการจัดส่ง : ".$profile->profile_address."\n".
-                    "จำนวนที่สั่ง : ".$order->sum_qty."\n".
-                    "ราคา : ".$order->sum_total."\n".
-                    "จัดส่งภายใน : ".Carbon::createFromFormat('Y-m-d', $order->order_delivery)->format('d-m-Y');
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);

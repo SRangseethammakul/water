@@ -26,7 +26,7 @@ class SendLineNoti
      */
     public function handle(SendNoti $content)
     {
-        $token = env('LINE_TOKEN_PRIVATE');
+        $token = env('LINE_TOKEN_GROUP');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
