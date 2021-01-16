@@ -24,15 +24,15 @@ class SendLineNoti
      * @param  SendNoti  $event
      * @return void
      */
-    public function handle(SendNoti $message)
+    public function handle(SendNoti $content)
     {
-        $token = env('LINE_TOKEN_GROUP');
+        $token = env('LINE_TOKEN_PRIVATE');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "message=".$message->message);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $content->message);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Content-type: application/x-www-form-urlencoded',

@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Image;
-
+use App\Events\SendNoti;
 class BannerAPIController extends Controller
 {
     //
@@ -23,8 +23,13 @@ class BannerAPIController extends Controller
             
             if($banners){
                 foreach($banners as $key => $banner){
-                    $this->line_send($banner);
+
+                    // $this->line_send($banner);
                     $url = Storage::disk('do_spaces')->temporaryUrl('banners/'.$banner->banner_image, now()->addMinutes(15));
+                    $imageThumbnail = $url;
+                    $imageFullsize = $url;
+                    $str = 'message=dd&imageThumbnail='.$imageThumbnail.'&imageFullsize='.$imageFullsize.'&stickerPackageId=2&stickerId=34';
+                    event(new SendNoti($str));
                     $data[]   =   [
                         'img'   =>  $url
                     ];

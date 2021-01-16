@@ -39,15 +39,12 @@ class CartController extends Controller
        ]);
     }
 
-    public function store($product_id) {
-
-
+    public function store(Request $request, $product_id) {
         $qty = auth()->user()->products()->where('product_id',$product_id)->first();
-    
         if (isset($qty)) {
-            auth()->user()->products()->syncWithoutDetaching([$product_id => ['qty' => $qty->pivot->qty+1]]);
+            auth()->user()->products()->syncWithoutDetaching([$product_id => ['qty' => $qty->pivot->qty+$request->val]]);
         } else {
-            auth()->user()->products()->syncWithoutDetaching([$product_id => ['qty' => 1]]);
+            auth()->user()->products()->syncWithoutDetaching([$product_id => ['qty' => $request->val]]);
         }
     
         return back()->with('feedback','เพิ่มสินค้าลงในตะกร้าเรียบร้อย');

@@ -83,7 +83,18 @@
                               <p class="card-text">`+ item.product_detail +`</p>
                             </div>
                             <div class="card-footer">
-                              <a href="cart/`+item.id+`" class="btn btn-outline-success"> หยิบความสดชื่น </a>
+                              <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                  <button class="btn btn-outline-danger" onclick="stepDownFunction(${item.id})" type="button" id="button-addon1">Button</button>
+                                </div>
+                                <input type="number" id="myNumber-${item.id}" class="form-control" value=1>
+                                <div class="input-group-prepend">
+                                  <button class="btn btn-outline-success" onclick="stepUpFunction(${item.id})" type="button" id="button-addon1">Button</button>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <a href="cart/${item.id}" id="cart-${item.id}" onclick="return triggerMe(${item.id});" class="btn btn-outline-info btn-lg btn-block"> หยิบความสดชื่น </a>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -115,17 +126,30 @@
 
       });
   }
+
   function myFunction(name) {
     type = name;
     _xhr && _xhr.abort();
     $('#result').html('');
     startSearch();
   }
+  function triggerMe(id)
+  {
+    let valId = document.getElementById(`myNumber-${id}`).value;
+    let cartId = document.getElementById(`cart-${id}`);
+    $(cartId).attr("href", `${cartId.href}?val=${valId}`);
+  }
   function productall() {
     type = '';
     _xhr && _xhr.abort();
     $('#result').html('');
     startSearch();
+  }
+  function stepUpFunction(id) {
+    document.getElementById(`myNumber-${id}`).stepUp(1);
+  }
+  function stepDownFunction(id) {
+    document.getElementById(`myNumber-${id}`).stepDown(1);
   }
 </script>
 
