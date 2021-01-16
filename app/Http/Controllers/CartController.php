@@ -96,7 +96,7 @@ class CartController extends Controller
         $order_sum->order_delivery = Carbon::createFromFormat('d-m-Y', $modifiedMutable)->format('Y-m-d');
         $order_sum->save();
 
-        event(new SendNotify("event : "));
+        event(new SendNoti("event : "));
         $this->line_send($order_sum);
   
         return response()->json(['status' => 1, 'day' => $modifiedMutable]);
