@@ -79,11 +79,11 @@
              <!-- Authentication Links -->
              @guest
              <li class="nav-item ">
-                 <a class="nav-link" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">เข้าสู่ระบบ</a>
+                 <a class="nav-link"  data-toggle="modal" data-target="#exampleModal">เข้าสู่ระบบ</a>
              </li>
              @if (Route::has('register'))
              <li class="nav-item ">
-              <a class="nav-link" type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerModal">ลงทะเบียน</a>
+              <a class="nav-link"  data-toggle="modal" data-target="#registerModal">ลงทะเบียน</a>
              </li>
              @endif @else
              <li class="nav-item dropdown">
