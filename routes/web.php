@@ -21,10 +21,6 @@ Route::get("/page", function(){
     return view("frontend.new_design");
  });
 
-Route::get('/store/search', 'AjaxSearchController@index');
-Route::get('/store/detail/{id}', 'AjaxSearchController@show');
-
-Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/search_product', 'WelcomeController@search_product');
@@ -80,6 +76,10 @@ Route::group(['middleware' => 'Verify'], function () {
                 Route::post('/store', 'Staff\StoreController@store')->name('store.store_staff_add');
             });
         });
+        Route::get('/store/search', 'AjaxSearchController@index');
+        Route::get('/store/detail/{id}', 'AjaxSearchController@show');
+
+        Route::get('/search', 'AjaxSearchController@generalSearch')->name('search');
     });
 
 
