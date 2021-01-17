@@ -40,14 +40,16 @@ class CartController extends Controller
     }
 
     public function store(Request $request, $product_id) {
-        $qty = auth()->user()->products()->where('product_id',$product_id)->first();
-        if (isset($qty)) {
-            auth()->user()->products()->syncWithoutDetaching([$product_id => ['qty' => $qty->pivot->qty+$request->val]]);
-        } else {
-            auth()->user()->products()->syncWithoutDetaching([$product_id => ['qty' => $request->val]]);
+        if(is_numeric($request->val) && $request->val > 0){
+            $qty = auth()->user()->products()->where('product_id',$product_id)->first();
+            if (isset($qty)) {
+                auth()->user()->products()->syncWithoutDetaching([$product_id => ['qty' => $qty->pivot->qty+$request->val]]);
+            } else {
+                auth()->user()->products()->syncWithoutDetaching([$product_id => ['qty' => $request->val]]);
+            }
+            return back()->with('feedback','เพิ่มสินค้าลงในตะกร้าเรียบร้อย')->with('type', 'success');
         }
-    
-        return back()->with('feedback','เพิ่มสินค้าลงในตะกร้าเรียบร้อย');
+        return back()->with('feedback','เพิ่มข้อมูลที่เป็นตัวเลขเท่านั้น')->with('type', 'error');
     }
 
     public function delete($product_id) {

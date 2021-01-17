@@ -156,8 +156,8 @@
         <script>
             Swal.fire(
                 '{{ session('feedback')}}', //
-                'You clicked the button!',
-                'success'
+                '',
+                '{{ session('type')}}'
             )
         </script>
     @endif
@@ -167,9 +167,9 @@
         Swal.fire(
             '{{ session('feedback')}}', //
             'เราจะทำการติดต่อภายในวันที่ {{ session('day')}}',
-            'success'
+            '{{ session('type')}}'
         )
     </script>
-@endif
+  @endif
 @endsection
 
