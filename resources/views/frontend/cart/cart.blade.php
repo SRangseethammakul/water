@@ -62,7 +62,7 @@
             </div>
         </div>
 
-
+        <a href="{{ route('profile.create') }}" class="btn btn-primary">เพิ่มที่อยู่</a>
         @if($profiles)
         <div class="form-group">
             <label for="profileselect">ที่อยู่ในการจัดส่ง</label>
