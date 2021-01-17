@@ -79,22 +79,16 @@
                                 </a>
                                 <a href="{{ url('auth/line') }}">
                                     <button type="button" class="btn btn-outline-success btn-block ml-2 mt-2" style="padding: 12px 16px">
-                                        <div class="row justify-content-around">
+                                        <div class="row justify-content-center">
                                             <div class="col-4">
                                                 <img src="{{ asset('images/line.png') }}" height="50" alt="line">
                                             </div>
                                             <div class="col-4">
-                                                <p class="text-center">Center aligned text on all viewport sizes.</p>
+                                                <p class="text-center">ดำเนินการต่อด้วย Line</p>
                                             </div>
                                         </div>
                                     </button>
                                 </a>
-                            
-                                {{-- <a href="{{ url('auth/google') }}">
-                                    <button type="button" class="btn btn-outline-success btn-block ml-2 mt-2" style="padding: 12px 16px"><i
-                                            class="fa fa-google ml-2" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
-                                        with Google</button>
-                                </a> --}}
                               </div>
                             </div>
                         </div>
