@@ -49,7 +49,7 @@ class LoginController extends Controller
         
         try {
             $user = Socialite::driver('github')->user();
-            $finduser = AuthProvider::where('provider_id', $user->id)->first();
+            $finduser = AuthProvider::where('provider', 'github')->where('provider_id', $user->id)->first();
             if ($finduser) {
                 $user = User::where('id', $finduser->user_id)->first();
                 Auth::login($user);
@@ -80,27 +80,29 @@ class LoginController extends Controller
         return Socialite::driver('facebook')->redirect();
     }
     public function handleFaceBookCallback() {
-
-        $user = Socialite::driver('facebook')->user();
-        $finduser = AuthProvider::where('provider_id', $user->id)->first();
-
-        if ($finduser) {
-            $user = User::where('id', $finduser->user_id)->first();
-            Auth::login($user);
-            return redirect('/');
-        } else {
-            $newUser = new User();
-            $newUser->name = $user->name ? $user->name : $user->nickname;
-            $newUser->email = $user->email;
-            $newUser->save();
-            $newUser->assignRole('Member');
-            
-            $new_user = new AuthProvider();
-            $new_user->user_id = $newUser->id;
-            $new_user->provider = 'facebook';
-            $new_user->provider_id = $user->id;
-            $new_user->save();
-            Auth::login($newUser);
+        try{
+            $user = Socialite::driver('facebook')->user();
+            $finduser = AuthProvider::where('provider', 'facebook')->where('provider_id', $user->id)->first();
+            if ($finduser) {
+                $user = User::where('id', $finduser->user_id)->first();
+                Auth::login($user);
+                return redirect('/');
+            } else {
+                $newUser = new User();
+                $newUser->name = $user->name ? $user->name : $user->nickname;
+                $newUser->email = $user->email;
+                $newUser->save();
+                $newUser->assignRole('Member');
+                $new_user = new AuthProvider();
+                $new_user->user_id = $newUser->id;
+                $new_user->provider = 'facebook';
+                $new_user->provider_id = $user->id;
+                $new_user->save();
+                Auth::login($newUser);
+                return redirect('/');
+            }
+        }catch(Exception $e) {
+            Log::error($e->getMessage());
             return redirect('/');
         }
 
@@ -111,25 +113,31 @@ class LoginController extends Controller
         return Socialite::driver('line')->redirect();
     }
     public function handleLineCallback() {
-        $user = Socialite::driver('line')->user();
-        $finduser = AuthProvider::where('provider', 'line')->where('provider_id', $user->id)->first();
-        if ($finduser) {
-            $user = User::where('id', $finduser->user_id)->first();
-            Auth::login($user);
-            return redirect('/');
-        } else {
-            $newUser = new User();
-            $newUser->name = $user->name ? $user->name : $user->nickname;
-            $newUser->email = $user->email;
-            $newUser->save();
-            $newUser->assignRole('Member');
-            
-            $new_user = new AuthProvider();
-            $new_user->user_id = $newUser->id;
-            $new_user->provider = 'line';
-            $new_user->provider_id = $user->id;
-            $new_user->save();
-            Auth::login($newUser);
+        try{
+            $user = Socialite::driver('line')->user();
+            $finduser = AuthProvider::where('provider', 'line')->where('provider_id', $user->id)->first();
+            if ($finduser) {
+                $user = User::where('id', $finduser->user_id)->first();
+                Auth::login($user);
+                return redirect('/');
+            } else {
+                $newUser = new User();
+                $newUser->name = $user->name ? $user->name : $user->nickname;
+                $newUser->email = $user->email;
+                $newUser->save();
+                $newUser->assignRole('Member');
+                
+                $new_user = new AuthProvider();
+                $new_user->user_id = $newUser->id;
+                $new_user->provider = 'line';
+                $new_user->provider_id = $user->id;
+                $new_user->save();
+                Auth::login($newUser);
+                return redirect('/');
+            }
+        }
+        catch(Exception $e) {
+            Log::error($e->getMessage());
             return redirect('/');
         }
     }
