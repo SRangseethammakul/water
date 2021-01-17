@@ -67,18 +67,24 @@
                         <hr>
 
                         <div class="d-flex justify-content-center mt-5">
-                            <a href="{{ url('auth/github') }}">
-                                <button type="button" class="btn btn-outline-secondary ml-2">Login with GitHub</button>
-                            </a>
-                            <a href="{{ url('auth/facebook') }}">
-                                <button type="button" class="btn btn-outline-info ml-2">Login with Facebook</button>
-                            </a>
-                            <a href="{{ url('auth/line') }}">
-                                <button type="button" class="btn btn-outline-success ml-2">Login with Line</button>
-                            </a>
+                            <div class="row">
+                                <div class="col-4">
+                                    <a href="{{ url('auth/github') }}">
+                                        <button type="button" class="btn btn-outline-secondary ml-2">Login with GitHub</button>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a href="{{ url('auth/facebook') }}">
+                                        <button type="button" class="btn btn-outline-info ml-2">Login with Facebook</button>
+                                    </a>
+                                </div>
+                                <div class="col-4">
+                                    <a href="{{ url('auth/line') }}">
+                                        <button type="button" class="btn btn-outline-success ml-2">Login with Line</button>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>
