@@ -87,7 +87,7 @@
                                 <div class="input-group-prepend">
                                   <button class="btn btn-outline-danger" onclick="stepDownFunction(${item.id})" type="button" id="button-addon${item.id}"><i class="fa fa-minus"></i></button>
                                 </div>
-                                <input type="number" min="1" id="myNumber-${item.id}" class="form-control" value=1 pattern="\d*">
+                                <input type="number" min="1" id="myNumber-${item.id}" class="form-control" value=1 inputmode="numeric">
                                 <div class="input-group-prepend">
                                   <button class="btn btn-outline-success" onclick="stepUpFunction(${item.id})" type="button" id="button-deleteon${item.id}"><i class="fa fa-plus"></i></button>
                                 </div>
