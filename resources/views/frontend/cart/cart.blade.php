@@ -11,53 +11,55 @@
 
         @if (count($listCart) > 0)
         <div class="card">
-            <table class="table table-hover shopping-cart-wrap">
-                <thead class="text-muted">
-                    <tr>
-                        <th>#</th>
-                        <th scope="col">ชื่อสินค้า</th>
-                        <th scope="col" width="120">จำนวน</th>
-                        <th scope="col" width="120">ราคา</th>
-                        <th scope="col" width="200" class="text-right">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($listCart as $indexKey => $cart)
-                    <tr>
-                        <td>{{ ++$indexKey }}</td>
-                        <td>
-                            <figure class="media">
-                                <figcaption class="media-body">
-                                    <h6 class="title text-truncate">{{ $cart->product_name }}</h6>
-                                </figcaption>
-                            </figure>
-                        </td>
-                        <td>
+            <div class="table-responsive-lg">
+                <table class="table table-hover shopping-cart-wrap">
+                    <thead class="text-muted">
+                        <tr>
+                            <th>#</th>
+                            <th scope="col">ชื่อสินค้า</th>
+                            <th scope="col" width="120">จำนวน</th>
+                            <th scope="col" width="120">ราคา</th>
+                            <th scope="col" width="200" class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($listCart as $indexKey => $cart)
+                        <tr>
+                            <td>{{ ++$indexKey }}</td>
+                            <td>
+                                <figure class="media">
+                                    <figcaption class="media-body">
+                                        <h6 class="title text-truncate">{{ $cart->product_name }}</h6>
+                                    </figcaption>
+                                </figure>
+                            </td>
+                            <td>
 
-                            {{ $cart->pivot->qty }}
+                                {{ $cart->pivot->qty }}
 
-                        </td>
-                        <td>
-                            <div class="price-wrap">
-                                <var class="price">฿ {{ $cart->product_price * $cart->pivot->qty }}</var>
-                            </div>
-                            <!-- price-wrap .// -->
-                        </td>
-                        <td class="text-right">
-                            <a href="{{ route('cart.delete',['product_id' => $cart->id])}}"
-                                class="btn btn-outline-danger"> × ลบ</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>{{ $sumQty }} ชิ้น</td>
-                        <td>฿ {{ $sumProduct }}</td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                            <td>
+                                <div class="price-wrap">
+                                    <var class="price">฿ {{ $cart->product_price * $cart->pivot->qty }}</var>
+                                </div>
+                                <!-- price-wrap .// -->
+                            </td>
+                            <td class="text-right">
+                                <a href="{{ route('cart.delete',['product_id' => $cart->id])}}"
+                                    class="btn btn-outline-danger"> × ลบ</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>{{ $sumQty }} ชิ้น</td>
+                            <td>฿ {{ $sumProduct }}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 
