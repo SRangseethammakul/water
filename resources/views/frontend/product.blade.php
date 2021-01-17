@@ -84,9 +84,9 @@
                             </div>
                             <div class="card-footer">
                               <div class="container">
-                                <div class="d-flex justify-content-around">
-                                    <button class="btn btn-outline-danger" onclick="stepDownFunction(${item.id})" type="button" id="button-addon${item.id}"><i class="fa fa-minus"></i></button>
-                                    <input type="number" min="1" id="myNumber-${item.id}" class="form-control" value=1 inputmode="numeric">
+                                <div class="d-flex justify-content-around mb-2">
+                                    <button class="btn btn-outline-danger mr-2" onclick="stepDownFunction(${item.id})" type="button" id="button-addon${item.id}"><i class="fa fa-minus"></i></button>
+                                    <input type="number" min="1" id="myNumber-${item.id}" class="form-control mr-2" value=1 inputmode="numeric" style="text-align:right;"/>
                                     <button class="btn btn-outline-success" onclick="stepUpFunction(${item.id})" type="button" id="button-deleteon${item.id}"><i class="fa fa-plus"></i></button>
                                 </div>
                               </div>
