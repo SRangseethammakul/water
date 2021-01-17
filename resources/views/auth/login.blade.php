@@ -76,7 +76,7 @@
                                                 <div class="col-4">
                                                     <img src="{{ asset('images/github.png') }}" height="50" alt="github">
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-8">
                                                     <p class="text-center">ดำเนินการต่อด้วย GitHub</p>
                                                 </div>
                                             </div>
@@ -99,7 +99,7 @@
                                                 <div class="col-4">
                                                     <img src="{{ asset('images/facebook.png') }}" height="50" alt="facebook">
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-8">
                                                     <p class="text-center">ดำเนินการต่อด้วย Facebook</p>
                                                 </div>
                                             </div>
@@ -113,7 +113,7 @@
                                                 <div class="col-4">
                                                     <img src="{{ asset('images/line.png') }}" height="50" alt="line">
                                                 </div>
-                                                <div class="col-4">
+                                                <div class="col-8">
                                                     <p class="text-center">ดำเนินการต่อด้วย Line</p>
                                                 </div>
                                             </div>
