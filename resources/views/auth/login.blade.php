@@ -89,9 +89,7 @@
                                         </div>
                                     </button>
                                 </a>
-                                
-
-                                <h1 class="text-hide" style="background-image: url('{{ asset('images/line.png') }}');">Bootstrap</h1>
+                            
                                 {{-- <a href="{{ url('auth/google') }}">
                                     <button type="button" class="btn btn-outline-success btn-block ml-2 mt-2" style="padding: 12px 16px"><i
                                             class="fa fa-google ml-2" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
