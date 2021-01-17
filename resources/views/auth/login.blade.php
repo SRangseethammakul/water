@@ -66,23 +66,30 @@
 
                         <hr>
 
-                        <div class="d-flex justify-content-center mt-5">
+                        <div class="container">
                             <div class="row">
-                                <div class="col-4">
-                                    <a href="{{ url('auth/github') }}">
-                                        <button type="button" class="btn btn-outline-secondary ml-2">Login with GitHub</button>
-                                    </a>
-                                </div>
-                                <div class="col-4">
-                                    <a href="{{ url('auth/facebook') }}">
-                                        <button type="button" class="btn btn-outline-info ml-2">Login with Facebook</button>
-                                    </a>
-                                </div>
-                                <div class="col-4">
-                                    <a href="{{ url('auth/line') }}">
-                                        <button type="button" class="btn btn-outline-success ml-2">Login with Line</button>
-                                    </a>
-                                </div>
+                              <div class="col align-self-center">
+                                <a href="{{ url('auth/github') }}">
+                                    <button type="button" class="btn btn-outline-secondary btn-block ml-2" style="padding: 12px 16px"><i
+                                            class="fa fa-github" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
+                                        with GitHub</button>
+                                </a>
+                                <a href="{{ url('auth/facebook') }}">
+                                    <button type="button" class="btn btn-outline-info btn-block ml-2 mt-2" style="padding: 12px 16px"><i
+                                            class="fa fa-facebook ml-2" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
+                                        with Facebook</button>
+                                </a>
+                                <a href="{{ url('auth/line') }}">
+                                    <button type="button" class="btn btn-outline-success btn-block ml-2 mt-2" style="padding: 12px 16px"><i
+                                            class="fa fa-facebook ml-2" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
+                                        with Line</button>
+                                </a>
+                                {{-- <a href="{{ url('auth/google') }}">
+                                    <button type="button" class="btn btn-outline-success btn-block ml-2 mt-2" style="padding: 12px 16px"><i
+                                            class="fa fa-google ml-2" style="margin:5px 15px 5px 5px" aria-hidden="true"></i>Login
+                                        with Google</button>
+                                </a> --}}
+                              </div>
                             </div>
                         </div>
                     </form>
