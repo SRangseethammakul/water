@@ -72,15 +72,15 @@
                 <div class="container">
                     <div class="row">
                       <div class="col align-self-center">
-                        <a href="{{ url('auth/facebook') }}" style="text-decoration: none;">
-                            <button type="button" class="btn btn-outline-info btn-block ml-2 mt-2" style="padding: 12px 16px">
+                        <a href="{{ url('auth/github') }}" style="text-decoration: none;">
+                            <button type="button" class="btn btn-outline-secondary btn-block ml-2 mt-2" style="padding: 12px 16px">
                                 <div class="container">
                                     <div class="row justify-content-center">
                                         <div class="col-4">
-                                            <img src="{{ asset('images/facebook.png') }}" height="50" alt="facebook">
+                                            <img src="{{ asset('images/github.png') }}" height="50" alt="github">
                                         </div>
                                         <div class="col-8">
-                                            <p class="text-center">ดำเนินการต่อด้วย Facebook</p>
+                                            <p class="text-center">ดำเนินการต่อด้วย GitHub</p>
                                         </div>
                                     </div>
                                 </div>
