@@ -133,7 +133,6 @@
 <script>
     function startSearch() {
         var profile = $('#profileselect').val();
-        console.log(profile);
         if (profile) {
             $.ajax({
                 url: '/cart/checkout/cart',
