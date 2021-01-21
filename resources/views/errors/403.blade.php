@@ -8,7 +8,7 @@
         <hr class="my-4">
         <a class="btn btn-success btn-lg" href="{{ route('welcome') }}" role="button">กลับสู่หน้าแรก</a>
         <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#exampleModal403">
-            Launch demo modal
+            ติดต่อเรา
         </button>
     </div>
 </span>
