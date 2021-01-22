@@ -83,7 +83,7 @@ Route::group(['middleware' => 'Verify'], function () {
     });
 
 
-    Route::group(['middleware' => ['role:Admin']], function () {
+    // Route::group(['middleware' => ['role:Admin']], function () {
 
         Route::resource('/type', 'TypeController');
         Route::get('/type/edit/{id}', 'TypeController@edit')->name('type.edit');
@@ -178,7 +178,7 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::put('/update', 'HealthCareController@update')->name('healthcare.update');
             Route::get('/destroy', 'HealthCareController@destroy')->name('healthcare.destroy');
         });
-    });
+    // });
 
 
 });
