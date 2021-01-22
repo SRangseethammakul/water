@@ -17,7 +17,7 @@
         <div class="container-fluid">
             <div class="container">
                 <div class="row">
-                    <div class="col-auto mr-auto"><h3>ประเภทร้านค้า</h3></div>
+                    <div class="col-auto mr-auto"><h3>เพิ่มบทบาทผู้ใช้งาน</h3></div>
                     <div class="col-auto"><a href="{{ route('role.create')}}"> <button type="button" class="btn btn-dark">เพิ่มประเภทร้านค้า</button> </a></div>
                 </div>
             </div>
@@ -30,6 +30,7 @@
                             <th scope="col">รหัสลูกค้า</th>
                             <th scope="col">ชื่อ</th>
                             <th scope="col">วันที่เพิ่ม</th>
+                            <th scope="col">Tools</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -38,6 +39,11 @@
                                     <th scope="row">{{ ++$key }}</th>
                                     <td>{{$item->name}}</a></td>
                                     <td>{{ Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
+                                    <td>
+                                        <a href="{{ route('role.edit',['id'=>$item->id])}}" class="btn btn-info mr-2">
+                                            <li class="fa fa-pencil text-white"></li>
+                                        </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

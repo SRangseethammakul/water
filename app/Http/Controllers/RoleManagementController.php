@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 use App\User;
-use App\Role;
+use Spatie\Permission\Models\Role;
+use DB;
 
 class RoleManagementController extends Controller
 {
@@ -28,8 +30,10 @@ class RoleManagementController extends Controller
      */
     public function create()
     {
-        //
-        return view('backend.role.add');
+        $permissions = Permission::get();
+        return view('backend.role.add',[
+            'permissions' => $permissions
+        ]);
     }
 
     /**
@@ -45,6 +49,7 @@ class RoleManagementController extends Controller
         $new_role->name = $request->role_name;
         $new_role->guard_name = 'web';
         $new_role->save();
+        $new_role->syncPermissions($request->check_list);
         return redirect()->route('role.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
@@ -67,7 +72,13 @@ class RoleManagementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $role = Role::find($id);
+        $permissions = Permission::get();
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+        ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+        ->all();
+        return view('backend.role.edit',compact('role','permissions','rolePermissions'));
+        
     }
 
     /**
@@ -77,9 +88,14 @@ class RoleManagementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->id;
+        $role = Role::find($id);
+        $role->name = $request->role_name;
+        $role->save();
+        $role->syncPermissions($request->check_list);
+        return redirect()->route('role.index')->with('feedback' ,'บันทึกข้อมูลเรียบร้อยแล้ว');
     }
 
     /**

@@ -15,15 +15,6 @@
 <br>
 <section class="content" id="app">
     <div class="container-fluid">
-        <div class="container">
-            <div class="row">
-                <div class="col-auto mr-auto">
-                    <h3>ประเภทร้านค้า</h3>
-                </div>
-                <div class="col-auto"><a href="{{ route('storetype.create')}}"> <button type="button"
-                            class="btn btn-dark">เพิ่มประเภทร้านค้า</button> </a></div>
-            </div>
-        </div>
 
         <div class="row">
             <div class="card-body">

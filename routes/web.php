@@ -97,6 +97,15 @@ Route::group(['middleware' => 'Verify'], function () {
         //     Route::put('/update', 'StoreController@update')->name('store.update');
         //     Route::get('/destroy', 'StoreController@destroy')->name('store.destroy');
         // });
+
+        Route::group(['prefix' => 'permission'], function () {
+            Route::get('/', 'PermissionController@index')->name('permission.index');
+            Route::get('/create', 'PermissionController@create')->name('permission.create');
+            Route::post('/store', 'PermissionController@store')->name('permission.store');
+            Route::get('/edit/{id}', 'PermissionController@edit')->name('permission.edit');
+            Route::put('/update', 'PermissionController@update')->name('permission.update');
+            Route::get('/destroy', 'PermissionController@destroy')->name('permission.destroy');
+        });
     
         Route::resource('/store', 'StoreController');
         Route::get('/store/edit/{id}', 'StoreController@edit')->name('store.edit');
@@ -152,6 +161,8 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::get('/', 'RoleManagementController@index')->name('role.index');
             Route::get('/create', 'RoleManagementController@create')->name('role.create');
             Route::post('/store', 'RoleManagementController@store')->name('role.store');
+            Route::get('/edit/{id}', 'RoleManagementController@edit')->name('role.edit');
+            Route::put('/update', 'RoleManagementController@update')->name('role.update');
         });
 
         Route::group(['prefix' => 'emstracking'], function () {

@@ -93,6 +93,11 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
+                            <a href="{{ route('permission.index')}}" class="nav-link">
+                                <i class="nav-icon fa fa-cogs"></i> Permission
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
                             <a href="{{ route('order.index')}}" class="nav-link">
                                 <i class="nav-icon fa fa-calendar-check-o"></i> คำสั่งซื้อ ออนไลน์
                             </a>
