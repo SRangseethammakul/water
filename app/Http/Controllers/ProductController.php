@@ -18,10 +18,10 @@ class ProductController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:promotion-list|promotion-create|promotion-edit|promotion-delete', ['only' => ['index','store']]);
-        $this->middleware('permission:promotion-create', ['only' => ['create','store']]);
-        $this->middleware('permission:promotion-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:promotion-delete', ['only' => ['destroy']]);
+        $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:product-create', ['only' => ['create','store']]);
+        $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:product-delete', ['only' => ['destroy']]);
     }
     public function index()
     {
