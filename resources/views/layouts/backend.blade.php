@@ -63,6 +63,32 @@
 
                         <li class="nav-header">ข้อมูลหลัก</li>
                         @role('Admin')
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                              <i class="nav-icon fa fa-address-card"></i>
+                              <p>
+                                User Management
+                                <i class="fa fa fa-chevron-left right"></i>
+                              </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item has-treeview">
+                                    <a href="{{ route('user.index')}}" class="nav-link">
+                                        <i class="nav-icon fa fa-users"></i> ผู้ใช้งาน
+                                    </a>
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="{{ route('role.index')}}" class="nav-link">
+                                        <i class="nav-icon fa fa-user"></i> ผู้ใช้งาน
+                                    </a>
+                                </li>
+                                <li class="nav-item has-treeview">
+                                    <a href="{{ route('permission.index')}}" class="nav-link">
+                                        <i class="nav-icon fa fa-cogs"></i> Permission
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('type.index')}}" class="nav-link">
                                 <i class="nav-icon fa fa-cart-plus"></i> ประเภทสินค้า</a>
@@ -85,16 +111,6 @@
                         <li class="nav-item has-treeview">
                             <a href="{{ route('store.index')}}" class="nav-link">
                                 <i class="nav-icon fa fa-shopping-bag"></i> ร้านค้า
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{{ route('user.index')}}" class="nav-link">
-                                <i class="nav-icon fa fa-users"></i> ผู้ใช้งาน
-                            </a>
-                        </li>
-                        <li class="nav-item has-treeview">
-                            <a href="{{ route('permission.index')}}" class="nav-link">
-                                <i class="nav-icon fa fa-cogs"></i> Permission
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
