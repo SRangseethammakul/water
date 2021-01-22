@@ -75,8 +75,19 @@
         </div>
         @endif
 
-
-
+        <div class="form-group">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="type_status_1" value="1" name="type_status" class="custom-control-input" required checked="checked">
+                <label class="custom-control-label" for="type_status_1" >จ่ายเงินทันที</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="type_status_2" value="0" name="type_status" class="custom-control-input" required>
+                <label class="custom-control-label" for="type_status_2">จ่ายเงินปลายทาง</label>
+            </div>
+        </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
+            Launch demo modal
+        </button>
         <div class="container">
             <div class="row">
                 <div class="col-md-3 offset-md-3">
@@ -111,6 +122,7 @@
                 </div>
             </div>
         </div>
+
         <div class="text-right">
             <a onclick="startSearch()" class="btn btn-primary btn-lg">ยืนยันการสั่งซื้อ</a>
         </div>
@@ -127,6 +139,39 @@
 
 </div>
 <!-- /.row -->
+<!-- Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">จ่ายเงิน</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 offset-md-2">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ asset('images/payment_qr.jpg') }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <input type="text" class="form-control mb-2" value="4063043952" readonly id="myInput">
+                                <button type="button" onclick="myFunction()" class="btn btn-info">คัดลอกเลขบัญชี</button>
+                                <a href="{{ asset('images/payment_qr.jpg') }}" download class="btn btn-success" role="button">บันทึกรูปภาพ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 @section('footerscript')
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
@@ -169,6 +214,13 @@
                 window.location = '/../../profile/create';
             });
         }
+    }
+    function myFunction() {
+        var copyText = document.getElementById("myInput");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+        alert("Copied the text: " + copyText.value);
     }
 
 </script>
