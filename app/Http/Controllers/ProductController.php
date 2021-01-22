@@ -15,6 +15,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    function __construct()
+    {
+        $this->middleware('permission:promotion-list|promotion-create|promotion-edit|promotion-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:promotion-create', ['only' => ['create','store']]);
+        $this->middleware('permission:promotion-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:promotion-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         //
