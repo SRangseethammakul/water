@@ -12,6 +12,13 @@ class StoreTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    function __construct()
+    {
+        $this->middleware('permission:storetype-list|storetype-create|storetype-edit|storetype-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:storetype-create', ['only' => ['create','store']]);
+        $this->middleware('permission:storetype-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:storetype-delete', ['only' => ['destroy']]);
+    }
     public function index()
     {
         //

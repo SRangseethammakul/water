@@ -34,14 +34,6 @@ Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFaceBookCallba
 Route::get('/auth/line', 'Auth\LoginController@redirectToLine');
 Route::get('/auth/line/callback', 'Auth\LoginController@handleLineCallback');
 
-// Route::get('/storetype/destroy', 'StoreTypeController@destroy');
-
-// Route::get('/new/geo', 'JsonStoreController@index');
-// Route::get('/new/province', 'JsonStoreController@province');
-// Route::get('/new/districts', 'JsonStoreController@districts');
-// Route::get('/new/subdistricts', 'JsonStoreController@subdistricts');
-// Route::get('/new/zipcode', 'JsonStoreController@zipcode');
-
 Route::group(['prefix' => 'ajax'], function () {
     Route::get('/getamphuresbyprovince/{province_id}', 'AjaxSearchController@getAmphuresByProvinceID');
     Route::get('/getsubdistrictbydistrict/{district_id}', 'AjaxSearchController@getSubDistrictByDistrictID');
@@ -83,20 +75,11 @@ Route::group(['middleware' => 'Verify'], function () {
     });
 
 
-    // Route::group(['middleware' => ['role:Admin']], function () {
+    Route::group(['middleware' => ['role:Admin']], function () {
 
         Route::resource('/type', 'TypeController');
         Route::get('/type/edit/{id}', 'TypeController@edit')->name('type.edit');
         Route::put('/type/update', 'TypeController@update')->name('type.update');
-
-        // Route::group(['prefix' => 'store'], function () {
-        //     Route::get('/', 'StoreController@index')->name('store.index');
-        //     Route::get('/create', 'StoreController@index')->name('store.index');
-        //     Route::get('/', 'StoreController@index')->name('store.index');
-        //     Route::get('/edit/{id}', 'StoreController@edit')->name('store.edit');
-        //     Route::put('/update', 'StoreController@update')->name('store.update');
-        //     Route::get('/destroy', 'StoreController@destroy')->name('store.destroy');
-        // });
 
         Route::group(['prefix' => 'permission'], function () {
             Route::get('/', 'PermissionController@index')->name('permission.index');
@@ -178,7 +161,7 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::put('/update', 'HealthCareController@update')->name('healthcare.update');
             Route::get('/destroy', 'HealthCareController@destroy')->name('healthcare.destroy');
         });
-    // });
+    });
 
 
 });
