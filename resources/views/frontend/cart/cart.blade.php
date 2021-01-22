@@ -62,7 +62,7 @@
             </div>
         </div>
 
-        <a href="{{ route('profile.create') }}" class="btn btn-primary">เพิ่มที่อยู่</a>
+        <a href="{{ route('profile.create') }}" class="btn btn-primary mt-3 mb-3">เพิ่มที่อยู่</a>
         @if($profiles)
         <div class="form-group">
             <label for="profileselect">ที่อยู่ในการจัดส่ง</label>
@@ -85,9 +85,18 @@
                 <label class="custom-control-label" for="type_status_2">จ่ายเงินปลายทาง</label>
             </div>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
-            Launch demo modal
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#paymentModal">
+            แสดง QR 
         </button>
+        <div class="show-image">
+            <img id="edit-image-store" width="90%" height="40%">
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="storeimage">รูปสลิป</label>
+                <input type="file" class="form-control-file text-center" onchange="readURL(this);" id="storeimage" name="storeimage">
+            </div>
+        </form>
         <div class="container">
             <div class="row">
                 <div class="col-md-3 offset-md-3">
@@ -154,11 +163,22 @@
                 <div class="row">
                     <div class="col-md-6 offset-md-2">
                         <div class="card" style="width: 18rem;">
-                            <img src="{{ asset('images/payment_qr.jpg') }}" class="card-img-top" alt="...">
+                            <img src="{{ asset('images/payment_qr.jpg') }}" class="card-img-top">
                             <div class="card-body">
-                                <input type="text" class="form-control mb-2" value="4063043952" readonly id="myInput">
-                                <button type="button" onclick="myFunction()" class="btn btn-info">คัดลอกเลขบัญชี</button>
-                                <a href="{{ asset('images/payment_qr.jpg') }}" download class="btn btn-success" role="button">บันทึกรูปภาพ</a>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <input type="text" class="form-control mb-2" value="4063043952" readonly id="myInput">
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="button" onclick="myFunction()" class="btn btn-info">คัดลอกเลขบัญชี</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <a href="{{ asset('images/payment_qr.jpg') }}" download class="btn btn-success" role="button">บันทึกรูปภาพ</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -220,7 +240,21 @@
         copyText.select();
         copyText.setSelectionRange(0, 99999)
         document.execCommand("copy");
-        alert("Copied the text: " + copyText.value);
+        Swal.fire({
+            icon: 'success',
+            title: 'คัดลอกแล้ว',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#edit-image-store').attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 
 </script>
