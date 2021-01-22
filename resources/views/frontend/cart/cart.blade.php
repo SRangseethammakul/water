@@ -168,13 +168,13 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-12">
-                                            <input type="text" class="form-control mb-2" value="4063043952" readonly id="myInput">
+                                            <input type="text" class="form-control mb-2" value="4063043952" readonly id="myInput" style="text-align:right;">
                                         </div>
-                                        <div class="col-6">
-                                            <button type="button" onclick="myFunction()" class="btn btn-info">คัดลอกเลขบัญชี</button>
+                                        <div class="col-12">
+                                            <button type="button" onclick="myFunction()" class="btn btn-info btn-block">คัดลอกเลขบัญชี</button>
                                         </div>
-                                        <div class="col-6">
-                                            <a href="{{ asset('images/payment_qr.jpg') }}" download class="btn btn-success" role="button">บันทึกรูปภาพ</a>
+                                        <div class="col-12 mt-2">
+                                            <a href="{{ asset('images/payment_qr.jpg') }}" download class="btn btn-success btn-block" role="button">บันทึกรูปภาพ</a>
                                         </div>
                                     </div>
                                 </div>
