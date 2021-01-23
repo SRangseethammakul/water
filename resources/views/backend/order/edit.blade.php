@@ -72,8 +72,34 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="row justify-content-around">
+                    <div class="col-4 ml-md-auto">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">ยืนยัน</button>
+                    </div>
+                </div>
+                
             </form>
+        </div>
+        <div class="container mt-5">
+            <div class="row justify-content-start">
+                <div class="col-4">
+                    <h4> วิธีการชำระเงิน  : </h4>
+                </div>
+                <div class="col-4">
+                    <h4>{{$order->paymeny_status ? 'ชำระเงินแล้ว' : 'ชำระปลายทาง'}}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col align-self-center">
+                    @if(isset($order->img_payment))
+                    <div class="show-image">
+                        <img src="{{ Storage::disk('do_spaces')->temporaryUrl('order_payments/'. $order->img_payment, now()->addMinutes(15) ) }}"
+                        height="600px" />
+                    </div>
+                    @endif
+                </div>
+            </div>
+
         </div>
         <div class="container">
             <div class="row">

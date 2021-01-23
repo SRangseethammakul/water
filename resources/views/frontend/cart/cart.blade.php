@@ -62,78 +62,84 @@
             </div>
         </div>
 
-        <a href="{{ route('profile.create') }}" class="btn btn-primary mt-3 mb-3">เพิ่มที่อยู่</a>
-        @if($profiles)
-        <div class="form-group">
-            <label for="profileselect">ที่อยู่ในการจัดส่ง</label>
-            <select class="form-control" id="profileselect">
-                @foreach ($profiles as $item)
-                <option value={{$item->id}}>{{$item->first_name}} {{$item->last_name}} {{$item->profile_tel }}
-                    {{$item->profile_address }}</option>
-                @endforeach
-            </select>
-        </div>
-        @endif
 
-        <div class="form-group">
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="type_status_1" value="1" name="type_status" class="custom-control-input" required checked="checked">
-                <label class="custom-control-label" for="type_status_1" >จ่ายเงินทันที</label>
-            </div>
-            <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="type_status_2" value="0" name="type_status" class="custom-control-input" required>
-                <label class="custom-control-label" for="type_status_2">จ่ายเงินปลายทาง</label>
-            </div>
-        </div>
-        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#paymentModal">
-            แสดง QR 
-        </button>
-        <div class="show-image">
-            <img id="edit-image-store" width="90%" height="40%">
-        </div>
-        <form>
-            <div class="form-group">
-                <label for="storeimage">รูปสลิป</label>
-                <input type="file" class="form-control-file text-center" onchange="readURL(this);" id="storeimage" name="storeimage">
-            </div>
-        </form>
         <div class="container">
-            <div class="row">
-                <div class="col-md-3 offset-md-3">
-                    <h2>ราคาสินค้า</h2>
+            <form enctype="multipart/form-data" id="checkOutForm">
+                <a href="{{ route('profile.create') }}" class="btn btn-primary mt-3 mb-3">เพิ่มที่อยู่</a>
+                @if($profiles)
+                <div class="form-group">
+                    <label for="profileselect">ที่อยู่ในการจัดส่ง</label>
+                    <select class="form-control" name="profileselect" id="profileselect">
+                        @foreach ($profiles as $item)
+                        <option value={{$item->id}}>{{$item->first_name}} {{$item->last_name}} {{$item->profile_tel }}
+                            {{$item->profile_address }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <div class="col-md-3 offset-md-3">
-                    <h2>฿ {{ number_format($sumProduct,2) }}</h2>
+                @endif
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 offset-md-3">
+                            <h2>ราคาสินค้า</h2>
+                        </div>
+                        <div class="col-md-3 offset-md-3">
+                            <h2>฿ {{ number_format($sumProduct,2) }}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 offset-md-3">
+                            <h2>ค่าขนส่ง</h2>
+                        </div>
+                        <div class="col-md-3 offset-md-3">
+                            <h2>฿ {{ number_format($deliverry,2) }}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 offset-md-3">
+                            <h2>ส่วนลดค่าขนส่ง</h2>
+                        </div>
+                        <div class="col-md-3 offset-md-3">
+                            <h2>฿ {{ number_format($discount,2) }}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 offset-md-3">
+                            <h2>ราคารวม</h2>
+                        </div>
+                        <div class="col-md-3 offset-md-3">
+                            <h2>฿ {{ number_format($sumPrice,2) }}</h2>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 offset-md-3">
-                    <h2>ค่าขนส่ง</h2>
+                <div class="form-group">
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="paymeny_status_1" value="1" name="paymeny_status"
+                            class="custom-control-input" required checked="checked">
+                        <label class="custom-control-label" for="paymeny_status_1">จ่ายเงินทันที</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input type="radio" id="paymeny_status_2" value="0" name="paymeny_status"
+                            class="custom-control-input" required>
+                        <label class="custom-control-label" for="paymeny_status_2">จ่ายเงินปลายทาง</label>
+                    </div>
                 </div>
-                <div class="col-md-3 offset-md-3">
-                    <h2>฿ {{ number_format($deliverry,2) }}</h2>
+                <div class="container" id="payment_item">
+                    <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#paymentModal">
+                        แสดง QR
+                    </button>
+                    <div class="show-image">
+                        <img id="edit-image-store" width="90%" height="40%">
+                    </div>
+                    <div class="form-group">
+                        <label for="payment_img">รูปสลิป</label>
+                        <input type="file" class="form-control-file text-center" onchange="readURL(this);" id="payment_img"
+                            name="payment_img">
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 offset-md-3">
-                    <h2>ส่วนลดค่าขนส่ง</h2>
+                <div class="text-right">
+                    <a id="saveBtn" class="btn btn-primary btn-lg">ยืนยันการสั่งซื้อ</a>
                 </div>
-                <div class="col-md-3 offset-md-3">
-                    <h2>฿ {{ number_format($discount,2) }}</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 offset-md-3">
-                    <h2>ราคารวม</h2>
-                </div>
-                <div class="col-md-3 offset-md-3">
-                    <h2>฿ {{ number_format($sumPrice,2) }}</h2>
-                </div>
-            </div>
-        </div>
-
-        <div class="text-right">
-            <a onclick="startSearch()" class="btn btn-primary btn-lg">ยืนยันการสั่งซื้อ</a>
+            </form>
         </div>
 
         @else
@@ -151,59 +157,116 @@
 <!-- Modal -->
 <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">จ่ายเงิน</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-6 offset-md-2">
-                        <div class="card" style="width: 18rem;">
-                            <img src="{{ asset('images/payment_qr.jpg') }}" class="card-img-top">
-                            <div class="card-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <input type="text" class="form-control mb-2" value="4063043952" readonly id="myInput" style="text-align:right;">
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="button" onclick="myFunction()" class="btn btn-info btn-block">คัดลอกเลขบัญชี</button>
-                                        </div>
-                                        <div class="col-12 mt-2">
-                                            <a href="{{ asset('images/payment_qr.jpg') }}" download class="btn btn-success btn-block" role="button">บันทึกรูปภาพ</a>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">จ่ายเงิน</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-2">
+                            <div class="card" style="width: 18rem;">
+                                <img src="{{ asset('images/payment_qr.jpg') }}" class="card-img-top">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <input type="text" class="form-control mb-2" value="4063043952" readonly
+                                                    id="myInput" style="text-align:right;">
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="button" onclick="myFunction()"
+                                                    class="btn btn-info btn-block">คัดลอกเลขบัญชี</button>
+                                            </div>
+                                            <div class="col-12 mt-2">
+                                                <a href="{{ asset('images/payment_qr.jpg') }}" download
+                                                    class="btn btn-success btn-block" role="button">บันทึกรูปภาพ</a>
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
 @endsection
 @section('footerscript')
 <script src="{{ asset('js/sweetalert2.all.min.js')}}"></script>
 <script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('#saveBtn').on('click', function (e) {
+        event.preventDefault();
+        var formData = new FormData();
+        var files = $('#payment_img')[0].files;
+        var profileselect = $('#profileselect').val();
+        var paymeny_status = $("input:radio[name=paymeny_status]:checked").val(); 
+        formData.append('payment_img', files[0]);
+        formData.append('profileselect', profileselect);
+        formData.append('paymeny_status', paymeny_status);
+        $.ajax({
+            type: "POST",
+            data: formData,
+            url: "{{ route('cart.newConfirm') }}",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if (response.status) {
+                    Swal.fire(
+                            'สั่งซื้อสำเร็จ', //
+                            'จัดส่งสินค้าภายใน ' + response.day,
+                            'success'
+                        ).then((result) => {
+                            window.location = '/';
+                    });
+                }else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'สั่งซื้อไม่สำเร็จ!',
+                        footer: '<a href>Why do I have this issue?</a>'
+                    });
+                }
+            },
+            error: function (response) {
+                $('#saveBtn').html('Save Changes');
+            }
+        });
+    });
+    /*
     function startSearch() {
         var profile = $('#profileselect').val();
+        let payment_status = $('#paymeny_status_1').val();
+        debugger;
+        var fd = new FormData();
+        var files = $('#payment_img')[0].files;
+        fd.append('file',files[0]);
+        console.log(payment_status);
+        console.log(fd);
+        console.log('length : ', files.length);
         if (profile) {
             $.ajax({
                 url: '/cart/checkout/cart',
                 method: 'GET',
                 data: {
-                    profile: profile
+                    profile: profile,
+                    fd : fd
                 },
                 success: function (response) {
                     if (response.status) {
@@ -235,6 +298,7 @@
             });
         }
     }
+    */
     function myFunction() {
         var copyText = document.getElementById("myInput");
         copyText.select();
@@ -247,6 +311,7 @@
             timer: 1500
         });
     }
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -257,6 +322,13 @@
         }
     }
 
+    $('#paymeny_status_1').click(function (e) {
+        $('#payment_item').css('display', 'block');
+    });
+    $('#paymeny_status_2').click(function (e) {
+        $('#payment_item').css('display', 'none');
+    });
+
 </script>
 @if(session('feedback'))
 
@@ -265,8 +337,7 @@
         '{{ session('feedback')}}', //
         'You clicked the button!',
         'success'
-    )
-
+    );
 </script>
 @endif
 @endsection

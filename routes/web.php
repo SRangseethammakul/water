@@ -57,6 +57,7 @@ Route::group(['middleware' => 'Verify'], function () {
     Route::get('/cart/{product_id}', 'CartController@store')->name('cart.store');
     Route::get('/cart/{product_id}/delete', 'CartController@delete')->name('cart.delete');
     Route::get('/cart/checkout/cart', 'CartController@confirm')->name('cart.confirm');
+    Route::post('/cart/checkout/newcart', 'CartController@newConfirm')->name('cart.newConfirm');
 
 
     Route::group(['middleware' => ['role:Admin|Staff']], function () {
