@@ -45,7 +45,7 @@ Auth::routes();
 Route::group(['middleware' => 'Verify'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
-
+    Route::get('/getOrderHistory', 'AjaxSearchController@getHistoryOrder')->name('orderHistory');
     
     Route::group(['prefix' => 'profile'], function () {
         Route::get('/', 'ProfileController@index')->name('profile.index');

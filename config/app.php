@@ -165,6 +165,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        'Buzz\LaravelGoogleCaptcha\CaptchaServiceProvider',
         /*
          * Package Service Providers...
          */
@@ -232,6 +233,7 @@ return [
         'Carbon' => 'Carbon\Carbon',
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        'Captcha' => '\Buzz\LaravelGoogleCaptcha\CaptchaFacade',
     ],
 
 ];

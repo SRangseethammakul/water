@@ -181,4 +181,18 @@ class AjaxSearchController extends Controller
         $stores = Store::limit(10)->orderby('id','desc')->get();
         return response()->json(['status' => 1,'data' => $stores],200);
     }
+
+    public function getHistoryOrder(Request $request){
+        $orders = Order::where('user_id', auth()->user()->id)->orderby('id', 'desc')->get();
+        $data = [];
+        foreach($orders as $order){
+            $data[] = [
+                'sum_qty' => $order->sum_qty,
+                'sum_total' => $order->sum_total,
+                'order_status' => $order->order_status,
+                'order_delivery' => $order->order_delivery
+            ];
+        }
+        return response()->json(['status' => 1,'data' => $data],200);
+    }
 }

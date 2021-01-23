@@ -24,8 +24,6 @@
   {{-- This page and all of the switch buttons shown are running on Bootstrap 4.3 --}}
   <link rel="stylesheet" href="css/bootstrap4-toggle-3.6.1/bootstrap4-toggle.css">
 
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-176282105-1"></script>
 <script>
@@ -62,7 +60,7 @@
             </li>
             @auth
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('welcome') }}">ประวัติการสั่งซื้อ</a>
+              <a class="nav-link" href="#" onclick="getOrderHistory()">ประวัติการสั่งซื้อ</a>
             </li>
             <li class="nav-item">
             <a class="nav-link" href="{{ route('cart.index') }}">
@@ -127,6 +125,7 @@
     @include('partials.footer')
     @include('partials.login')
     @include('partials.register')
+    @include('partials.orderHistory')
 
 
 
@@ -188,7 +187,6 @@
 
   {{-- This page and all of the switch buttons shown are running on Bootstrap 4.3 --}}
   <script src="js/bootstrap4-toggle-3.6.1/bootstrap4-toggle.js"></script>
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 
   <script>
@@ -196,7 +194,7 @@
         var profile_tel = $('#profile_tel').val().replace(/,/g, "").replace(/%/g, "");
         $('#profile_tel').val(profile_tel.toString().replace(/[^0-9]/g, ""));
     });
-    </script>
+  </script>
   @yield('footerscript')
 
 </body>

@@ -30,6 +30,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">ผลการค้นหาพัสดุ</h5>
+                {!! app('captcha')->display($attributes = [], $options = ['lang'=> 'th']) !!}
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
