@@ -51,7 +51,6 @@
   var type;
   var _xhr;
   var _xhrBanner;
-  startSearch();
   function startSearch(){
       _xhr = $.ajax({
           url: '/search_product',
@@ -142,7 +141,7 @@
   function stepDownFunction(id) {
     document.getElementById(`myNumber-${id}`).stepDown(1);
   }
-  function startSearch(){
+  function startBanner(){
     _xhrBanner = $.ajax({
           url: '{{ route('bannerAPI')}}',
           method: 'GET',
@@ -154,7 +153,6 @@
                         <div class="swiper-slide">
                         <img class="img-fluid" src="${item.img}">
                         </div>
-                        <div class="swiper-slide" style="background-image:url(${item})"></div>
                         `
                       );
                 });
@@ -177,6 +175,8 @@
         prevEl: '.swiper-button-prev',
       },
     });
+    startSearch();
+    startBanner();
 </script>
 
     @if(session('feedback'))
