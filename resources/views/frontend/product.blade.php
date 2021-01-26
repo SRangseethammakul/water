@@ -166,6 +166,8 @@
       spaceBetween: 30,
       effect: 'fade',
       loop: true,
+      slidesPerView: 1,
+      spaceBetween: 30,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
