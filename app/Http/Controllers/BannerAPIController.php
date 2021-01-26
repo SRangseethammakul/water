@@ -23,20 +23,14 @@ class BannerAPIController extends Controller
             
             if($banners){
                 foreach($banners as $key => $banner){
-
-                    // $this->line_send($banner);
                     $url = Storage::disk('do_spaces')->temporaryUrl('banners/'.$banner->banner_image, now()->addMinutes(15));
-                    $imageThumbnail = $url;
-                    $imageFullsize = $url;
-                    $str = 'message=dd&imageThumbnail='.$imageThumbnail.'&imageFullsize='.$imageFullsize.'&stickerPackageId=2&stickerId=34';
-                    event(new SendNoti($str));
                     $data[]   =   [
                         'img'   =>  $url
                     ];
                 }
                 return response()->json(['status' => 1, 'banners' => $data], 200); 
             }else{
-                $data = "Promotion Not Found";
+                $data = "Banner Not Found";
                 return response()->json($data, 204); 
             }
 

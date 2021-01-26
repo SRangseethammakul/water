@@ -21,23 +21,15 @@
       <!-- /.col-lg-3 -->
 
       <div class="col-lg-9">
-
-        <div id="carouselExampleControls" class="carousel slide my-4" data-ride="carousel">
-          <div class="carousel-inner">
-            @foreach($banners as $key => $item)
-            <div class="carousel-item{{ ($key) ? '' : ' active' }}">
-              <img class="d-block img-fluid"  src="{{ Storage::disk('do_spaces')->temporaryUrl('banners/'. $item->banner_image, now()->addMinutes(15) ) }}">
-            </div>
-            @endforeach
+          <!-- Swiper -->
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
           </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+          <!-- Add Pagination -->
+          <div class="swiper-pagination swiper-pagination-white"></div>
+          <!-- Add Arrows -->
+          <div class="swiper-button-next swiper-button-white"></div>
+          <div class="swiper-button-prev swiper-button-white"></div>
         </div>
 
         <!-- /.row -->
@@ -58,6 +50,7 @@
 <script type="text/javascript">
   var type;
   var _xhr;
+  var _xhrBanner;
   startSearch();
   function startSearch(){
       _xhr = $.ajax({
@@ -149,6 +142,41 @@
   function stepDownFunction(id) {
     document.getElementById(`myNumber-${id}`).stepDown(1);
   }
+  function startSearch(){
+    _xhrBanner = $.ajax({
+          url: '{{ route('bannerAPI')}}',
+          method: 'GET',
+          success: function (response) {
+              if (response.status == 1) {
+                $.each(response.banners, function(index,item) {
+                  $(".swiper-wrapper").append(
+                        `
+                        <div class="swiper-slide">
+                        <img class="img-fluid" src="${item.img}">
+                        </div>
+                        <div class="swiper-slide" style="background-image:url(${item})"></div>
+                        `
+                      );
+                });
+                swiper.update(true);
+              }  
+          }
+
+      });
+  }
+  var swiper = new Swiper('.swiper-container', {
+      spaceBetween: 30,
+      effect: 'fade',
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
 </script>
 
     @if(session('feedback'))
