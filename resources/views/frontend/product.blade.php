@@ -28,8 +28,8 @@
           <!-- Add Pagination -->
           <div class="swiper-pagination swiper-pagination-white"></div>
           <!-- Add Arrows -->
-          <div class="swiper-button-next swiper-button-white"></div>
-          <div class="swiper-button-prev swiper-button-white"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
 
         <!-- /.row -->
@@ -163,11 +163,9 @@
       });
   }
   var swiper = new Swiper('.swiper-container', {
-      spaceBetween: 30,
-      effect: 'fade',
-      loop: true,
       slidesPerView: 1,
       spaceBetween: 30,
+      loop: true,
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
