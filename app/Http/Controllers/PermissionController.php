@@ -37,6 +37,11 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
+        /*
+              foreach($request->role_permissions as $permission){
+                Permission::create(['name' => $permission]);
+            }
+        */
         $new_permission = new Permission();
         $new_permission->name = $request->permissionname;
         $new_permission->guard_name = 'web';
