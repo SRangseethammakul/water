@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use LINE\LINEBot\HTTPClient;
+use LINE\LINEBot;
 
 class LineBotController extends Controller
 {
