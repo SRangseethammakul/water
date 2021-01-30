@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/show/banners', 'BannerAPIController@showbanner');
 Route::get('/product/updatesequence', 'ProductController@updateSequence')->name('product.updatesequence');
 Route::get('/banner/updatesequence', 'BannerController@updateSequence')->name('banner.updatesequence');
-
 Route::get('/banner/getContent', 'BannerAPIController@showbanner')->name('banner.updatesequence');
+Route::get('/getAQi', 'AjaxSearchController@getAQi')->name('getAQi');
 
 Route::get("/page", function(){
     return view("frontend.new_design");
@@ -89,6 +90,15 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::get('/edit/{id}', 'PermissionController@edit')->name('permission.edit');
             Route::put('/update', 'PermissionController@update')->name('permission.update');
             Route::get('/destroy', 'PermissionController@destroy')->name('permission.destroy');
+        });
+
+        Route::group(['prefix' => 'healthcare'], function () {
+            Route::get('/', 'HealthCareController@index')->name('healthcare.index');
+            Route::get('/create', 'HealthCareController@create')->name('healthcare.create');
+            Route::post('/store', 'HealthCareController@store')->name('healthcare.store');
+            Route::get('/edit/{id}', 'HealthCareController@edit')->name('healthcare.edit');
+            Route::put('/update', 'HealthCareController@update')->name('healthcare.update');
+            Route::get('/destroy', 'HealthCareController@destroy')->name('healthcare.destroy');
         });
     
         Route::resource('/store', 'StoreController');
