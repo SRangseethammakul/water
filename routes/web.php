@@ -92,13 +92,8 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::get('/destroy', 'PermissionController@destroy')->name('permission.destroy');
         });
 
-        Route::group(['prefix' => 'healthcare'], function () {
-            Route::get('/', 'HealthCareController@index')->name('healthcare.index');
-            Route::get('/create', 'HealthCareController@create')->name('healthcare.create');
-            Route::post('/store', 'HealthCareController@store')->name('healthcare.store');
-            Route::get('/edit/{id}', 'HealthCareController@edit')->name('healthcare.edit');
-            Route::put('/update', 'HealthCareController@update')->name('healthcare.update');
-            Route::get('/destroy', 'HealthCareController@destroy')->name('healthcare.destroy');
+        Route::group(['prefix' => 'linebot'], function () {
+            Route::get('/reply', 'LineBotController@reply')->name('linebot.reply');
         });
     
         Route::resource('/store', 'StoreController');
