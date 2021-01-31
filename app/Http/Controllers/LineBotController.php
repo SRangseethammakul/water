@@ -24,7 +24,7 @@ class LineBotController extends Controller
             $arrJson = json_decode($content, true);
             $strUrl = "https://api.line.me/v2/bot/message/reply";
  
-            $str = 'message='.$arrJson;
+            $str = 'message=';
             event(new SendNoti($str));
             $arrHeader = array();
             $arrHeader[] = "Content-Type: application/json";
