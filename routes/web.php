@@ -23,7 +23,7 @@ Route::get("/page", function(){
  });
 
  Route::group(['prefix' => 'linebot'], function () {
-    Route::get('/reply', 'LineBotController@reply')->name('linebot.reply');
+    Route::post('/reply', 'LineBotController@reply')->name('linebot.reply');
 });
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
