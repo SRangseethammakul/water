@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use LINE\LINEBot\HTTPClient;
-use LINE\LINEBot;
+use App\Http\Requests;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 
 class LineBotController extends Controller
 {
@@ -15,6 +16,33 @@ class LineBotController extends Controller
      */
     public function reply(Request $request)
     {
-        dd("fdghf");
+        try {
+            return response()->json(['status' => 1],200);
+        } catch (Exception $e) {
+            return response()->json(['status' => 0],200);
+        }
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
