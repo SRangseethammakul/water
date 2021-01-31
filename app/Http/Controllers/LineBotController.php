@@ -26,7 +26,7 @@ class LineBotController extends Controller
             $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
              
             $arrPostData = array();
-            $arrPostData['to'] = ["Uc02db7c973632f8cf022824f4e5666dd"];
+            $arrPostData['to'] = "Uc02db7c973632f8cf022824f4e5666dd";
             $arrPostData['messages'][0]['type'] = "text";
             $arrPostData['messages'][0]['text'] = "dwefefe";
              
