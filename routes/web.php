@@ -22,6 +22,9 @@ Route::get("/page", function(){
     return view("frontend.new_design");
  });
 
+ Route::group(['prefix' => 'linebot'], function () {
+    Route::get('/reply', 'LineBotController@reply')->name('linebot.reply');
+});
 
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/search_product', 'WelcomeController@search_product');
@@ -90,10 +93,6 @@ Route::group(['middleware' => 'Verify'], function () {
             Route::get('/edit/{id}', 'PermissionController@edit')->name('permission.edit');
             Route::put('/update', 'PermissionController@update')->name('permission.update');
             Route::get('/destroy', 'PermissionController@destroy')->name('permission.destroy');
-        });
-
-        Route::group(['prefix' => 'linebot'], function () {
-            Route::get('/reply', 'LineBotController@reply')->name('linebot.reply');
         });
     
         Route::resource('/store', 'StoreController');
