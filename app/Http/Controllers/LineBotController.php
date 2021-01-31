@@ -27,7 +27,7 @@ class LineBotController extends Controller
              
             $arrPostData = array();
             $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = "dwefefe";
+            $arrPostData['messages'][0]['text'] = "broadcast";
              
              
             $ch = curl_init();
