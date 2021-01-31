@@ -17,74 +17,55 @@ class LineBotController extends Controller
     public function reply(Request $request)
     {
         try {
-            $datas = file_get_contents('php://input');
-            /*Decode Json From LINE Data Body*/
-            $deCode = json_decode($datas,true);
-        
-            $replyToken = $deCode['events'][0]['replyToken'];
-            $userId = $deCode['events'][0]['source']['userId'];
-            $text = $deCode['events'][0]['message']['text'];
-        
-            $messages = [];
-            $messages['replyToken'] = $replyToken;
-            $messages['messages'][0] = getFormatTextMessage("เอ้ย ถามอะไรก็ตอบได้");
-
-            $LINEDatas['url'] = "https://api.line.me/v2/bot/message/reply";
-            $LINEDatas['token'] = "mPTPwCDDSVAujVGodPG9sRtQVD8/dq7ZYpiGNPY0PwSuAkQNYsX5OuH2mxnhXwwq/lAYnj3Lc8lC9oyF3Tu5rJLcoFQCPwNBs1tCnk1X79jfLfuj0SdQZ382z4+TGitYIgXSx9DEAj/x68j5MA5awgdB04t89/1O/w1cDnyilFU=";
-            $results = sentMessage($encodeJson,$LINEDatas);
-            return response()->json(['status' => 1],200);
+            $strAccessToken = "mPTPwCDDSVAujVGodPG9sRtQVD8/dq7ZYpiGNPY0PwSuAkQNYsX5OuH2mxnhXwwq/lAYnj3Lc8lC9oyF3Tu5rJLcoFQCPwNBs1tCnk1X79jfLfuj0SdQZ382z4+TGitYIgXSx9DEAj/x68j5MA5awgdB04t89/1O/w1cDnyilFU=";
+ 
+            $content = file_get_contents('php://input');
+            $arrJson = json_decode($content, true);
+             
+            $strUrl = "https://api.line.me/v2/bot/message/reply";
+             
+            $arrHeader = array();
+            $arrHeader[] = "Content-Type: application/json";
+            $arrHeader[] = "Authorization: Bearer mPTPwCDDSVAujVGodPG9sRtQVD8/dq7ZYpiGNPY0PwSuAkQNYsX5OuH2mxnhXwwq/lAYnj3Lc8lC9oyF3Tu5rJLcoFQCPwNBs1tCnk1X79jfLfuj0SdQZ382z4+TGitYIgXSx9DEAj/x68j5MA5awgdB04t89/1O/w1cDnyilFU=";
+             
+            if($arrJson['events'][0]['message']['text'] == "สวัสดี"){
+              $arrPostData = array();
+              $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+              $arrPostData['messages'][0]['type'] = "text";
+              $arrPostData['messages'][0]['text'] = "สวัสดี ID คุณคือ ".$arrJson['events'][0]['source']['userId'];
+            }else if($arrJson['events'][0]['message']['text'] == "ชื่ออะไร"){
+              $arrPostData = array();
+              $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+              $arrPostData['messages'][0]['type'] = "text";
+              $arrPostData['messages'][0]['text'] = "ฉันยังไม่มีชื่อนะ";
+            }else if($arrJson['events'][0]['message']['text'] == "ทำอะไรได้บ้าง"){
+              $arrPostData = array();
+              $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+              $arrPostData['messages'][0]['type'] = "text";
+              $arrPostData['messages'][0]['text'] = "ฉันทำอะไรไม่ได้เลย คุณต้องสอนฉันอีกเยอะ";
+            }else{
+              $arrPostData = array();
+              $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+              $arrPostData['messages'][0]['type'] = "text";
+              $arrPostData['messages'][0]['text'] = "ฉันไม่เข้าใจคำสั่ง";
+            }
+             
+             
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL,$strUrl);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $result = curl_exec($ch);
+            curl_close ($ch);
+            return response()->json(['status' => 0],200);
         } catch (Exception $e) {
             return response()->json(['status' => 0],200);
         }
     }
-    public function getFormatTextMessage($text)
-	{
-		$datas = [];
-		$datas['type'] = 'text';
-		$datas['text'] = $text;
-
-		return $datas;
-	}
-    public function sentMessage($encodeJson,$datas)
-	{
-		$datasReturn = [];
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-		  CURLOPT_URL => $datas['url'],
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => "",
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 30,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "POST",
-		  CURLOPT_POSTFIELDS => $encodeJson,
-		  CURLOPT_HTTPHEADER => array(
-		    "authorization: Bearer ".$datas['token'],
-		    "cache-control: no-cache",
-		    "content-type: application/json; charset=UTF-8",
-		  ),
-		));
-
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-
-		curl_close($curl);
-
-		if ($err) {
-		    $datasReturn['result'] = 'E';
-		    $datasReturn['message'] = $err;
-		} else {
-		    if($response == "{}"){
-			$datasReturn['result'] = 'S';
-			$datasReturn['message'] = 'Success';
-		    }else{
-			$datasReturn['result'] = 'E';
-			$datasReturn['message'] = $response;
-		    }
-		}
-
-		return $datasReturn;
-	}
 
     /**
      * Update the specified resource in storage.
