@@ -28,7 +28,7 @@ class LineBotController extends Controller
             $arrPostData = array();
             $arrPostData['to'] = "Uc02db7c973632f8cf022824f4e5666dd";
             $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = "นี้คือการทดสอบ Push Message";
+            $arrPostData['messages'][0]['text'] = "dwefefe";
              
              
             $ch = curl_init();
@@ -41,7 +41,7 @@ class LineBotController extends Controller
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $result = curl_exec($ch);
             curl_close ($ch);
-            return response()->json(['status' => 0],200);
+            return response()->json(['status' => 1],200);
         } catch (Exception $e) {
             return response()->json(['status' => 0],200);
         }
