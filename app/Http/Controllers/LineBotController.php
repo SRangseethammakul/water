@@ -17,6 +17,7 @@ class LineBotController extends Controller
     public function reply(Request $request)
     {
         try {
+            dd($request->all());
             return response()->json(['status' => 1],200);
         } catch (Exception $e) {
             return response()->json(['status' => 0],200);
