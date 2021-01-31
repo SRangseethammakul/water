@@ -19,15 +19,16 @@ class LineBotController extends Controller
         try {
             $strAccessToken = "mPTPwCDDSVAujVGodPG9sRtQVD8/dq7ZYpiGNPY0PwSuAkQNYsX5OuH2mxnhXwwq/lAYnj3Lc8lC9oyF3Tu5rJLcoFQCPwNBs1tCnk1X79jfLfuj0SdQZ382z4+TGitYIgXSx9DEAj/x68j5MA5awgdB04t89/1O/w1cDnyilFU=";
  
-            $strUrl = "https://api.line.me/v2/bot/message/broadcast";
+            $strUrl = "https://api.line.me/v2/bot/message/push";
              
             $arrHeader = array();
             $arrHeader[] = "Content-Type: application/json";
             $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
              
             $arrPostData = array();
+            $arrPostData['to'] = ["Uc02db7c973632f8cf022824f4e5666dd"];
             $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = "broadcast";
+            $arrPostData['messages'][0]['text'] = "dwefefe";
              
              
             $ch = curl_init();
