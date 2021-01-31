@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use GuzzleHttp\Client;
-use App\Events\SendNoti;
 use Illuminate\Support\Facades\Http;
 
 class LineBotController extends Controller
@@ -20,20 +19,16 @@ class LineBotController extends Controller
         try {
             $strAccessToken = "mPTPwCDDSVAujVGodPG9sRtQVD8/dq7ZYpiGNPY0PwSuAkQNYsX5OuH2mxnhXwwq/lAYnj3Lc8lC9oyF3Tu5rJLcoFQCPwNBs1tCnk1X79jfLfuj0SdQZ382z4+TGitYIgXSx9DEAj/x68j5MA5awgdB04t89/1O/w1cDnyilFU=";
  
-            $content = file_get_contents('php://input');
-            dd($content);
-            $arrJson = json_decode($content, true);
-            $strUrl = "https://api.line.me/v2/bot/message/reply";
- 
-
+            $strUrl = "https://api.line.me/v2/bot/message/push";
+             
             $arrHeader = array();
             $arrHeader[] = "Content-Type: application/json";
             $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
-        
+             
             $arrPostData = array();
-            $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+            $arrPostData['to'] = "Uc02db7c973632f8cf022824f4e5666dd";
             $arrPostData['messages'][0]['type'] = "text";
-            $arrPostData['messages'][0]['text'] = "ฉันไม่เข้าใจคำสั่ง";
+            $arrPostData['messages'][0]['text'] = "dwefefe";
              
              
             $ch = curl_init();
@@ -45,9 +40,7 @@ class LineBotController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $result = curl_exec($ch);
-            event(new SendNoti($result));
             curl_close ($ch);
-
             return response()->json(['status' => 1],200);
         } catch (Exception $e) {
             return response()->json(['status' => 0],200);
