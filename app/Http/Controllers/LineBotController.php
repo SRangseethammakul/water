@@ -21,7 +21,7 @@ class LineBotController extends Controller
  
             $strUrl = "https://api.line.me/v2/bot/message/reply";
 
-            $content = file_get_contents(‘php://input’);
+            $content = file_get_contents('php://input');
             $arrJson = json_decode($content, true);
              
             $arrHeader = array();
