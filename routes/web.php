@@ -22,7 +22,7 @@ Route::get("/page", function(){
     return view("frontend.new_design");
  });
 
- Route::group(['prefix' => 'linebot'], function () {
+ Route::group(['prefix' => 'linebotweb'], function () {
     Route::post('/reply', 'LineBotController@reply')->name('linebot.reply');
 });
 
