@@ -24,8 +24,7 @@ class LineBotController extends Controller
             $arrJson = json_decode($content, true);
             $strUrl = "https://api.line.me/v2/bot/message/reply";
  
-            $str = 'message=';
-            event(new SendNoti($str));
+
             $arrHeader = array();
             $arrHeader[] = "Content-Type: application/json";
             $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
@@ -45,6 +44,7 @@ class LineBotController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $result = curl_exec($ch);
+            event(new SendNoti($result));
             curl_close ($ch);
 
             return response()->json(['status' => 1],200);
