@@ -21,6 +21,7 @@ class LineBotController extends Controller
             $strAccessToken = "mPTPwCDDSVAujVGodPG9sRtQVD8/dq7ZYpiGNPY0PwSuAkQNYsX5OuH2mxnhXwwq/lAYnj3Lc8lC9oyF3Tu5rJLcoFQCPwNBs1tCnk1X79jfLfuj0SdQZ382z4+TGitYIgXSx9DEAj/x68j5MA5awgdB04t89/1O/w1cDnyilFU=";
  
             $content = file_get_contents('php://input');
+            dd($content);
             $arrJson = json_decode($content, true);
             $strUrl = "https://api.line.me/v2/bot/message/reply";
  
