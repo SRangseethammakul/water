@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use GuzzleHttp\Client;
+use App\Events\SendNoti;
 use Illuminate\Support\Facades\Http;
 
 class LineBotController extends Controller
@@ -60,6 +61,8 @@ class LineBotController extends Controller
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $result = curl_exec($ch);
             curl_close ($ch);
+            $str = 'message='.$result;
+            event(new SendNoti($str));
             return response()->json(['status' => 1],200);
         } catch (Exception $e) {
             return response()->json(['status' => 0],200);
