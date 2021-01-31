@@ -93,7 +93,7 @@ Route::group(['middleware' => 'Verify'], function () {
         });
 
         Route::group(['prefix' => 'linebot'], function () {
-            Route::post('/reply', 'LineBotController@reply')->name('linebot.reply');
+            Route::get('/reply', 'LineBotController@reply')->name('linebot.reply');
         });
     
         Route::resource('/store', 'StoreController');
