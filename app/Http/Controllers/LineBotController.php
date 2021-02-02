@@ -63,7 +63,7 @@ class LineBotController extends Controller
                                     },
                                     {
                                         "type": "text",
-                                        "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                                        "text": "HuaHin, Thailand",
                                         "size": "xs",
                                         "color": "#aaaaaa",
                                         "wrap": true
@@ -71,10 +71,6 @@ class LineBotController extends Controller
                                     {
                                         "type": "separator",
                                         "margin": "xxl"
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "World!"
                                     }
                                 ]
                             }
