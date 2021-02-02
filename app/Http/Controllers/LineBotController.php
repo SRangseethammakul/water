@@ -28,11 +28,7 @@ class LineBotController extends Controller
             $arrPostData = array();
             $arrPostData['messages'][0]['type'] = "flex";
             $arrPostData['messages'][0]['altText'] = "From broadcast";
-            $arrPostData['messages'][0]['contents'] = [
-                {
-                    "type": "flex",
-                    "altText": "From broadcast",
-                    "contents": {
+            $arrPostData['messages'][0]['contents'] = '
                         "type": "bubble",
                         "hero": {
                             "type": "image",
@@ -79,10 +75,7 @@ class LineBotController extends Controller
                                     "text": "World!"
                                 }
                             ]
-                        }
-                    }
-                }
-            ];
+                        }';
              
              
             $ch = curl_init();
