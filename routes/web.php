@@ -29,7 +29,7 @@ Route::get("/page", function(){
 Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('/search_product', 'WelcomeController@search_product');
 
-Route::get('/example/pdf', 'WelcomeController@pdf_index');
+// Route::get('/example/pdf', 'WelcomeController@pdf_index');
 
 Route::get('/auth/github', 'Auth\LoginController@redirectToGithub');
 Route::get('/auth/github/callback', 'Auth\LoginController@handleGithubCallback');

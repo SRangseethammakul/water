@@ -212,6 +212,7 @@
     });
     $('#saveBtn').on('click', function (e) {
         event.preventDefault();
+        var profile = $('#profileselect').val();
         var formData = new FormData();
         var files = $('#payment_img')[0].files;
         var profileselect = $('#profileselect').val();
@@ -219,7 +220,8 @@
         formData.append('payment_img', files[0]);
         formData.append('profileselect', profileselect);
         formData.append('paymeny_status', paymeny_status);
-        $.ajax({
+        if (profile) {
+            $.ajax({
             type: "POST",
             data: formData,
             url: "{{ route('cart.newConfirm') }}",
@@ -233,7 +235,7 @@
                             'จัดส่งสินค้าภายใน ' + response.day,
                             'success'
                         ).then((result) => {
-                            window.location = '/';
+                            window.location = '{{ route('welcome') }}';
                     });
                 }else {
                     Swal.fire({
@@ -248,6 +250,15 @@
                 $('#saveBtn').html('Save Changes');
             }
         });
+        }else {
+            Swal.fire(
+                'คุณยังไม่มีที่อยู่ในการจัดส่ง',
+                'โปรดเพิ่มที่อยู่ให้เราหน่อย',
+                'question'
+            ).then((result) => {
+                window.location = '{{ route('profile.create') }}';
+            });
+        }
     });
     /*
     function startSearch() {

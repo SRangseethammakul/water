@@ -125,10 +125,6 @@ class WelcomeController extends Controller
     {
         //
     }
-    public function test()
-    {
-        //
-    }
 
     public function pdf_index() {
         $data = ["a" => "...", "b" => "..."  ];
