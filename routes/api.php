@@ -24,9 +24,8 @@ Route::get('/getorder', 'AjaxSearchController@getOrderById');
 Route::get('/ajax/coutetype', 'AjaxSearchController@count_store_type');
 Route::get('/store/testAPI', 'StoreController@testAPI');
 Route::get('/show/banners', 'BannerAPIController@showbanner')->name('bannerAPI');
-Route::group(['prefix' => 'linebot'], function () {
-    Route::get('/reply', 'LineBotController@reply')->name('linebot.reply');
-});
+
+Route::match(['GET','POST'], '/linebot/reply', 'LineBotController@reply')->name('linebot.reply');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
