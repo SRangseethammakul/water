@@ -17,7 +17,7 @@ class LineBotController extends Controller
     public function reply(Request $request)
     {
         try {
-            $strAccessToken = "mPTPwCDDSVAujVGodPG9sRtQVD8/dq7ZYpiGNPY0PwSuAkQNYsX5OuH2mxnhXwwq/lAYnj3Lc8lC9oyF3Tu5rJLcoFQCPwNBs1tCnk1X79jfLfuj0SdQZ382z4+TGitYIgXSx9DEAj/x68j5MA5awgdB04t89/1O/w1cDnyilFU=";
+            $strAccessToken = env('LINE_BOT_CHANNEL_ACCESS_TOKEN');
  
             $strUrl = "https://api.line.me/v2/bot/message/broadcast";
              
