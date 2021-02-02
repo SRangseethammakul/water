@@ -26,7 +26,8 @@ class LineBotController extends Controller
             $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
              
             $arrPostData = array();
-            $arrPostData['messages'][0]['type'] = "text";
+            $arrPostData['messages'][0]['type'] = "flex";
+            $arrPostData['messages'][0]['altText'] = "From broadcast";
             $arrPostData['messages'][0]['text'] = "dwefefe";
              
              
